@@ -9,16 +9,18 @@ public class setup {
     void initHardware(){
 
         motors = new DcMotor[]{
-            hardwareMap.dcMotor.get("fr")
-            hardwareMap.dcMotor.get("bl")
-            hardwareMap.dcMotor.get("fl")
-            hardwareMap.dcMotor.get("bl")
+            hardwareMap.dcMotor.get("fr");
+            hardwareMap.dcMotor.get("bl");
+            hardwareMap.dcMotor.get("fl");
+            hardwareMap.dcMotor.get("bl");
         }
 
-        DcMotor leftSlide = new DcMotor()
-        DcMotor rightSlide = new DcMotor()
-        leftSlide = hardwareMap.dcMotor.get()
-        rightSlide = hardwareMap.dcMotor.get()
+        DcMotor leftSlide = new DcMotor();
+        DcMotor rightSlide = new DcMotor();
+        leftSlide = hardwareMap.dcMotor.get();
+        rightSlide = hardwareMap.dcMotor.get();
+
+        Slides brr = new Slides(leftSlide,rightSlide);
 
     }
 

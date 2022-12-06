@@ -39,7 +39,7 @@ public class JellyTele extends BaseOpMode{
                     break;
                 }
                 case DRIVE:{
-                    double x = gamepad1.left_stick_x
+                    double pivot = gamepad1.left_stick_x
                     double y = -gamepad1.left_stick_y;
 
                     setMotorSpeeds(mult,new double[]{y-pivot,y-pivot,y+pivot,y+pivot})
