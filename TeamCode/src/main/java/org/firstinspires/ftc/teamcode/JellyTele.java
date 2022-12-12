@@ -14,8 +14,9 @@ public class JellyTele extends BaseOpMode{
         protected static enum DriveMode{
             TANK,
             DRIVE,
-            MECANUM,
+            MECANUM
         }
+        
         protected DriveMode driveMode = DriveMode.MECANUM;
         
         setup.initHardware();
