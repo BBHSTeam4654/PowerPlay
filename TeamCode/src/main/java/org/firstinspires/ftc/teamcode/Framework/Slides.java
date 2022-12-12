@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 public class Slides{
 
-    DcMotor leftSlide, rightSlide
+    DcMotor leftSlide, rightSlide;
 
     public Slides(DcMotor leftSlide, DcMotor rightSlide){
         this.leftSlide = leftSlide;
