@@ -18,7 +18,7 @@ public class JellyTele extends BaseOpMode{
         }
         protected DriveMode driveMode = DriveMode.MECANUM;
         
-        initHardware();
+        setup.initHardware();
         waitForStart();
         while(opModeIsActive()){
             if (gamepad1.dpad_left) {
