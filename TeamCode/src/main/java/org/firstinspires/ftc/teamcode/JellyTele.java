@@ -29,6 +29,8 @@ public class JellyTele extends BaseOpMode{
             } else if (gamepad1.dpad_right) {
                 driveMode = DriveMode.DRIVE;
             }
+            //percision mult
+            double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : 1.0;
 
             telemetry.addData("drive mode", driveMode);
             telemetry.addData("precision mode", mult);
