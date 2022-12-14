@@ -8,13 +8,13 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name = "Power Play JellyTele")
 
-public class JellyTele extends BaseOpMode{
+public class JellyTele extends BaseOpMode {
     public void runOpMode() throws InterruptedException{
         
         protected static enum DriveMode{
             TANK,
             DRIVE,
-            MECANUM
+            MECANUM,
         }
         
         protected DriveMode driveMode = DriveMode.MECANUM;
@@ -45,7 +45,7 @@ public class JellyTele extends BaseOpMode{
                     double pivot = gamepad1.left_stick_x;
                     double y = -gamepad1.left_stick_y;
 
-                    setMotorSpeeds(mult,new double[]{y-pivot,y-pivot,y+pivot,y+pivot})
+                    setMotorSpeeds(mult,new double[]{y-pivot,y-pivot,y+pivot,y+pivot});
                     break;
                 }
                 case MECANUM:{
@@ -54,31 +54,32 @@ public class JellyTele extends BaseOpMode{
                     //Strafing
                     double mX = gamepad1.left_stick_x;
                     double mY = gamepad1.left_stick_y;
-                    setMotorSpeeds(mult,new double[]){mY - mX - pivot, mY + mX - pivot, mY + mX + pivot, mY - mX + pivot}
+                    setMotorSpeeds(mult,new double[] {mY - mX - pivot, mY + mX - pivot, mY + mX + pivot, mY - mX + pivot});
                     }
                     break;
                 }
             }
         }
-        //Multi
-        protected void setMotorSpeeds(double mult, double[] powers) {
-            for (int i = 0; i < 4; i++) {
-                powers[i] = powers[i] * mult;
-            }
-    
-            double max = Math.max(Math.max(Math.abs(powers[0]), Math.abs(powers[1])), Math.max(Math.abs(powers[2]), Math.abs(powers[3])));
-            double scale = Math.abs(1 / max);
-            if (scale > 1) {
-                scale = 1;
-            }
-    
-            for (int i = 0; i < 4; i++) {
-                powers[i] *= scale;
-            }
-    
-            for (int i = 0; i < 4; i++) {
-                motors[i].setPower(powers[i]);
-            }
+
+    // Multi
+    protected void setMotorSpeeds(double mult, double[] powers) {
+        for (int i = 0; i < 4; i++) {
+            powers[i] = powers[i] * mult;
+        }
+
+        double max = Math.max(Math.max(Math.abs(powers[0]), Math.abs(powers[1])),
+                Math.max(Math.abs(powers[2]), Math.abs(powers[3])));
+        double scale = Math.abs(1 / max);
+        if (scale > 1) {
+            scale = 1;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            powers[i] *= scale;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            motors[i].setPower(powers[i]);
         }
     }
 }
