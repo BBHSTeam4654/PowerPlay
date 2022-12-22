@@ -9,8 +9,10 @@ public class Slides{
     public Slides(DcMotor leftSlide, DcMotor rightSlide){
         this.leftSlide = leftSlide;
         this.rightSlide = rightSlide;
-        leftSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        for (DcMotor motor: motors) {
+            motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+            motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);  
+        }
 
     }
     // Reset the encoder during initialization
