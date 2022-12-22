@@ -22,13 +22,13 @@ public class Slides{
     }
 
     public void moveSlidesUp(){
-        leftSlide.setPower(gamepad2.right_trigger);
-        rightSlide.setPower(gamepad2.right_trigger);
+        leftSlide.setPower(gamepad2.left_stick_y);
+        rightSlide.setPower(gamepad2.left_stick_y);
     }
 
     public void moveSlidesDown(){
-        leftSlide.setPower(gamepad2.left_trigger);
-        rightSlide.setPower(gamepad2.left_trigger);
+        leftSlide.setPower(gamepad2.left_stick_y);
+        rightSlide.setPower(gamepad2.left_stick_y);
     }
 
 }
