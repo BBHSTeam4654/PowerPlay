@@ -9,8 +9,10 @@ public class Slides{
     public Slides(DcMotor leftSlide, DcMotor rightSlide){
         this.leftSlide = leftSlide;
         this.rightSlide = rightSlide;
-        leftSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        for (DcMotor motor: motors) {
+            motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+            motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);  
+        }
 
     }
     // Reset the encoder during initialization
@@ -22,13 +24,13 @@ public class Slides{
     }
 
     public void moveSlidesUp(){
-        leftSlide.setPower(gamepad2.right_trigger);
-        rightSlide.setPower(gamepad2.right_trigger);
+        leftSlide.setPower(gamepad2.left_stick_y);
+        rightSlide.setPower(gamepad2.left_stick_y);
     }
 
     public void moveSlidesDown(){
-        leftSlide.setPower(gamepad2.left_trigger);
-        rightSlide.setPower(gamepad2.left_trigger);
+        leftSlide.setPower(gamepad2.left_stick_y);
+        rightSlide.setPower(gamepad2.left_stick_y);
     }
 
 }
