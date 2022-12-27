@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.framework;
-
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class Slides{
 
@@ -9,28 +8,9 @@ public class Slides{
     public Slides(DcMotor leftSlide, DcMotor rightSlide){
         this.leftSlide = leftSlide;
         this.rightSlide = rightSlide;
-        for (DcMotor motor: motors) {
-            motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-            motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);  
-        }
 
     }
     // Reset the encoder during initialization
-    public void setBaseline() {
-        for (DcMotor motor: motors) {
-            motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);  
-        }
-    }
-
-    public void moveSlidesUp(){
-        leftSlide.setPower(gamepad2.left_stick_y);
-        rightSlide.setPower(gamepad2.left_stick_y);
-    }
-
-    public void moveSlidesDown(){
-        leftSlide.setPower(gamepad2.left_stick_y);
-        rightSlide.setPower(gamepad2.left_stick_y);
-    }
+    
 
 }
