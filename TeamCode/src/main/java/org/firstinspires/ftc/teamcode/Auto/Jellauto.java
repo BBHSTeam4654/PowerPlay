@@ -33,7 +33,7 @@
  
  import java.util.ArrayList;
  
- @TeleOp
+ @Autonomous(name = "Jellyauto")
  public class Jellyauto extends LinearOpMode
  {
      OpenCvCamera camera;
