@@ -8,7 +8,6 @@ public class Slides{
     public Slides(DcMotor leftSlide, DcMotor rightSlide){
         this.leftSlide = leftSlide;
         this.rightSlide = rightSlide;
-
     }
     // Reset the encoder during initialization
     
