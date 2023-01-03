@@ -35,7 +35,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;*/
 import java.util.ArrayList;
  
  @Autonomous(name = "Jellyauto")
- public class Jellyauto extends LinearOpMode
+ public class Jellyauto extends BaseOpMode
  {
      OpenCvCamera camera;
      AprilTagDetectionPipeline aprilTagDetectionPipeline;
