@@ -54,22 +54,23 @@ import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
                     case TANK:{
                         //front back
                         moveleftFrontMotor.setPower(gamepad1.left_stick_y);
-                        moveleftBackMotor.setPower((gamepad1.left_stick_y) * -1);
-                        moverightFrontMotor.setPower((gamepad1.left_stick_y) * -1);
-                        moverightBackMotor.setPower((gamepad1.left_stick_y) * -1);
+                        moveleftBackMotor.setPower(-gamepad1.left_stick_y);
+                        moverightFrontMotor.setPower(-gamepad1.left_stick_y);
+                        moverightBackMotor.setPower(-gamepad1.left_stick_y);
+
                     }
                     case TURN:{
                         //turning
                         moveleftFrontMotor.setPower(gamepad1.right_stick_y);
-                        moveleftBackMotor.setPower((gamepad1.right_stick_y) * -1);
+                        moveleftBackMotor.setPower(-gamepad1.right_stick_y);
                         moverightFrontMotor.setPower(gamepad1.right_stick_y);
                         moverightBackMotor.setPower(gamepad1.right_stick_y);
                     }
                     case MECANUM:{
                         //strafing
-                        moveleftFrontMotor.setPower((gamepad1.left_stick_x) * -1);
-                        moveleftBackMotor.setPower((gamepad1.left_stick_x) * -1);
-                        moverightFrontMotor.setPower((gamepad1.left_stick_x) * -1);
+                        moveleftFrontMotor.setPower(-gamepad1.left_stick_x);
+                        moveleftBackMotor.setPower(-gamepad1.left_stick_x);
+                        moverightFrontMotor.setPower(-gamepad1.left_stick_x);
                         moverightBackMotor.setPower(gamepad1.left_stick_x);
 
                     }
