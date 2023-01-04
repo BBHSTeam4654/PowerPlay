@@ -59,6 +59,10 @@ import java.util.ArrayList;
      int LEFT = 1;
      int MIDDLE = 2;
      int RIGHT = 3;
+
+     // Side
+     protected static enum Side { CUPS_LEFT, CUPS_RIGHT }
+     protected Side side = Side.CUPS_LEFT;
  
      AprilTagDetection tagOfInterest = null;
  
@@ -128,8 +132,11 @@ import java.util.ArrayList;
                          tagToTelemetry(tagOfInterest);
                      }
                  }
- 
              }
+             if (gamepad1.x) side = Side.CUPS_LEFT;
+            if (gamepad1.b) side = Side.CUPS_RIGHT;
+            telemetry.addData("Side", side);
+
              else
              {
                  telemetry.addLine("Don't see tag of interest :(");
@@ -169,16 +176,26 @@ import java.util.ArrayList;
          }
  
          /* Actually do something useful */
-         //If camera fails, pray the the signal is for 1
-         if(tagOfInterest == null || tagOfInterest.id == LEFT){
-             //left trajectory
-         }else if(tagOfInterest.id == MIDDLE){
-             //middle trajectory
-         }else{
-             //right trajectory
-         }
- 
- 
+         //Auto for the left side
+         if (side == Side.CUPS_LEFT){
+            //If camera fails, pray the the signal is for 1
+            if(tagOfInterest == null || tagOfInterest.id == LEFT){
+                //left trajectory
+             }else if(tagOfInterest.id == MIDDLE){
+                //middle trajectory
+            }else{
+                //right trajectory
+            }
+        }else{ //Auto for the right side
+            //If camera fails, pray the the signal is for 1
+            if(tagOfInterest == null || tagOfInterest.id == LEFT){
+                //left trajectory
+             }else if(tagOfInterest.id == MIDDLE){
+                //middle trajectory
+            }else{
+                //right trajectory
+            }
+        }
          /* You wouldn't have this in your autonomous, this is just to prevent the sample from ending */
          while (opModeIsActive()) {sleep(20);}
      }
