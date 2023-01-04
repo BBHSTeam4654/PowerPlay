@@ -7,8 +7,10 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
 
-    @TeleOp(name = "DriveTrain Test", group="Linear Opmode")
+
+@TeleOp(name = "DriveTrainTest")
 
     public class DriveTrainTest extends LinearOpMode {
 
@@ -17,7 +19,16 @@ import com.qualcomm.robotcore.util.ElapsedTime;
         DcMotor moverightFrontMotor = hardwareMap.get(DcMotor.class, "frontRightMotor");
         DcMotor moverightBackMotor = hardwareMap.get(DcMotor.class, "backRightMotor");
 
-        @Override
+        protected static enum DriveMode {
+            TANK,
+            TURN,
+            MECANUM,
+        }
+
+    protected DriveMode driveMode = DriveMode.MECANUM;
+
+
+    @Override
         public void runOpMode() {
 
             telemetry.addData("Status", "Initialized");
@@ -28,23 +39,44 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
             // run until the end of the match (driver presses STOP)
             while (opModeIsActive()) {
-                //front back
-                moveleftFrontMotor.setPower(gamepad1.left_stick_y);
-                moveleftBackMotor.setPower((gamepad1.left_stick_y) * -1);
-                moverightFrontMotor.setPower((gamepad1.left_stick_y) * -1);
-                moverightBackMotor.setPower((gamepad1.left_stick_y) * -1);
-                //turning
-                moveleftFrontMotor.setPower(gamepad1.right_stick_y);
-                moveleftBackMotor.setPower((gamepad1.right_stick_y) * -1);
-                moverightFrontMotor.setPower(gamepad1.right_stick_y);
-                moverightBackMotor.setPower(gamepad1.right_stick_y);
-                //strafing
-                moveleftFrontMotor.setPower((gamepad1.left_stick_x) * -1);
-                moveleftBackMotor.setPower((gamepad1.left_stick_x) * -1);
-                moverightFrontMotor.setPower((gamepad1.left_stick_x) * -1);
-                moverightBackMotor.setPower(gamepad1.left_stick_x);
-                telemetry.addData("Status", "Running");
-                telemetry.update();
+
+                if (gamepad1.dpad_left) {
+                    driveMode = DriveMode.TANK;
+                } else if (gamepad1.dpad_up) {
+                    driveMode = DriveMode.MECANUM;
+                } else if (gamepad1.dpad_right) {
+                    driveMode = DriveMode.TURN;
+                }
+                //percision
+                double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : 1.0;
+
+                switch (driveMode){
+                    case TANK:{
+                        //front back
+                        moveleftFrontMotor.setPower(gamepad1.left_stick_y);
+                        moveleftBackMotor.setPower((gamepad1.left_stick_y) * -1);
+                        moverightFrontMotor.setPower((gamepad1.left_stick_y) * -1);
+                        moverightBackMotor.setPower((gamepad1.left_stick_y) * -1);
+                    }
+                    case TURN:{
+                        //turning
+                        moveleftFrontMotor.setPower(gamepad1.right_stick_y);
+                        moveleftBackMotor.setPower((gamepad1.right_stick_y) * -1);
+                        moverightFrontMotor.setPower(gamepad1.right_stick_y);
+                        moverightBackMotor.setPower(gamepad1.right_stick_y);
+                    }
+                    case MECANUM:{
+                        //strafing
+                        moveleftFrontMotor.setPower((gamepad1.left_stick_x) * -1);
+                        moveleftBackMotor.setPower((gamepad1.left_stick_x) * -1);
+                        moverightFrontMotor.setPower((gamepad1.left_stick_x) * -1);
+                        moverightBackMotor.setPower(gamepad1.left_stick_x);
+
+                    }
+                    telemetry.addData("Status", "Running");
+                    telemetry.update();
+
+                }
 
 
             }
