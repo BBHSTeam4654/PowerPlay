@@ -97,6 +97,11 @@ import java.util.ArrayList;
           */
          while (!isStarted() && !isStopRequested())
          {
+            if (gamepad1.x) side = Side.CUPS_LEFT;
+            if (gamepad1.b) side = Side.CUPS_RIGHT;
+            telemetry.addData("Side", side);
+
+
              ArrayList<AprilTagDetection> currentDetections = aprilTagDetectionPipeline.getLatestDetections();
  
              if(currentDetections.size() != 0)
@@ -133,10 +138,6 @@ import java.util.ArrayList;
                      }
                  }
              }
-             if (gamepad1.x) side = Side.CUPS_LEFT;
-            if (gamepad1.b) side = Side.CUPS_RIGHT;
-            telemetry.addData("Side", side);
-
              else
              {
                  telemetry.addLine("Don't see tag of interest :(");
