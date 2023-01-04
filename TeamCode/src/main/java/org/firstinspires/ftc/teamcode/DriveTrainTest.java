@@ -12,10 +12,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
     public class DriveTrainTest extends LinearOpMode {
 
-        private DcMotor moveleftFrontMotor = hardwareMap.get(DcMotor.class, "frontLeftMotor");
-        private DcMotor moveleftBackMotor = hardwareMap.get(DcMotor.class, "backLeftMotor");
-        private DcMotor moverightFrontMotor = hardwareMap.get(DcMotor.class, "frontRightMotor");
-        private DcMotor moverightBackMotor = hardwareMap.get(DcMotor.class, "backRightMotor");
+        DcMotor moveleftFrontMotor = hardwareMap.get(DcMotor.class, "frontLeftMotor");
+        DcMotor moveleftBackMotor = hardwareMap.get(DcMotor.class, "backLeftMotor");
+        DcMotor moverightFrontMotor = hardwareMap.get(DcMotor.class, "frontRightMotor");
+        DcMotor moverightBackMotor = hardwareMap.get(DcMotor.class, "backRightMotor");
 
         @Override
         public void runOpMode() {
