@@ -1,9 +1,10 @@
-package org.firstinspires.ftc.teamcode.framework;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
+import org.firstinspires.ftc.teamcode.Framework.Slides;
 
 @TeleOp(name = "Power Play JellyTele")
 
@@ -18,30 +19,21 @@ public class JellyTele extends BaseOpMode {
             telemetry.update();
 
 
-            int position = slideLeft.getCurrentPosition();
-            telemetry.addData("Encoder", slideLeft.getCurrentPosition());
-            telemetry.update();
+
             if(gamepad1.left_stick_y!=0){
-                slideLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                slideLeft.setPower(gamepad1.left_stick_y);
+                slide.manual();
             }
 
             if(gamepad1.a){
-                slideLeft.setTargetPosition(-4000);
-                slideLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                slideLeft.setVelocity(1000);
+                slide.top();
             }
 
             if(gamepad1.b){
-                slideLeft.setTargetPosition(-2000);
-                slideLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                slideLeft.setVelocity(1000);
+                slide.mid();
             }
 
             if(gamepad1.x){
-                slideLeft.setTargetPosition(0);
-                slideLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                slideLeft.setVelocity(1000);
+                slide.reset();
             }
         }
     }

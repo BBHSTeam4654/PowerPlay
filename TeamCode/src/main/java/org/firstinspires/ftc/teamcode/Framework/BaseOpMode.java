@@ -5,20 +5,20 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 public abstract class BaseOpMode extends LinearOpMode {
-    protected DcMotorEx slideLeft;
-
-    protected void initHardware() {
+        protected DcMotorEx slideLeft;
+        protected DcMotorEx slideRight;
+        protected Slides slide;
+        protected void initHardware() {
         DcMotor[] motors = new DcMotor[]{
                 hardwareMap.dcMotor.get("motor fr"),
                 hardwareMap.dcMotor.get("motor br"),
                 hardwareMap.dcMotor.get("motor fl"),
                 hardwareMap.dcMotor.get("motor bl")
         };
+        slideLeft= (DcMotorEx) hardwareMap.dcMotor.get("leftSlide");
+        slideRight= (DcMotorEx) hardwareMap.dcMotor.get("rightSlide");
 
-        slideLeft = hardwareMap.get(DcMotorEx.class, "motor sl");
-        slideLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        slideLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        slideLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Slides slide = new Slides(slideLeft, slideRight);
 
     }
 
