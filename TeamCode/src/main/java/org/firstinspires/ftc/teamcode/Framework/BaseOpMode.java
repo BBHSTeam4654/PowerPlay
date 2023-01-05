@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Framework;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public abstract class BaseOpMode extends LinearOpMode {
         protected DcMotorEx slideLeft;
@@ -17,6 +18,7 @@ public abstract class BaseOpMode extends LinearOpMode {
         };
         slideLeft= (DcMotorEx) hardwareMap.dcMotor.get("leftSlide");
         slideRight= (DcMotorEx) hardwareMap.dcMotor.get("rightSlide");
+        Servo clawServo = hardwareMap.servo.get("servo");
 
         Slides slide = new Slides(slideLeft, slideRight);
 
