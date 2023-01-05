@@ -51,6 +51,15 @@ public class Slides{
         rightSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightSlide.setVelocity(1000);
     }
+    //For slide positions in auto like cups
+    public static void slidesPosition(int x){
+        leftSlide.setTargetPosition(x);
+        leftSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftSlide.setVelocity(1000);
+        rightSlide.setTargetPosition(x);
+        rightSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightSlide.setVelocity(1000);
+    }
     public static void manual(){
         leftSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
