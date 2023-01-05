@@ -14,7 +14,7 @@ public class ServoTest extends LinearOpMode{
 
 
         while(opModeIsActive()){
-            
+
         }
     }
 }
