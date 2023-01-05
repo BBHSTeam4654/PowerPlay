@@ -14,12 +14,7 @@ public class ServoTest extends LinearOpMode{
 
 
         while(opModeIsActive()){
-            int position = clawServo.getPosition();
-            if (gamepad1.left_bumper && position != 0.5){
-                clawServo.setPosition(0.35);
-            } else if (gamepad1.right_bumper && position != 0){
-                clawServo.setPosition(0);
-            }
+            
         }
     }
 }
