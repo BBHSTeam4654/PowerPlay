@@ -8,6 +8,7 @@ public abstract class BaseOpMode extends LinearOpMode {
         protected DcMotorEx slideLeft;
         protected DcMotorEx slideRight;
         protected Slides slide;
+        protected DcMotor[] motors;
         protected void initHardware() {
         DcMotor[] motors = new DcMotor[]{
                 hardwareMap.dcMotor.get("motor fr"),
@@ -16,9 +17,12 @@ public abstract class BaseOpMode extends LinearOpMode {
                 hardwareMap.dcMotor.get("motor bl")
         };
         slideLeft= (DcMotorEx) hardwareMap.dcMotor.get("leftSlide");
+
+
         slideRight= (DcMotorEx) hardwareMap.dcMotor.get("rightSlide");
 
         Slides slide = new Slides(slideLeft, slideRight);
+
 
     }
 
