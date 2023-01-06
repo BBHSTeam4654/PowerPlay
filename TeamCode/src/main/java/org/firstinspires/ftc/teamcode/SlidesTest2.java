@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 @TeleOp(name = "Slides Test2")
-public class SlidesTest extends LinearOpMode {
+public class SlidesTest2 extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         waitForStart();
@@ -22,7 +22,7 @@ public class SlidesTest extends LinearOpMode {
             int position = frontLeftMotor.getCurrentPosition();
             telemetry.addData("Encoder", frontLeftMotor.getCurrentPosition());
             telemetry.update();
-            if (gamepad1.left_stick_y != 0) {
+            while (gamepad1.left_stick_y != 0) {
                 frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 frontLeftMotor.setPower(gamepad1.left_stick_y);
             }
