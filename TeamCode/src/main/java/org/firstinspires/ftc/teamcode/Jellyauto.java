@@ -24,7 +24,7 @@
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.misc.drive.Auto.AprilTagDetectionPipeline;
+import org.firstinspires.ftc.teamcode.Auto.AprilTagDetectionPipeline;
 
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
