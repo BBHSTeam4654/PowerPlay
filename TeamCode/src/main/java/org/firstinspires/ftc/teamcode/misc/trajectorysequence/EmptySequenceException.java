@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.misc.drive.trajectorysequence;
+package org.firstinspires.ftc.teamcode.misc.trajectorysequence;
 
 
 public class EmptySequenceException extends RuntimeException { }

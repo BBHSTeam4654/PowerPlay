@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.misc.drive.util;
+package org.firstinspires.ftc.teamcode.misc.util;
 
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.HardwareMap;
