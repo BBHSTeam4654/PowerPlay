@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 public class Slides{
 
-    static DcMotorEx leftSlide;
+    /*static DcMotorEx leftSlide;
     static DcMotorEx rightSlide;
 
     public Slides(DcMotorEx leftSlide, DcMotorEx rightSlide){
@@ -68,6 +68,6 @@ public class Slides{
 
 
     // Reset the encoder during initialization
-    
+    */
 
 }
