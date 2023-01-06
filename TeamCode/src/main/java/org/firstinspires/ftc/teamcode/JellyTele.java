@@ -21,7 +21,7 @@ public class JellyTele extends BaseOpMode {
         waitForStart();
 
         while(opModeIsActive()) {
-            telemetry.addData("Status", "Running");
+            telemetry.addData("Mode", driveMode);
             telemetry.update();
 
             //Slides
@@ -94,8 +94,7 @@ public class JellyTele extends BaseOpMode {
                     }
 
                 }
-                telemetry.addData("Status", "Running");
-                telemetry.update();
+
 
             }
         }
