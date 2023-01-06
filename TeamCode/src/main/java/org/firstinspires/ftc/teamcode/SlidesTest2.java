@@ -22,28 +22,29 @@ public class SlidesTest2 extends LinearOpMode {
             int position = frontLeftMotor.getCurrentPosition();
             telemetry.addData("Encoder", frontLeftMotor.getCurrentPosition());
             telemetry.update();
-            while (gamepad1.left_stick_y != 0) {
+            if (gamepad1.left_stick_y != 0) {
                 frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 frontLeftMotor.setPower(gamepad1.left_stick_y);
             }
-
-            if (gamepad1.a) {
+            else if (gamepad1.a) {
                 frontLeftMotor.setTargetPosition(-4000);
                 frontLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 frontLeftMotor.setVelocity(1000);
             }
-
-            if (gamepad1.b) {
+            else if (gamepad1.b) {
                 frontLeftMotor.setTargetPosition(-2000);
                 frontLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 frontLeftMotor.setVelocity(1000);
             }
-
-            if (gamepad1.x) {
+            else if (gamepad1.x) {
                 frontLeftMotor.setTargetPosition(0);
                 frontLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 frontLeftMotor.setVelocity(1000);
             }
+            else{
+                frontLeftMotor.setPower(0);
+            }
+
 
         }
 
