@@ -54,11 +54,14 @@ public class JellyTele extends BaseOpMode {
             //precision
             double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : 1.0;
 
+            telemetry.addData("drive mode", driveMode);
+            telemetry.addData("precision mode", mult);
+
             switch (driveMode) {
                 case TANK: {
                     //front back
-                    double l = gamepad1.left_stick_y;
-                    double r = gamepad1.right_stick_y;
+                    double l = -gamepad1.left_stick_y;
+                    double r = -gamepad1.right_stick_y;
                     setMotorSpeeds(mult, new double[] {
                         (Math.pow(2, r)-1), 
                         (Math.pow(2, r)-1), 
@@ -69,7 +72,7 @@ public class JellyTele extends BaseOpMode {
                 case DRIVE: {
                     //turning
                     double pivot = gamepad1.left_stick_x;
-                    double y = gamepad1.left_stick_y;
+                    double y = -gamepad1.left_stick_y;
                     setMotorSpeeds(mult, new double[] {
                             (Math.pow(2, y)-1)-pivot,
                             (Math.pow(2, y)-1)-pivot,
@@ -81,7 +84,7 @@ public class JellyTele extends BaseOpMode {
                     //left right
                     double pivot = gamepad1.right_stick_x;
                     double mX = gamepad1.left_stick_x;
-                    double mY = gamepad1.left_stick_y;
+                    double mY = -gamepad1.left_stick_y;
                     setMotorSpeeds(mult, new double[] {
                         (Math.pow(2, mY - mX)-1) - pivot,
                         (Math.pow(2, mY + mX)-1) - pivot,
@@ -105,7 +108,7 @@ public class JellyTele extends BaseOpMode {
         double max = Math.max(Math.max(Math.abs(powers[0]), Math.abs(powers[1])), Math.max(Math.abs(powers[2]), Math.abs(powers[3])));
         double scale = 1/max;
 
-        if (scale>1){
+        if (scale>  1){
             scale = 1;
         }
         for (int i = 0; i<4; i++){
