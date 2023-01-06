@@ -23,7 +23,7 @@ public abstract class BaseOpMode extends LinearOpMode {
                 hardwareMap.dcMotor.get("motor bl")
         };
 
-        motors[Motors.FR].setDirection(DcMotorSimple.Direction.FORWARD);
+        motors[Motors.FR].setDirection(DcMotorSimple.Direction.REVERSE);
         motors[Motors.FL].setDirection(DcMotorSimple.Direction.REVERSE);
         motors[Motors.BL].setDirection(DcMotorSimple.Direction.FORWARD);
         motors[Motors.BR].setDirection(DcMotorSimple.Direction.FORWARD);
