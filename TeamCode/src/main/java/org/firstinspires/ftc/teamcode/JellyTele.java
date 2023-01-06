@@ -43,7 +43,7 @@ public class JellyTele extends BaseOpMode {
             //Claw
             
 
-            //DRIVETRAINhihi
+            //DRIVETRAIN
             if (gamepad1.dpad_left) {
                 driveMode = DriveMode.TANK;
             } else if (gamepad1.dpad_up) {
