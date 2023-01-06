@@ -3,15 +3,17 @@ package org.firstinspires.ftc.teamcode.Framework;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.framework.Motors;
 
 
 public abstract class BaseOpMode extends LinearOpMode {
-        protected DcMotorEx slideLeft;
+        /*protected DcMotorEx slideLeft;
         protected DcMotorEx slideRight;
         protected Slides slide;
+        */
         protected DcMotor[] motors;
         protected void initHardware() {
         motors = new DcMotor[]{

@@ -25,7 +25,7 @@ public class JellyTele extends BaseOpMode {
             telemetry.update();
 
             //Slides
-            if (gamepad1.left_stick_y != 0) {
+           /* if (gamepad1.left_stick_y != 0) {
                 slide.manual();
             }
 
@@ -41,7 +41,7 @@ public class JellyTele extends BaseOpMode {
                 slide.reset();
             }
             //Claw
-            
+            */
 
             //DRIVETRAINhihi
             if (gamepad1.dpad_left) {
