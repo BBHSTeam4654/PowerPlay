@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.framework.Motors;
 
+
 public abstract class BaseOpMode extends LinearOpMode {
         protected DcMotorEx slideLeft;
         protected DcMotorEx slideRight;
@@ -19,6 +20,12 @@ public abstract class BaseOpMode extends LinearOpMode {
                 hardwareMap.dcMotor.get("motor fl"),
                 hardwareMap.dcMotor.get("motor bl")
         };
+
+        motors[Motors.FR].setDirection(DcMotorSimple.Direction.FORWARD);
+        motors[Motors.FL].setDirection(DcMotorSimple.Direction.REVERSE);
+        motors[Motors.BL].setDirection(DcMotorSimple.Direction.FORWARD);
+        motors[Motors.BR].setDirection(DcMotorSimple.Direction.FORWARD);
+        
         /*slideLeft= (DcMotorEx) hardwareMap.dcMotor.get("leftSlide");
 
 
