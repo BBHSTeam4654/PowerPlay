@@ -22,6 +22,7 @@ public class SlidesTest2 extends LinearOpMode {
             int position = frontLeftMotor.getCurrentPosition();
             telemetry.addData("Encoder", frontLeftMotor.getCurrentPosition());
             telemetry.update();
+
             while (gamepad1.left_stick_y != 0) {
                 frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 frontLeftMotor.setPower(gamepad1.left_stick_y);
