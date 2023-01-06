@@ -19,14 +19,14 @@ public abstract class BaseOpMode extends LinearOpMode {
                 hardwareMap.dcMotor.get("motor fl"),
                 hardwareMap.dcMotor.get("motor bl")
         };
-        slideLeft= (DcMotorEx) hardwareMap.dcMotor.get("leftSlide");
+        /*slideLeft= (DcMotorEx) hardwareMap.dcMotor.get("leftSlide");
 
 
         slideRight= (DcMotorEx) hardwareMap.dcMotor.get("rightSlide");
         Servo clawServo = hardwareMap.servo.get("servo");
 
         Slides slide = new Slides(slideLeft, slideRight);
-
+        */
 
     }
 
