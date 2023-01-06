@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.framework.Motors;
+
 public abstract class BaseOpMode extends LinearOpMode {
         protected DcMotorEx slideLeft;
         protected DcMotorEx slideRight;
