@@ -21,8 +21,6 @@ public class JellyTele extends BaseOpMode {
         waitForStart();
 
         while(opModeIsActive()) {
-            telemetry.addData("Mode", driveMode);
-            telemetry.update();
 
             //Slides
            /* if (gamepad1.left_stick_y != 0) {
@@ -56,7 +54,7 @@ public class JellyTele extends BaseOpMode {
 
             telemetry.addData("drive mode", driveMode);
             telemetry.addData("precision mode", mult);
-
+            telemetry.update();
             switch (driveMode) {
                 case TANK: {
                     //front back
