@@ -24,9 +24,9 @@ public abstract class BaseOpMode extends LinearOpMode {
         };
 
         motors[Motors.FR].setDirection(DcMotorSimple.Direction.REVERSE);
-        motors[Motors.FL].setDirection(DcMotorSimple.Direction.REVERSE);
+        motors[Motors.FL].setDirection(DcMotorSimple.Direction.FORWARD);
         motors[Motors.BL].setDirection(DcMotorSimple.Direction.FORWARD);
-        motors[Motors.BR].setDirection(DcMotorSimple.Direction.FORWARD);
+        motors[Motors.BR].setDirection(DcMotorSimple.Direction.REVERSE);
         
         /*slideLeft= (DcMotorEx) hardwareMap.dcMotor.get("leftSlide");
 
