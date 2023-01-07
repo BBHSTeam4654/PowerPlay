@@ -29,7 +29,7 @@ public class SlidesTest2 extends LinearOpMode {
             double left_current_error = target - leftPosition;
             double lkp = 0.004;
             double lp = lkp * left_current_error;
-            if(target<0) {
+            if(target>0) {
                 target = 0;
             }
             frontLeftMotor.setPower(lp);
