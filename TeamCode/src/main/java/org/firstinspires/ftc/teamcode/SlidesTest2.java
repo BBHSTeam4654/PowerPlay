@@ -27,7 +27,7 @@ public class SlidesTest2 extends LinearOpMode {
             double leftPosition = (double) (frontLeftMotor.getCurrentPosition());
 
             double left_current_error = target - leftPosition;
-            double lkp = 0.004;
+            double lkp = 0.016;
             double lp = lkp * left_current_error;
             if(target>0) {
                 target = 0;
@@ -37,7 +37,7 @@ public class SlidesTest2 extends LinearOpMode {
             telemetry.update();
             if (gamepad1.left_stick_y != 0) {
                 //frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                target += gamepad1.left_stick_y;
+                target += gamepad1.left_stick_y*5;
             } else if (gamepad1.a) {
                 //frontLeftMotor.setTargetPosition(-4000);
                 target = -3350;
@@ -53,7 +53,10 @@ public class SlidesTest2 extends LinearOpMode {
                 //frontLeftMotor.setTargetPosition(0);
                 //frontLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 //frontLeftMotor.setVelocity(1000);
+            } else if (gamepad1.y){
+                target = -1000;
             }
+
         }
 
     }

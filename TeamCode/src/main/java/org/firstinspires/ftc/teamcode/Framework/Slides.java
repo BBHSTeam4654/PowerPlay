@@ -30,11 +30,14 @@ public class Slides{
         telemetry.update();
     }
 
-    public static void top(){
+    public static void high(){
         target = -4000;
     }
     public static void mid(){
         target = -2000;
+    }
+    public static void low(){
+        target = -1000;
     }
     public static void reset(){
         target = 0;
@@ -49,7 +52,7 @@ public class Slides{
         rightSlide.setVelocity(1000);
     }
     public static void manual(){
-        target += gamepad1.left_stick_y;
+        target += gamepad1.left_stick_y*1.5;
     }
 
     public static void pLoop(){
@@ -57,17 +60,17 @@ public class Slides{
         double leftPosition = (double)(leftSlide.getCurrentPosition());
 
         double left_current_error = target-leftPosition;
-        double lkp = 0.004;
+        double lkp = 0.016;
         double lp = lkp * left_current_error;
 
         double rightPosition = (double)(leftSlide.getCurrentPosition());
 
         double right_current_error = target-rightPosition;
-        double rkp = 0.004;
+        double rkp = 0.016;
         double rp = rkp * right_current_error;
         leftSlide.setPower(lp);
         rightSlide.setPower(rp);
-        if(target<0){
+        if(target>0){
             target = 0;
         }
     }

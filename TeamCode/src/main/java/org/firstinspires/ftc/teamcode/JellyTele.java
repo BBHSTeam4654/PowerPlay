@@ -30,13 +30,16 @@ public class JellyTele extends BaseOpMode {
             }
 
             if (gamepad1.a) {
-                slide.top();
+                slide.high();
             }
 
             if (gamepad1.b) {
                 slide.mid();
             }
 
+            if (gamepad1.y){
+                slide.low();
+            }
             if (gamepad1.x) {
                 slide.reset();
             }
