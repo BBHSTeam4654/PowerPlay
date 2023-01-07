@@ -112,21 +112,23 @@ public class JellyTele extends BaseOpMode {
         }
 
     //precision method
-    protected void setMotorSpeeds(double mult, double[] powers) {
-        for (int i = 0; i<4; i++){
-            powers[i] = powers[i] *mult;
+    protected void setMotorSpeeds(double mult, double[] powers){
+        for (int i = 0; i < 4; i++){
+            powers[i] = powers[i] * mult;
         }
 
         double max = Math.max(Math.max(Math.abs(powers[0]), Math.abs(powers[1])), Math.max(Math.abs(powers[2]), Math.abs(powers[3])));
-        double scale = 1/max;
-
-        if (scale>  1){
+        double scale = Math.abs(1 / max);
+        // don't increase power, only decrease
+        if (scale > 1){
             scale = 1;
         }
-        for (int i = 0; i<4; i++){
+
+        for (int i = 0; i < 4; i++){
             powers[i] *= scale;
         }
-        for (int i = 0; i<4; i++){
+
+        for (int i = 0; i < 4; i++){
             motors[i].setPower(powers[i]);
         }
     }
