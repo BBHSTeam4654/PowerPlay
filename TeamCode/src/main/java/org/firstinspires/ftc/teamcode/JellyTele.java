@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
 import org.firstinspires.ftc.teamcode.Framework.Slides;
 import org.firstinspires.ftc.teamcode.Framework.Claws;
+import org.firstinspires.ftc.teamcode.misc.*;
 
 @TeleOp(name = "Power Play JellyTele")
 
