@@ -40,6 +40,7 @@ public class JellyTele extends BaseOpMode {
             if (gamepad1.x) {
                 slide.reset();
             }
+            slide.pLoop();
             
             //Claw
             if (gamepad1.left_trigger) {

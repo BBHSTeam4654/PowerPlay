@@ -18,46 +18,42 @@ public class SlidesTest2 extends LinearOpMode {
         frontLeftMotor = hardwareMap.get(DcMotorEx.class, "frontLeftMotor");
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        frontLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        double target = 0;
         waitForStart();
 
+
         while (opModeIsActive()) {
-            double position = (double)(frontLeftMotor.getCurrentPosition());
-            double target = 0;
-            double current_error = target-position;
-            double kp = 0.1;
-            double p = kp * current_error;
+            double leftPosition = (double) (frontLeftMotor.getCurrentPosition());
 
-            frontLeftMotor.setPower(p);
-
-            telemetry.addData("Encoder", frontLeftMotor.getCurrentPosition());
-            telemetry.update();
-            if (gamepad1.left_stick_y!=0) {
-                frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                frontLeftMotor.setPower(gamepad1.left_stick_y);
+            double left_current_error = target - leftPosition;
+            double lkp = 0.004;
+            double lp = lkp * left_current_error;
+            if(target<0) {
+                target = 0;
             }
-            else if (gamepad1.a) {
+            frontLeftMotor.setPower(lp);
+            telemetry.addData("Target", target);
+            telemetry.update();
+            if (gamepad1.left_stick_y != 0) {
+                //frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                target += gamepad1.left_stick_y;
+            } else if (gamepad1.a) {
                 //frontLeftMotor.setTargetPosition(-4000);
-                target = -4000;
-                frontLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                target = -3350;
+                //frontLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 //frontLeftMotor.setVelocity(1000);
             } else if (gamepad1.b) {
                 target = -2000;
                 //frontLeftMotor.setTargetPosition(-2000);
-                frontLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                //frontLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 //frontLeftMotor.setVelocity(1000);
             } else if (gamepad1.x) {
                 target = 0;
                 //frontLeftMotor.setTargetPosition(0);
-                frontLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                //frontLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 //frontLeftMotor.setVelocity(1000);
-            } else{
-                frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                frontLeftMotor.setPower(0);
             }
-
-
-
         }
 
     }
