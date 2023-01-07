@@ -8,10 +8,10 @@ public class Claws {
     public Claws(Servo servo){
         this.servo = servo;
     }
-    public static void ClawsOpen(){
+    public static void clawsOpen(){
         servo.setPosition(0.5);
     }
-    public static void ClawsClose(){
+    public static void clawsClose(){
         servo.setPosition(0);
     }
 }

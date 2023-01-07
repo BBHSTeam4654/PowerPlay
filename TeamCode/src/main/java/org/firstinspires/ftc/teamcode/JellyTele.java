@@ -2,9 +2,11 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
 import org.firstinspires.ftc.teamcode.Framework.Slides;
+import org.firstinspires.ftc.teamcode.Framework.Claws;
 
 @TeleOp(name = "Power Play JellyTele")
 
@@ -38,7 +40,14 @@ public class JellyTele extends BaseOpMode {
             if (gamepad1.x) {
                 slide.reset();
             }
+            
             //Claw
+            if (gamepad1.left_trigger) {
+                claw.clawsOpen();
+            }
+            if (gamepad1.right_trigger) {
+                claw.clawsClose();
+            }
             */
 
             //DRIVETRAIN

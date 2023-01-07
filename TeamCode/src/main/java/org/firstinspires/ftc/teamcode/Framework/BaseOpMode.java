@@ -32,7 +32,7 @@ public abstract class BaseOpMode extends LinearOpMode {
 
 
         slideRight= (DcMotorEx) hardwareMap.dcMotor.get("rightSlide");
-        Servo clawServo = hardwareMap.servo.get("servo");
+        Claws claw = hardwareMap.servo.get("servo");
 
         Slides slide = new Slides(slideLeft, slideRight);
         */
