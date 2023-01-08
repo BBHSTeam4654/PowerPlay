@@ -11,15 +11,26 @@ public class ServoTest extends LinearOpMode{
         Servo clawServo  = null;
         clawServo = hardwareMap.get(Servo.class, "servo");
         waitForStart();
+        double servoPosition = 0.547399999999956;
 
 
         while(opModeIsActive()){
-
-            if (gamepad1.left_trigger > 0 ){
-                clawServo.setPosition(0.35);
-            } else if (gamepad1.right_trigger > 0){
+            telemetry.addData("Servo", clawServo.getPosition());
+            telemetry.update();
+            clawServo.setPosition(servoPosition);
+            if(gamepad1.a){
+                servoPosition=0.547399999999956;
+            }
+            if(gamepad1.b){
+                servoPosition=0.6605999999999436;
+            }
+            /*
+            if (gamepad1.a){
+                clawServo.setPosition(1);
+            } else if (gamepad1.b){
                 clawServo.setPosition(0);
             }
+            */
         }
     }
 }

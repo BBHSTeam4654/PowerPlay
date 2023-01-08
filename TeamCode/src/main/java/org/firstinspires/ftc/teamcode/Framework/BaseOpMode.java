@@ -14,6 +14,7 @@ public abstract class BaseOpMode extends LinearOpMode {
         protected DcMotorEx slideRight;
         protected Slides slide;
         */
+        protected Claws claw;
         protected DcMotor[] motors;
         protected void initHardware() {
         motors = new DcMotor[]{
@@ -33,9 +34,10 @@ public abstract class BaseOpMode extends LinearOpMode {
 
         slideRight= (DcMotorEx) hardwareMap.dcMotor.get("rightSlide");
         Slides slide = new Slides(slideLeft, slideRight);
-        */
-        Claws claw = hardwareMap.servo.get("servo");
 
+        */
+        claw = new Claws(hardwareMap.servo.get("servo"));
+        claw.clawsOpen();
 
 
 

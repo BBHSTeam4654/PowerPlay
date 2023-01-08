@@ -17,7 +17,9 @@ public class JellyTele extends BaseOpMode {
         DRIVE,
         MECANUM,
     }
+
     protected DriveMode driveMode = DriveMode.MECANUM;
+
     public void runOpMode() throws InterruptedException{
 
         initHardware();
@@ -45,8 +47,8 @@ public class JellyTele extends BaseOpMode {
                 slide.reset();
             }
             slide.pLoop();
-            */
-
+*/
+            //CLAW
             if (gamepad2.left_bumper) {
                 claw.clawsOpen();
             }
