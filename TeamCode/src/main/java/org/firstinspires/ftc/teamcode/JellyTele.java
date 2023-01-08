@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
-
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad2;
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
 import org.firstinspires.ftc.teamcode.Framework.Slides;
 import org.firstinspires.ftc.teamcode.Framework.Claws;
@@ -26,34 +26,34 @@ public class JellyTele extends BaseOpMode {
         while(opModeIsActive()) {
 
             //Slides
-           /* if (gamepad1.left_stick_y != 0) {
+           /* if (gamepad2.left_stick_y != 0) {
                 slide.manual();
             }
 
-            if (gamepad1.a) {
+            if (gamepad2.a) {
                 slide.high();
             }
 
-            if (gamepad1.b) {
+            if (gamepad2.b) {
                 slide.mid();
             }
 
-            if (gamepad1.y){
+            if (gamepad2.y){
                 slide.low();
             }
-            if (gamepad1.x) {
+            if (gamepad2.x) {
                 slide.reset();
             }
             slide.pLoop();
-            
-            //Claw
-            if (gamepad1.left_trigger) {
+            */
+
+            if (gamepad2.left_bumper) {
                 claw.clawsOpen();
             }
-            if (gamepad1.right_trigger) {
+            if (gamepad2.right_bumper) {
                 claw.clawsClose();
             }
-            */
+
 
             //DRIVETRAIN
             if (gamepad1.dpad_left) {

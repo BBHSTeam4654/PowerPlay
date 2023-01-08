@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Framework;
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad2;
 
 public class Claws {
    static Servo servo;

@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Framework;
 import static com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior.BRAKE;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad2;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -52,7 +52,7 @@ public class Slides{
         rightSlide.setVelocity(1000);
     }
     public static void manual(){
-        target += gamepad1.left_stick_y*1.5;
+        target += gamepad2.left_stick_y*1.5;
     }
 
     public static void pLoop(){
