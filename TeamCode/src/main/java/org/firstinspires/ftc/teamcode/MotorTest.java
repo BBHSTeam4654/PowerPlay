@@ -8,11 +8,11 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
-
+/* 
 @TeleOp(name = "Power Play MotorTest")
 
 public class MotorTest {
-  /*  public void runOpMode() throws InterruptedException{
+    public void runOpMode() throws InterruptedException{
     protected static enum driveTest {
         frontL,
         frontR,
@@ -115,5 +115,7 @@ public class MotorTest {
 }
     }
 
-   */
+
 }
+
+ */
