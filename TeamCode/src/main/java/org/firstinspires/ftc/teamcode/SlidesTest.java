@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 public class SlidesTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
-        waitForStart();
+        
         DcMotorEx frontLeftMotor = null;
 
         frontLeftMotor = hardwareMap.get(DcMotorEx.class, "frontLeftMotor");
