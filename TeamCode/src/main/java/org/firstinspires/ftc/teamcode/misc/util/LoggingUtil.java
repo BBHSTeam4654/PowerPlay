@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.misc.drive.util;
+package org.firstinspires.ftc.teamcode.misc.util;
 
 import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
 

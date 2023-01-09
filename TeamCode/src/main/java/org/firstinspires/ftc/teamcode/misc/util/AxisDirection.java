@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.misc.drive.util;
+package org.firstinspires.ftc.teamcode.misc.util;
 
 /**
  * A direction for an axis to be remapped to
