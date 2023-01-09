@@ -24,7 +24,7 @@ public class MeepMeepTesting {
                                 .turn(Math.toRadians(90))
                                 .build()
                 );
-
+        System.setProperty("sun.java2d.opengl", "true");
         meepMeep.setBackground(MeepMeep.Background.FIELD_POWERPLAY_OFFICIAL)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
