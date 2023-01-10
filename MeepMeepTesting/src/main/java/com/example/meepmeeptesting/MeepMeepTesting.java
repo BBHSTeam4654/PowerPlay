@@ -26,11 +26,13 @@ public class MeepMeepTesting {
                             .addDisplacementMarker(()->{
                                 //open claw + slides go down
                             })
+                                //1+1
                             .lineToLinearHeading(new Pose2d( -35, 12, Math.toRadians(180)))
                             .forward(22)
                             .addDisplacementMarker(()->{
                                 //claw grabs cup -> slides go up
                             })
+                                //1+2
                             .back(22)
                             .lineToLinearHeading(new Pose2d( -31, 8, Math.toRadians(315)))
                             .addDisplacementMarker(()->{
@@ -41,6 +43,7 @@ public class MeepMeepTesting {
                             .addDisplacementMarker(()->{
                                 //claw grabs cup -> slides go up
                             })
+                                //1+3
                             .back(22)
                             .lineToLinearHeading(new Pose2d( -31, 8, Math.toRadians(315)))
                             .addDisplacementMarker(()->{
@@ -51,6 +54,7 @@ public class MeepMeepTesting {
                             .addDisplacementMarker(()->{
                                 //claw grabs cup -> slides go up
                             })
+                                //1+4
                             .back(22)
                             .lineToLinearHeading(new Pose2d( -31, 8, Math.toRadians(315)))
                             .addDisplacementMarker(()->{
@@ -61,6 +65,7 @@ public class MeepMeepTesting {
                             .addDisplacementMarker(()->{
                                 //claw grabs cup -> slides go up
                             })
+                                //1+5
                             .back(22)
                             .lineToLinearHeading(new Pose2d( -31, 8, Math.toRadians(315)))
                             .addDisplacementMarker(()->{
