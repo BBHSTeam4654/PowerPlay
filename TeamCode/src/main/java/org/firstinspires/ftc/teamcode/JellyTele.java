@@ -20,35 +20,36 @@ public class JellyTele extends BaseOpMode {
 
     protected DriveMode driveMode = DriveMode.MECANUM;
 
-    public void runOpMode() throws InterruptedException{
+    public void runOpMode() throws InterruptedException {
 
         initHardware();
         waitForStart();
 
-        while(opModeIsActive()) {
+        while (opModeIsActive()) {
 
-            //Slides
-           /* if (gamepad2.left_stick_y != 0) {
-                slide.manual();
-            }
-
-            if (gamepad2.a) {
-                slide.high();
-            }
-
-            if (gamepad2.b) {
-                slide.mid();
-            }
-
-            if (gamepad2.y){
-                slide.low();
-            }
-            if (gamepad2.x) {
-                slide.reset();
-            }
-            slide.pLoop();
-*/
-            //CLAW
+            // Slides
+            /*
+             * if (gamepad2.left_stick_y != 0) {
+             * slide.manual();
+             * }
+             * 
+             * if (gamepad2.a) {
+             * slide.high();
+             * }
+             * 
+             * if (gamepad2.b) {
+             * slide.mid();
+             * }
+             * 
+             * if (gamepad2.y){
+             * slide.low();
+             * }
+             * if (gamepad2.x) {
+             * slide.reset();
+             * }
+             * slide.pLoop();
+             */
+            // CLAW
             if (gamepad2.left_bumper) {
                 claw.clawsOpen();
             }
@@ -56,8 +57,7 @@ public class JellyTele extends BaseOpMode {
                 claw.clawsClose();
             }
 
-
-            //DRIVETRAIN
+            // DRIVETRAIN
             if (gamepad1.dpad_left) {
                 driveMode = DriveMode.TANK;
             } else if (gamepad1.dpad_up) {
@@ -65,7 +65,7 @@ public class JellyTele extends BaseOpMode {
             } else if (gamepad1.dpad_right) {
                 driveMode = DriveMode.DRIVE;
             }
-            //precision
+            // precision
             double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : 1.0;
 
             telemetry.addData("drive mode", driveMode);
@@ -73,64 +73,68 @@ public class JellyTele extends BaseOpMode {
             telemetry.update();
             switch (driveMode) {
                 case TANK: {
-                    //front back
+                    // front back
                     double l = -gamepad1.left_stick_y;
                     double r = -gamepad1.right_stick_y;
                     setMotorSpeeds(mult, new double[] {
-                        (Math.signum(r)*(Math.pow(2, Math.abs(r))-1)), 
-                        (Math.signum(r)*(Math.pow(2, Math.abs(r))-1)), 
-                        (Math.signum(l)*(Math.pow(2, Math.abs(l))-1)), 
-                        (Math.signum(l)*(Math.pow(2, Math.abs(l))-1))});
+                            (Math.signum(r) * (Math.pow(2, Math.abs(r)) - 1)),
+                            (Math.signum(r) * (Math.pow(2, Math.abs(r)) - 1)),
+                            (Math.signum(l) * (Math.pow(2, Math.abs(l)) - 1)),
+                            (Math.signum(l) * (Math.pow(2, Math.abs(l)) - 1)) });
                     break;
                 }
                 case DRIVE: {
-                    //turning
+                    // turning
                     double pivot = gamepad1.left_stick_x;
                     double y = -gamepad1.left_stick_y;
                     setMotorSpeeds(mult, new double[] {
-                        (Math.signum(y)*(Math.pow(2, Math.abs(y))-1))-pivot,
-                        (Math.signum(y)*(Math.pow(2, Math.abs(y))-1))-pivot,
-                        (Math.signum(y)*(Math.pow(2, Math.abs(y))-1))+pivot,
-                        (Math.signum(y)*(Math.pow(2, Math.abs(y))-1))+pivot});
+                            (Math.signum(y) * (Math.pow(2, Math.abs(y)) - 1)) - pivot,
+                            (Math.signum(y) * (Math.pow(2, Math.abs(y)) - 1)) - pivot,
+                            (Math.signum(y) * (Math.pow(2, Math.abs(y)) - 1)) + pivot,
+                            (Math.signum(y) * (Math.pow(2, Math.abs(y)) - 1)) + pivot });
                     break;
                 }
                 case MECANUM: {
-                    //left right
+                    // left right
                     double pivot = gamepad1.right_stick_x;
                     double mX = gamepad1.left_stick_x;
                     double mY = -gamepad1.left_stick_y;
                     setMotorSpeeds(mult, new double[] {
-                        (Math.signum(mY)*(Math.pow(2, Math.abs(mY))-1)) - (Math.signum(mX)*(Math.pow(2, Math.abs(mX))-1)) - pivot,
-                        (Math.signum(mY)*(Math.pow(2, Math.abs(mY))-1)) + (Math.signum(mX)*(Math.pow(2, Math.abs(mX))-1)) - pivot,
-                        (Math.signum(mY)*(Math.pow(2, Math.abs(mY))-1)) + (Math.signum(mX)*(Math.pow(2, Math.abs(mX))-1))  + pivot,
-                        (Math.signum(mY)*(Math.pow(2, Math.abs(mY))-1)) - (Math.signum(mX)*(Math.pow(2, Math.abs(mX))-1))  + pivot});
+                            (Math.signum(mY) * (Math.pow(2, Math.abs(mY)) - 1))
+                                    - (Math.signum(mX) * (Math.pow(2, Math.abs(mX)) - 1)) - pivot,
+                            (Math.signum(mY) * (Math.pow(2, Math.abs(mY)) - 1))
+                                    + (Math.signum(mX) * (Math.pow(2, Math.abs(mX)) - 1)) - pivot,
+                            (Math.signum(mY) * (Math.pow(2, Math.abs(mY)) - 1))
+                                    + (Math.signum(mX) * (Math.pow(2, Math.abs(mX)) - 1)) + pivot,
+                            (Math.signum(mY) * (Math.pow(2, Math.abs(mY)) - 1))
+                                    - (Math.signum(mX) * (Math.pow(2, Math.abs(mX)) - 1)) + pivot });
                     break;
-                    }
-
                 }
 
-
             }
+
         }
-        
-    //precision method
-    protected void setMotorSpeeds(double mult, double[] powers){
-        for (int i = 0; i < 4; i++){
+    }
+
+    // precision method
+    protected void setMotorSpeeds(double mult, double[] powers) {
+        for (int i = 0; i < 4; i++) {
             powers[i] = powers[i] * mult;
         }
 
-        double max = Math.max(Math.max(Math.abs(powers[0]), Math.abs(powers[1])), Math.max(Math.abs(powers[2]), Math.abs(powers[3])));
+        double max = Math.max(Math.max(Math.abs(powers[0]), Math.abs(powers[1])),
+                Math.max(Math.abs(powers[2]), Math.abs(powers[3])));
         double scale = Math.abs(1 / max);
         // don't increase power, only decrease
-        if (scale > 1){
+        if (scale > 1) {
             scale = 1;
         }
 
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++) {
             powers[i] *= scale;
         }
 
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++) {
             motors[i].setPower(powers[i]);
         }
     }
