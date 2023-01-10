@@ -22,14 +22,14 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose1)
                         .forward(36)
-                        .lineToLinearHeading(new Pose2d(-31, 8, Math.toRadians(315)))
-                        .addTemporalMarker(() -> {
+                        .UNSTABLE_addTemporalMarkerOffset(1, () -> {
                             // slides go up
                         })
-                        .addDisplacementMarker(() -> {
+                        .lineToLinearHeading(new Pose2d(-31, 8, Math.toRadians(315)))
+                        .addTemporalMarker(() -> {
                             // open claw
                         })
-                        .addTemporalMarker(() -> {
+                        .UNSTABLE_addTemporalMarkerOffset(1, () -> {
                             // slides go down
                         })
                         // 1+1
@@ -38,7 +38,7 @@ public class MeepMeepTesting {
                         .addDisplacementMarker(() -> {
                             // claw grabs cup
                         })
-                        .addTemporalMarker(() -> {
+                        .UNSTABLE_addTemporalMarkerOffset(1, () -> {
                             // slides go up
                         })
                         .back(22)
@@ -46,7 +46,7 @@ public class MeepMeepTesting {
                         .addDisplacementMarker(() -> {
                             // claw open
                         })
-                        .addTemporalMarker(() -> {
+                        .UNSTABLE_addTemporalMarkerOffset(1, () -> {
                             // slides go down
                         })
                         // start
@@ -74,48 +74,12 @@ public class MeepMeepTesting {
                         .addDisplacementMarker(() -> {
                             // open claw + slides go down
                         })
-                        .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(180)))
-                        .forward(22)
-                        .addDisplacementMarker(() -> {
-                            // claw grabs cup -> slides go up
-                        })
+                        .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(90)))
+                        //Goes back to the signal zones
                         .back(22)
-                        .lineToLinearHeading(new Pose2d(-31, -8, Math.toRadians(45)))
+                        .strafeLeft(24)
 
-                        .addDisplacementMarker(() -> {
-                            // open claw + slides go down
-                        })
-                        .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(180)))
-                        .forward(22)
-                        .addDisplacementMarker(() -> {
-                            // claw grabs cup -> slides go up
-                        })
-                        .back(22)
-                        .lineToLinearHeading(new Pose2d(-31, -8, Math.toRadians(45)))
 
-                        .addDisplacementMarker(() -> {
-                            // open claw + slides go down
-                        })
-                        .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(180)))
-                        .forward(22)
-                        .addDisplacementMarker(() -> {
-                            // claw grabs cup -> slides go up
-                        })
-                        .back(22)
-                        .lineToLinearHeading(new Pose2d(-31, -8, Math.toRadians(45)))
-                        .addDisplacementMarker(() -> {
-                            // open claw + slides go down
-                        })
-                        .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(180)))
-                        .forward(22)
-                        .addDisplacementMarker(() -> {
-                            // claw grabs cup -> slides go up
-                        })
-                        .back(22)
-                        .lineToLinearHeading(new Pose2d(-31, -8, Math.toRadians(45)))
-                        .addDisplacementMarker(() -> {
-                            // open claw + slides go down
-                        })
                         // start
                         .build()
 
