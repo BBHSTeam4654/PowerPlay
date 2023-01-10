@@ -33,6 +33,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
 import org.firstinspires.ftc.teamcode.Framework.Slides;
 import org.firstinspires.ftc.teamcode.Framework.Claws;
+
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
@@ -176,7 +177,7 @@ public class Jellyauto extends BaseOpMode {
                 // right trajectory
             }
         } else { // Auto for the right side
-                 // If camera fails, pray the the signal is for 1
+            // If camera fails, pray the the signal is for 1
             if (tagOfInterest == null || tagOfInterest.id == LEFT) {
                 // left trajectory
             } else if (tagOfInterest.id == MIDDLE) {
