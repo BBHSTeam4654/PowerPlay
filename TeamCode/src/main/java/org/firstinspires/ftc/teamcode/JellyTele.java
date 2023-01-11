@@ -79,10 +79,10 @@ public class JellyTele extends BaseOpMode {
                     double l = -gamepad1.left_stick_y;
                     double r = -gamepad1.right_stick_y;
                     setMotorSpeeds(mult, new double[]{
-                            (Math.signum(r) * (Math.pow(2, Math.abs(r)) - 1)),
-                            (Math.signum(r) * (Math.pow(2, Math.abs(r)) - 1)),
-                            (Math.signum(l) * (Math.pow(2, Math.abs(l)) - 1)),
-                            (Math.signum(l) * (Math.pow(2, Math.abs(l)) - 1))});
+                            (Math.signum(r) * (Math.pow(2.15, Math.abs(r)) - 1)),
+                            (Math.signum(r) * (Math.pow(2.15, Math.abs(r)) - 1)),
+                            (Math.signum(l) * (Math.pow(2.15, Math.abs(l)) - 1)),
+                            (Math.signum(l) * (Math.pow(2.15, Math.abs(l)) - 1))});
                     break;
                 }
                 case DRIVE: {
@@ -90,10 +90,10 @@ public class JellyTele extends BaseOpMode {
                     double pivot = gamepad1.left_stick_x;
                     double y = -gamepad1.left_stick_y;
                     setMotorSpeeds(mult, new double[]{
-                            (Math.signum(y) * (Math.pow(2, Math.abs(y)) - 1)) - pivot,
-                            (Math.signum(y) * (Math.pow(2, Math.abs(y)) - 1)) - pivot,
-                            (Math.signum(y) * (Math.pow(2, Math.abs(y)) - 1)) + pivot,
-                            (Math.signum(y) * (Math.pow(2, Math.abs(y)) - 1)) + pivot});
+                            (Math.signum(y) * (Math.pow(2.15, Math.abs(y)) - 1)) - pivot,
+                            (Math.signum(y) * (Math.pow(2.15, Math.abs(y)) - 1)) - pivot,
+                            (Math.signum(y) * (Math.pow(2.15, Math.abs(y)) - 1)) + pivot,
+                            (Math.signum(y) * (Math.pow(2.15, Math.abs(y)) - 1)) + pivot});
                     break;
                 }
                 case MECANUM: {
@@ -102,14 +102,14 @@ public class JellyTele extends BaseOpMode {
                     double mX = gamepad1.left_stick_x;
                     double mY = -gamepad1.left_stick_y;
                     setMotorSpeeds(mult, new double[]{
-                            (Math.signum(mY) * (Math.pow(2, Math.abs(mY)) - 1))
-                                    - (Math.signum(mX) * (Math.pow(2, Math.abs(mX)) - 1)) - pivot,
-                            (Math.signum(mY) * (Math.pow(2, Math.abs(mY)) - 1))
-                                    + (Math.signum(mX) * (Math.pow(2, Math.abs(mX)) - 1)) - pivot,
-                            (Math.signum(mY) * (Math.pow(2, Math.abs(mY)) - 1))
-                                    + (Math.signum(mX) * (Math.pow(2, Math.abs(mX)) - 1)) + pivot,
-                            (Math.signum(mY) * (Math.pow(2, Math.abs(mY)) - 1))
-                                    - (Math.signum(mX) * (Math.pow(2, Math.abs(mX)) - 1)) + pivot});
+                            (Math.signum(mY) * (Math.pow(2.15, Math.abs(mY)) - 1))
+                                    - (Math.signum(mX) * (Math.pow(2.15, Math.abs(mX)) - 1)) - pivot,
+                            (Math.signum(mY) * (Math.pow(2.15, Math.abs(mY)) - 1))
+                                    + (Math.signum(mX) * (Math.pow(2.15, Math.abs(mX)) - 1)) - pivot,
+                            (Math.signum(mY) * (Math.pow(2.15, Math.abs(mY)) - 1))
+                                    + (Math.signum(mX) * (Math.pow(2.15, Math.abs(mX)) - 1)) + pivot,
+                            (Math.signum(mY) * (Math.pow(2.15, Math.abs(mY)) - 1))
+                                    - (Math.signum(mX) * (Math.pow(2.15, Math.abs(mX)) - 1)) + pivot});
                     break;
                 }
 
