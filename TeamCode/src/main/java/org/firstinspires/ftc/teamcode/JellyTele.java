@@ -1,56 +1,50 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
-
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad2;
 
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
-import org.firstinspires.ftc.teamcode.Framework.Slides;
-import org.firstinspires.ftc.teamcode.Framework.Claws;
-import org.firstinspires.ftc.teamcode.misc.*;
 
 @TeleOp(name = "Power Play JellyTele")
 
 public class JellyTele extends BaseOpMode {
+    /*
     protected static enum DriveMode {
         TANK,
         DRIVE,
         MECANUM,
     }
 
-    protected DriveMode driveMode = DriveMode.MECANUM;
+    protected DriveMode driveMode = DriveMode.MECANUM;*/
 
     public void runOpMode() throws InterruptedException {
 
-        initHardware();
+        //initHardware();
         waitForStart();
 
         while (opModeIsActive()) {
 
             // Slides
-            /*
-             * if (gamepad2.left_stick_y != 0) {
-             * slide.manual();
-             * }
-             *
-             * if (gamepad2.a) {
-             * slide.high();
-             * }
-             *
-             * if (gamepad2.b) {
-             * slide.mid();
-             * }
-             *
-             * if (gamepad2.y){
-             * slide.low();
-             * }
-             * if (gamepad2.x) {
-             * slide.reset();
-             * }
-             * slide.pLoop();
-             */
+
+            if (gamepad2.left_stick_y != 0) {
+                slides.manual();
+            }
+
+            if (gamepad2.a) {
+                slides.high();
+            }
+
+            if (gamepad2.b) {
+                slides.mid();
+            }
+
+            if (gamepad2.y) {
+                slides.low();
+            }
+            if (gamepad2.x) {
+                slides.reset();
+            }
+            slides.pLoop();
+             /*
             // CLAW
             if (gamepad2.left_bumper) {
                 claw.clawsOpen();
@@ -112,12 +106,13 @@ public class JellyTele extends BaseOpMode {
                                     - (Math.signum(mX) * (Math.pow(2.15, Math.abs(mX)) - 1)) + pivot});
                     break;
                 }
-
-            }
+                */
 
         }
-    }
 
+    }
+}
+/*
     // precision method
     protected void setMotorSpeeds(double mult, double[] powers) {
         for (int i = 0; i < 4; i++) {
@@ -139,5 +134,4 @@ public class JellyTele extends BaseOpMode {
         for (int i = 0; i < 4; i++) {
             motors[i].setPower(powers[i]);
         }
-    }
-}
+    }*/
