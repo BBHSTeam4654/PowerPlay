@@ -28,6 +28,8 @@ public class MeasureSlides extends LinearOpMode {
 
         while (opModeIsActive()) {
             target += gamepad1.left_stick_y*1.5;
+
+
             position = (double) (frontLeftMotor.getCurrentPosition());
             current_error = target-position;
             output = current_error*kP;

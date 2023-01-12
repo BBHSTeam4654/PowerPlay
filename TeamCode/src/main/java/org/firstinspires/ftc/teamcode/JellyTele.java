@@ -7,27 +7,25 @@ import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
 @TeleOp(name = "Power Play JellyTele")
 
 public class JellyTele extends BaseOpMode {
-    /*
+
     protected static enum DriveMode {
         TANK,
         DRIVE,
         MECANUM,
     }
 
-    protected DriveMode driveMode = DriveMode.MECANUM;*/
+    protected DriveMode driveMode = DriveMode.MECANUM;
 
     public void runOpMode() throws InterruptedException {
 
-        //initHardware();
+        initHardware();
         waitForStart();
 
         while (opModeIsActive()) {
 
             // Slides
 
-            if (gamepad2.left_stick_y != 0) {
-                slides.manual();
-            }
+            slides.manual(gamepad2.left_stick_y);
 
             if (gamepad2.a) {
                 slides.high();
@@ -44,7 +42,7 @@ public class JellyTele extends BaseOpMode {
                 slides.reset();
             }
             slides.pLoop();
-             /*
+
             // CLAW
             if (gamepad2.left_bumper) {
                 claw.clawsOpen();
@@ -106,13 +104,13 @@ public class JellyTele extends BaseOpMode {
                                     - (Math.signum(mX) * (Math.pow(2.15, Math.abs(mX)) - 1)) + pivot});
                     break;
                 }
-                */
+
+
+            }
 
         }
-
     }
-}
-/*
+
     // precision method
     protected void setMotorSpeeds(double mult, double[] powers) {
         for (int i = 0; i < 4; i++) {
@@ -134,4 +132,5 @@ public class JellyTele extends BaseOpMode {
         for (int i = 0; i < 4; i++) {
             motors[i].setPower(powers[i]);
         }
-    }*/
+    }
+}
