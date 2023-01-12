@@ -27,9 +27,9 @@ public abstract class BaseOpMode extends LinearOpMode {
         };
 
         motors[0].setDirection(DcMotorSimple.Direction.REVERSE);
-        motors[1].setDirection(DcMotorSimple.Direction.FORWARD);
+        motors[1].setDirection(DcMotorSimple.Direction.REVERSE);
         motors[2].setDirection(DcMotorSimple.Direction.FORWARD);
-        motors[3].setDirection(DcMotorSimple.Direction.REVERSE);
+        motors[3].setDirection(DcMotorSimple.Direction.FORWARD);
 
 
         
