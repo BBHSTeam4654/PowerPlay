@@ -39,16 +39,17 @@ public class SlidesTest2 extends LinearOpMode {
             double leftPosition = (double) (frontLeftMotor.getCurrentPosition());
 
             double left_error = target - leftPosition;
-            integralSum+=left_error*timer.seconds();
-            double derivative = (left_error-lastError)/timer.seconds();
-            lastError = left_error;
-            timer.reset();
-            double output = (left_error*Kp) + (integralSum*Ki)+(derivative*Kd);
-
+            //integralSum+=left_error*timer.seconds();
+            //double derivative = (left_error-lastError)/timer.seconds();
+            //lastError = left_error;
+            //timer.reset();
+            //double output = (left_error*Kp) + (integralSum*Ki)+(derivative*Kd);
+            double output = left_error*Kp;
 
             frontLeftMotor.setPower(output);
             telemetry.addData("Target", target);
             telemetry.update();
+
             if (gamepad1.left_stick_y != 0) {
                 //frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 target += gamepad1.left_stick_y*5;
