@@ -10,18 +10,31 @@ public class MeasureSlides extends LinearOpMode {
 
     public void runOpMode() throws InterruptedException {
 
-        //simple just moving slides up and down and seeing direction
-
-        waitForStart();
+        //moves slides up and down using just a P loop
 
         DcMotorEx frontLeftMotor = null;
         frontLeftMotor = hardwareMap.get(DcMotorEx.class, "frontLeftMotor");
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        double target = 0;
+        double position = (double) (frontLeftMotor.getCurrentPosition());
+        double current_error = target-position;
+        double kP = 0.0016;
+        double output = current_error*kP;
+
+        waitForStart();
+
         while (opModeIsActive()) {
-            frontLeftMotor.setPower(gamepad1.left_stick_y);
+            target += gamepad1.left_stick_y*1.5;
+            position = (double) (frontLeftMotor.getCurrentPosition());
+            current_error = target-position;
+            output = current_error*kP;
+            frontLeftMotor.setPower(output);
+
             telemetry.addData("Encoder", frontLeftMotor.getCurrentPosition());
+            telemetry.addData("Target", target);
             telemetry.update();
         }
     }
