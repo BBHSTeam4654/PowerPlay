@@ -44,10 +44,10 @@ public class JellyTele extends BaseOpMode {
             slides.pLoop();
 
             // CLAW
-            if (gamepad2.left_trigger) {
+            if (gamepad2.left_bumper) {
                 claw.clawsOpen();
             }
-            if (gamepad2.right_trigger) {
+            if (gamepad2.right_bumper) {
                 claw.clawsClose();
             }
 
@@ -68,8 +68,8 @@ public class JellyTele extends BaseOpMode {
             telemetry.addData("| Gamepad2 Button: ", "Medium Junction            |");
             telemetry.addData("| Gamepad2 Button:  ", "Low Junction              |");
             telemetry.addData("| Gamepad2 Button:   ", "Reset Slides             |");
-            telemetry.addData("| Gamepad2 Button: Left Trigger   ", "Open Claw   |");
-            telemetry.addData("| Gamepad2 Button: Right Trigger  ", "Close Claw  |");
+            telemetry.addData("| Gamepad2 Button: Left Bumper   ", "Open Claw   |");
+            telemetry.addData("| Gamepad2 Button: Right Bumper  ", "Close Claw  |");
             telemetry.addData("+-------------------------", "--------------------------------+");
             telemetry.addData("        Data", ":");
             telemetry.addData("drive mode", driveMode);
