@@ -4,13 +4,13 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 
 public abstract class BaseOpMode extends LinearOpMode {
         protected DcMotorEx slideLeft;
         protected DcMotorEx slideRight;
         protected Slides slides;
-
+        protected RevBlinkinLedDriver blinker;
 
 
         protected Claws claw;
@@ -43,7 +43,8 @@ public abstract class BaseOpMode extends LinearOpMode {
         claw = new Claws(hardwareMap.servo.get("servo"));
         claw.clawsOpen();
 
-
+        //blinker = hardwareMap.get(RevBlinkinLedDriver.class, "blinker");
+        //blinker.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_OCEAN_PALETTE);
 
     }
 

@@ -50,8 +50,8 @@ public class Slides{
         rightTarget = 2000;
     }
     public static void low(){
-        leftTarget = -1000;
-        rightTarget = 1000;
+        leftTarget = -1696;
+        rightTarget = 1697;
     }
     public static void reset(){
         leftTarget = 0;
@@ -90,12 +90,19 @@ public class Slides{
         
         this.leftSlide.setPower(lp);
         this.rightSlide.setPower(rp);
-        
+        //Left: -4401, Right: 4405, upper limit
+        //low: left: -1696, Right: 1697
         if(leftTarget>0){
             leftTarget = 0;
         }
+        if(leftTarget<-4401){
+            leftTarget = -4401;
+        }
         if(rightTarget<0){
             rightTarget = 0;
+        }
+        if(rightTarget>4405){
+            rightTarget = 4405;
         }
     }
     

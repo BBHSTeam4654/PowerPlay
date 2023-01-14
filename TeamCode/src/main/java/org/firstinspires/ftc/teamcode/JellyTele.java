@@ -29,7 +29,6 @@ public class JellyTele extends BaseOpMode {
 
             if (gamepad2.a) {
                 slides.high();
-                gamepad2.rumble(1, 1, 500);
             }
 
             if (gamepad2.b) {
@@ -65,18 +64,30 @@ public class JellyTele extends BaseOpMode {
             }
             // precision
             double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : 1.0;
+            if (gamepad1.left_bumper){
+                gamepad1.rumbleBlips(1);
+            }
+            if (gamepad1.right_bumper){
+                gamepad1.rumbleBlips(1);
+            }
 
             telemetry.addData("        Gamepad2 Controls ", "as follows:");
             telemetry.addData("+-------------------------", "--------------------------------+");
             telemetry.addData("| Gamepad2 Button: A/X Button    ", "High Junction            |");
             telemetry.addData("| Gamepad2 Button: B/O          ", " Medium Junction          |");
-            telemetry.addData("| Gamepad2 Button: Y/🛆          ", "Low Junction             |");
+<<<<<<< HEAD
+            telemetry.addData("| Gamepad2 Button: Y/△          ", "Low Junction             |");
+=======
+            telemetry.addData("| Gamepad2 Button: Y/△           ", "Low Junction             |");
+>>>>>>> 1684e205d738f88c944bce5545432370a9245090
             telemetry.addData("| Gamepad2 Button: X/□          ", " Reset Slides             |");
             telemetry.addData("| Gamepad2 Button: Left Bumper  ", " Open Claw                |");
             telemetry.addData("| Gamepad2 Button: Right Bumper ", " Close Claw               |");
             telemetry.addData("+-------------------------", "--------------------------------+");
             telemetry.addData("        Data", ":");
             telemetry.addData("drive mode", driveMode);
+            telemetry.addData("mX", gamepad2.left_stick_x);
+            telemetry.addData("mY", gamepad2.left_stick_y);
             telemetry.addData("precision mode", mult);
             telemetry.addData("LeftSlide", slideLeft.getCurrentPosition());
             telemetry.addData("RightSlide", slideRight.getCurrentPosition());
