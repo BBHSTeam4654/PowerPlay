@@ -77,6 +77,8 @@ public class JellyTele extends BaseOpMode {
             telemetry.addData("+-------------------------", "--------------------------------+");
             telemetry.addData("        Data", ":");
             telemetry.addData("drive mode", driveMode);
+            telemetry.addData("mX", gamepad2.left_stick_x);
+            telemetry.addData("mY", gamepad2.left_stick_y);
             telemetry.addData("precision mode", mult);
             telemetry.addData("LeftSlide", slideLeft.getCurrentPosition());
             telemetry.addData("RightSlide", slideRight.getCurrentPosition());
