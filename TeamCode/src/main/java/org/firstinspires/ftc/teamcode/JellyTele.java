@@ -29,7 +29,6 @@ public class JellyTele extends BaseOpMode {
 
             if (gamepad2.a) {
                 slides.high();
-                gamepad2.rumble(1, 1, 500);
             }
 
             if (gamepad2.b) {
@@ -65,11 +64,16 @@ public class JellyTele extends BaseOpMode {
             }
             // precision
             double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : 1.0;
+            if (gamepad1.left_bumper){
+                gamepad1.rumbleBlips(1);
+            }
+            
 
             telemetry.addData("        Gamepad2 Controls ", "as follows:");
             telemetry.addData("+-------------------------", "--------------------------------+");
             telemetry.addData("| Gamepad2 Button: A/X Button    ", "High Junction            |");
             telemetry.addData("| Gamepad2 Button: B/O          ", " Medium Junction          |");
+            telemetry.addData("| Gamepad2 Button: Y/△          ", "Low Junction             |");
             telemetry.addData("| Gamepad2 Button: Y/△           ", "Low Junction             |");
             telemetry.addData("| Gamepad2 Button: X/□          ", " Reset Slides             |");
             telemetry.addData("| Gamepad2 Button: Left Bumper  ", " Open Claw                |");
@@ -89,10 +93,14 @@ public class JellyTele extends BaseOpMode {
                     double l = -gamepad1.left_stick_y;
                     double r = -gamepad1.right_stick_y;
                     setMotorSpeeds(mult, new double[] {
-                            (Math.signum(r) * (Math.pow(2.15, Math.abs(r)) - 1)),
-                            (Math.signum(r) * (Math.pow(2.15, Math.abs(r)) - 1)),
-                            (Math.signum(l) * (Math.pow(2.15, Math.abs(l)) - 1)),
-                            (Math.signum(l) * (Math.pow(2.15, Math.abs(l)) - 1)) });
+                            (Math.signum(r) * (Math.pow(2
+                                    , Math.abs(r)) - 1)),
+                            (Math.signum(r) * (Math.pow(2
+                                    , Math.abs(r)) - 1)),
+                            (Math.signum(l) * (Math.pow(2
+                                    , Math.abs(l)) - 1)),
+                            (Math.signum(l) * (Math.pow(2
+                                    , Math.abs(l)) - 1)) });
                     break;
                 }
                 case DRIVE: {
@@ -100,10 +108,14 @@ public class JellyTele extends BaseOpMode {
                     double pivot = gamepad1.left_stick_x;
                     double y = -gamepad1.left_stick_y;
                     setMotorSpeeds(mult, new double[] {
-                            (Math.signum(y) * (Math.pow(2.15, Math.abs(y)) - 1)) - pivot,
-                            (Math.signum(y) * (Math.pow(2.15, Math.abs(y)) - 1)) - pivot,
-                            (Math.signum(y) * (Math.pow(2.15, Math.abs(y)) - 1)) + pivot,
-                            (Math.signum(y) * (Math.pow(2.15, Math.abs(y)) - 1)) + pivot });
+                            (Math.signum(y) * (Math.pow(2
+                                    , Math.abs(y)) - 1)) - pivot,
+                            (Math.signum(y) * (Math.pow(2
+                                    , Math.abs(y)) - 1)) - pivot,
+                            (Math.signum(y) * (Math.pow(2
+                                    , Math.abs(y)) - 1)) + pivot,
+                            (Math.signum(y) * (Math.pow(2
+                                    , Math.abs(y)) - 1)) + pivot });
                     break;
                 }
                 case MECANUM: {
@@ -111,15 +123,23 @@ public class JellyTele extends BaseOpMode {
                     double pivot = gamepad1.right_stick_x;
                     double mX = gamepad1.left_stick_x;
                     double mY = -gamepad1.left_stick_y;
+                    double mY = -gamepad1.left_stick_y;
                     setMotorSpeeds(mult, new double[] {
-                            (Math.signum(mY) * (Math.pow(2.15, Math.abs(mY)) - 1))
-                                    - (Math.signum(mX) * (Math.pow(2.15, Math.abs(mX)) - 1)) - pivot,
-                            (Math.signum(mY) * (Math.pow(2.15, Math.abs(mY)) - 1))
-                                    + (Math.signum(mX) * (Math.pow(2.15, Math.abs(mX)) - 1)) - pivot,
-                            (Math.signum(mY) * (Math.pow(2.15, Math.abs(mY)) - 1))
-                                    + (Math.signum(mX) * (Math.pow(2.15, Math.abs(mX)) - 1)) + pivot,
-                            (Math.signum(mY) * (Math.pow(2.15, Math.abs(mY)) - 1))
-                                    - (Math.signum(mX) * (Math.pow(2.15, Math.abs(mX)) - 1)) + pivot });
+                            (Math.signum(mY) * (Math.pow(2, Math.abs(mY)) - 1))
+                                    - (Math.signum(mX) * (Math.pow(2
+                                    , Math.abs(mX)) - 1)) - pivot,
+                            (Math.signum(mY) * (Math.pow(2
+                                    , Math.abs(mY)) - 1))
+                                    + (Math.signum(mX) * (Math.pow(2
+                                    , Math.abs(mX)) - 1)) - pivot,
+                            (Math.signum(mY) * (Math.pow(2
+                                    , Math.abs(mY)) - 1))
+                                    + (Math.signum(mX) * (Math.pow(2
+                                    , Math.abs(mX)) - 1)) + pivot,
+                            (Math.signum(mY) * (Math.pow(2
+                                    , Math.abs(mY)) - 1))
+                                    - (Math.signum(mX) * (Math.pow(2
+                                    , Math.abs(mX)) - 1)) + pivot });
                     break;
                 }
 
