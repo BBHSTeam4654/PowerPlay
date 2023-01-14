@@ -29,7 +29,7 @@ public class JellyTele extends BaseOpMode {
 
             if (gamepad2.a) {
                 slides.high();
-                gamepad2.rumble(1, 1, 500)
+                gamepad2.rumble(1, 1, 500);
             }
 
             if (gamepad2.b) {
