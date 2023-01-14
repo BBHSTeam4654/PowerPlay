@@ -67,7 +67,7 @@ public class JellyTele extends BaseOpMode {
             if (gamepad1.left_bumper){
                 gamepad1.rumbleBlips(1);
             }
-            
+
 
             telemetry.addData("        Gamepad2 Controls ", "as follows:");
             telemetry.addData("+-------------------------", "--------------------------------+");
