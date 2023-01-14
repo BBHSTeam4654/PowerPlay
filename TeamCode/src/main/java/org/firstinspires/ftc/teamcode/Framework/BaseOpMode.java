@@ -43,8 +43,8 @@ public abstract class BaseOpMode extends LinearOpMode {
         claw = new Claws(hardwareMap.servo.get("servo"));
         claw.clawsOpen();
 
-        blinker = hardwareMap.get(RevBlinkinLedDriver.class, "blinker");
-        blinker.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_OCEAN_PALETTE);
+        //blinker = hardwareMap.get(RevBlinkinLedDriver.class, "blinker");
+        //blinker.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_OCEAN_PALETTE);
 
     }
 
