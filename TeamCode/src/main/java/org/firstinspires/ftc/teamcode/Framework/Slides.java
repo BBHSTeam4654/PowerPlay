@@ -68,8 +68,8 @@ public class Slides{
         rightSlide.setVelocity(1000);
     }
     public void manual(float num){
-        this.leftTarget -= (double)num*5;
-        this.rightTarget += (double)num*5;
+        this.leftTarget -= (double)num*8;
+        this.rightTarget += (double)num*8;
     }
 
     public void pLoop(){
