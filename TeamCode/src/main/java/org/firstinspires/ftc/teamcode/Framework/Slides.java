@@ -104,6 +104,10 @@ public class Slides{
         if(rightTarget>4405){
             rightTarget = 4405;
         }
+        if(rightSlide.getCurrentPosition()==0){
+            rightSlide.setPower(0);
+            leftSlide.setPower(0);
+        }
     }
     
 }
