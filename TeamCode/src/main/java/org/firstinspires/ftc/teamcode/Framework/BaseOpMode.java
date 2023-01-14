@@ -43,6 +43,11 @@ public abstract class BaseOpMode extends LinearOpMode {
         claw = new Claws(hardwareMap.servo.get("servo"));
         claw.clawsOpen();
 
+        leftEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "motor fl"));
+        rightEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "motor bl"));
+        frontEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "motor fr"));
+
+
         //blinker = hardwareMap.get(RevBlinkinLedDriver.class, "blinker");
         //blinker.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_OCEAN_PALETTE);
 
