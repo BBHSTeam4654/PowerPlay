@@ -15,6 +15,7 @@ public abstract class BaseOpMode extends LinearOpMode {
 
         protected Claws claw;
         protected DcMotor[] motors;
+        protected DcMotor leftEncoder, rightEncoder, frontEncoder;
 
         protected void initHardware() {
 
@@ -43,9 +44,9 @@ public abstract class BaseOpMode extends LinearOpMode {
         claw = new Claws(hardwareMap.servo.get("servo"));
         claw.clawsOpen();
 
-        leftEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "motor fl"));
-        rightEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "motor bl"));
-        frontEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "motor fr"));
+        leftEncoder = hardwareMap.dcMotor.get("motor fl");
+        rightEncoder = hardwareMap.dcMotor.get("motor bl");
+        frontEncoder = hardwareMap.dcMotor.get("motor fr");
 
 
         //blinker = hardwareMap.get(RevBlinkinLedDriver.class, "blinker");
