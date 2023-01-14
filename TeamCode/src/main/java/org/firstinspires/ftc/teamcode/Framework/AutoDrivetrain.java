@@ -1,8 +1,7 @@
 package org.firstinspires.ftc.teamcode.Framework;
 
-import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 public class AutoDrivetrain {
 
@@ -28,6 +27,8 @@ public class AutoDrivetrain {
         rightEncoder.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontEncoder.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
+
+    //generally 1 mat is -2000 ticks
         public void moveForward(int x){
                 //Set x to ticks for 1 mat
                 leftTarget = this.leftEncoder.getCurrentPosition()+x;
@@ -35,11 +36,13 @@ public class AutoDrivetrain {
 
         }
         public void moveClockwise(int x){
+        // generally 9000ish? seems like left goes by less for some reason
                 //Set x to # ticks for rotation
                 leftTarget = this.leftEncoder.getCurrentPosition()+x;
                 rightTarget = this.rightEncoder.getCurrentPosition()-x;
         }
         public void moveCounterclockwise(int x){
+        //-9000
                 //Set x to # ticks for rotation
                 leftTarget = this.leftEncoder.getCurrentPosition()-x;
                 rightTarget = this.rightEncoder.getCurrentPosition()+x;

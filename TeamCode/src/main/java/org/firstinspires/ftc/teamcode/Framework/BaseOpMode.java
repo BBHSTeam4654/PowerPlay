@@ -48,6 +48,13 @@ public abstract class BaseOpMode extends LinearOpMode {
         rightEncoder = hardwareMap.dcMotor.get("motor bl");
         frontEncoder = hardwareMap.dcMotor.get("motor fr");
 
+        leftEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        frontEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftEncoder.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightEncoder.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        frontEncoder.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
 
         //blinker = hardwareMap.get(RevBlinkinLedDriver.class, "blinker");
         //blinker.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_OCEAN_PALETTE);

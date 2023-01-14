@@ -24,20 +24,12 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
 import org.firstinspires.ftc.teamcode.misc.pipeline.AprilTagDetectionPipeline;
-
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
-import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
-import org.firstinspires.ftc.teamcode.Framework.AutoDrivetrain;
-import org.firstinspires.ftc.teamcode.Framework.Slides;
-import org.firstinspires.ftc.teamcode.Framework.Claws;
-
-import com.acmerobotics.dashboard.config.Config;
-import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.trajectory.Trajectory;
 
 import java.util.ArrayList;
 
@@ -187,10 +179,6 @@ public class Jellyauto extends BaseOpMode {
                 // right trajectory
             }
         }
-        /*
-         * You wouldn't have this in your autonomous, this is just to prevent the sample
-         * from ending
-         */
         while (opModeIsActive()) {
             sleep(20);
         }
