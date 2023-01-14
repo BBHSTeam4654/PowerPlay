@@ -42,12 +42,14 @@ public class Slides{
     }
 
     public static void high(){
-        leftTarget = -4000;
-        rightTarget = 4000;
+        leftTarget = -4053;
+        rightTarget = 4053;
     }
     public static void mid(){
-        leftTarget = -2000;
-        rightTarget = 2000;
+        leftTarget = -2865;
+        rightTarget = 2865;
+
+        //2865
     }
     public static void low(){
         leftTarget = -1696;

@@ -67,9 +67,7 @@ public class JellyTele extends BaseOpMode {
             if (gamepad1.left_bumper){
                 gamepad1.rumbleBlips(1);
             }
-            if (gamepad1.right_bumper){
-                gamepad1.rumbleBlips(1);
-            }
+            
 
             telemetry.addData("        Gamepad2 Controls ", "as follows:");
             telemetry.addData("+-------------------------", "--------------------------------+");
@@ -124,6 +122,7 @@ public class JellyTele extends BaseOpMode {
                     // left right
                     double pivot = gamepad1.right_stick_x;
                     double mX = gamepad1.left_stick_x;
+                    double mY = -gamepad1.left_stick_y;
                     double mY = -gamepad1.left_stick_y;
                     setMotorSpeeds(mult, new double[] {
                             (Math.signum(mY) * (Math.pow(2, Math.abs(mY)) - 1))
