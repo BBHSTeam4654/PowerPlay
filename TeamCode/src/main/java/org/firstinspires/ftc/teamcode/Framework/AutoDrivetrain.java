@@ -5,11 +5,11 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 public class AutoDrivetrain {
 
-         DcMotorEx leftEncoder;
-         DcMotorEx rightEncoder;
+         static DcMotorEx leftEncoder;
+         static DcMotorEx rightEncoder;
          DcMotorEx frontEncoder;
-         double leftTarget;
-         double rightTarget;
+         static double leftTarget;
+         static double rightTarget;
          double lPower;
          double rPower;
          double Kp = 0.01;
@@ -29,23 +29,23 @@ public class AutoDrivetrain {
     }
 
     //generally 1 mat is -2000 ticks
-        public void moveForward(int x){
+        public static void moveForward(int x){
                 //Set x to ticks for 1 mat
-                leftTarget = this.leftEncoder.getCurrentPosition()+x;
-                rightTarget = this.rightEncoder.getCurrentPosition()+x;
+                leftTarget = leftEncoder.getCurrentPosition()+x;
+                rightTarget = rightEncoder.getCurrentPosition()+x;
 
         }
-        public void moveClockwise(int x){
+        public static void moveClockwise(int x){
         // generally 9000ish? seems like left goes by less for some reason
                 //Set x to # ticks for rotation
-                leftTarget = this.leftEncoder.getCurrentPosition()+x;
-                rightTarget = this.rightEncoder.getCurrentPosition()-x;
+                leftTarget = leftEncoder.getCurrentPosition()+x;
+                rightTarget = rightEncoder.getCurrentPosition()-x;
         }
-        public void moveCounterclockwise(int x){
+        public static void moveCounterclockwise(int x){
         //-9000
                 //Set x to # ticks for rotation
-                leftTarget = this.leftEncoder.getCurrentPosition()-x;
-                rightTarget = this.rightEncoder.getCurrentPosition()+x;
+                leftTarget = leftEncoder.getCurrentPosition()-x;
+                rightTarget = rightEncoder.getCurrentPosition()+x;
         }
         public void tLoop(){
 

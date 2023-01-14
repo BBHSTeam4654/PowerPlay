@@ -24,7 +24,9 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.Framework.AutoDrivetrain;
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
+import org.firstinspires.ftc.teamcode.Framework.Slides;
 import org.firstinspires.ftc.teamcode.misc.pipeline.AprilTagDetectionPipeline;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
@@ -164,19 +166,33 @@ public class Jellyauto extends BaseOpMode {
             // If camera fails, pray the the signal is for 1
             if (tagOfInterest == null || tagOfInterest.id == LEFT) {
                 // left trajectory
+                AutoDrivetrain.moveForward(-2000);
+                AutoDrivetrain.moveCounterclockwise(-9000);
+                AutoDrivetrain.moveForward(-2000);
             } else if (tagOfInterest.id == MIDDLE) {
                 // middle trajectory
+                AutoDrivetrain.moveForward(-2000);
             } else {
                 // right trajectory
+                AutoDrivetrain.moveForward(-2000);
+                AutoDrivetrain.moveClockwise(-9000);
+                AutoDrivetrain.moveForward(-2000);
             }
         } else { // Auto for the right side
             // If camera fails, pray the the signal is for 1
             if (tagOfInterest == null || tagOfInterest.id == LEFT) {
                 // left trajectory
+                AutoDrivetrain.moveForward(-2000);
+                AutoDrivetrain.moveCounterclockwise(-9000);
+                AutoDrivetrain.moveForward(-2000);
             } else if (tagOfInterest.id == MIDDLE) {
                 // middle trajectory
+                AutoDrivetrain.moveForward(-2000);
             } else {
                 // right trajectory
+                AutoDrivetrain.moveForward(-2000);
+                AutoDrivetrain.moveClockwise(-9000);
+                AutoDrivetrain.moveForward(-2000);
             }
         }
         while (opModeIsActive()) {
