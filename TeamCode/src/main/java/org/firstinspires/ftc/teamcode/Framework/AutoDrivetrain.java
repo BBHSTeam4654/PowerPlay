@@ -28,18 +28,18 @@ public class AutoDrivetrain {
         rightEncoder.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontEncoder.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
-        public void forward(int x){
+        public void moveForward(int x){
                 //Set x to ticks for 1 mat
                 leftTarget = this.leftEncoder.getCurrentPosition()+x;
                 rightTarget = this.rightEncoder.getCurrentPosition()+x;
 
         }
-        public void clockwise(int x){
+        public void moveClockwise(int x){
                 //Set x to # ticks for rotation
                 leftTarget = this.leftEncoder.getCurrentPosition()+x;
                 rightTarget = this.rightEncoder.getCurrentPosition()-x;
         }
-        public void counterclockwise(int x){
+        public void moveCounterclockwise(int x){
                 //Set x to # ticks for rotation
                 leftTarget = this.leftEncoder.getCurrentPosition()-x;
                 rightTarget = this.rightEncoder.getCurrentPosition()+x;
