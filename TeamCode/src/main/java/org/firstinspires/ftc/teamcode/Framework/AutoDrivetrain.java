@@ -28,7 +28,7 @@ public class AutoDrivetrain {
         rightEncoder.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontEncoder.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
-        public void foward(int x){
+        public void forward(int x){
                 //Set x to ticks for 1 mat
                 leftTarget = this.leftEncoder.getCurrentPosition()+x;
                 rightTarget = this.rightEncoder.getCurrentPosition()+x;
