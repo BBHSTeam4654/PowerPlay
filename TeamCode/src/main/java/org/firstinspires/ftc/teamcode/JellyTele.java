@@ -55,10 +55,13 @@ public class JellyTele extends BaseOpMode {
             // DRIVETRAIN
             if (gamepad1.dpad_left) {
                 driveMode = DriveMode.TANK;
+                gamepad1.rumbleBlips(1);
             } else if (gamepad1.dpad_up) {
                 driveMode = DriveMode.MECANUM;
+                gamepad1.rumbleBlips(2);
             } else if (gamepad1.dpad_right) {
                 driveMode = DriveMode.DRIVE;
+                gamepad1.rumbleBlips(3);
             }
             // precision
             double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : 1.0;
