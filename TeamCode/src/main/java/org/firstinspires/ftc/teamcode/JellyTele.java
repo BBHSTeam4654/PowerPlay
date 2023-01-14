@@ -29,6 +29,7 @@ public class JellyTele extends BaseOpMode {
 
             if (gamepad2.a) {
                 slides.high();
+                gamepad2.rumble(1, 1, 500);
             }
 
             if (gamepad2.b) {
@@ -54,10 +55,13 @@ public class JellyTele extends BaseOpMode {
             // DRIVETRAIN
             if (gamepad1.dpad_left) {
                 driveMode = DriveMode.TANK;
+                gamepad1.rumbleBlips(1);
             } else if (gamepad1.dpad_up) {
                 driveMode = DriveMode.MECANUM;
+                gamepad1.rumbleBlips(2);
             } else if (gamepad1.dpad_right) {
                 driveMode = DriveMode.DRIVE;
+                gamepad1.rumbleBlips(3);
             }
             // precision
             double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : 1.0;
@@ -66,7 +70,7 @@ public class JellyTele extends BaseOpMode {
             telemetry.addData("+-------------------------", "--------------------------------+");
             telemetry.addData("| Gamepad2 Button: A/X Button    ", "High Junction            |");
             telemetry.addData("| Gamepad2 Button: B/O          ", " Medium Junction          |");
-            telemetry.addData("| Gamepad2 Button: Y/🛆          ", "Low Junction             |");
+            telemetry.addData("| Gamepad2 Button: Y/△           ", "Low Junction             |");
             telemetry.addData("| Gamepad2 Button: X/□          ", " Reset Slides             |");
             telemetry.addData("| Gamepad2 Button: Left Bumper  ", " Open Claw                |");
             telemetry.addData("| Gamepad2 Button: Right Bumper ", " Close Claw               |");
@@ -74,6 +78,8 @@ public class JellyTele extends BaseOpMode {
             telemetry.addData("        Data", ":");
             telemetry.addData("drive mode", driveMode);
             telemetry.addData("precision mode", mult);
+            telemetry.addData("LeftSlide", slideLeft.getCurrentPosition());
+            telemetry.addData("RightSlide", slideRight.getCurrentPosition());
             telemetry.update();
             switch (driveMode) {
                 case TANK: {
