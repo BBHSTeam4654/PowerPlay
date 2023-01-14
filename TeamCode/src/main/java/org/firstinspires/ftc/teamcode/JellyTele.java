@@ -70,13 +70,15 @@ public class JellyTele extends BaseOpMode {
             telemetry.addData("+-------------------------", "--------------------------------+");
             telemetry.addData("| Gamepad2 Button: A/X Button    ", "High Junction            |");
             telemetry.addData("| Gamepad2 Button: B/O          ", " Medium Junction          |");
-            telemetry.addData("| Gamepad2 Button: Y/🛆          ", "Low Junction             |");
+            telemetry.addData("| Gamepad2 Button: Y/△           ", "Low Junction             |");
             telemetry.addData("| Gamepad2 Button: X/□          ", " Reset Slides             |");
             telemetry.addData("| Gamepad2 Button: Left Bumper  ", " Open Claw                |");
             telemetry.addData("| Gamepad2 Button: Right Bumper ", " Close Claw               |");
             telemetry.addData("+-------------------------", "--------------------------------+");
             telemetry.addData("        Data", ":");
             telemetry.addData("drive mode", driveMode);
+            telemetry.addData("mX", gamepad2.left_stick_x);
+            telemetry.addData("mY", gamepad2.left_stick_y);
             telemetry.addData("precision mode", mult);
             telemetry.addData("LeftSlide", slideLeft.getCurrentPosition());
             telemetry.addData("RightSlide", slideRight.getCurrentPosition());
