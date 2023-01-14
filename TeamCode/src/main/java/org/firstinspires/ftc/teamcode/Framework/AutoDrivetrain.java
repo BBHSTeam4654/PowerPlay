@@ -27,9 +27,6 @@ public class AutoDrivetrain {
         leftEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        int leftEncoderPosition = leftEncoder.getCurrentPosition();
-        int rightEncoderPosition = rightEncoder.getCurrentPosition();
-        int frontEncoderPosition = frontEncoder.getCurrentPosition();
     }
         public void foward(int x){
                 //Set x to ticks for 1 mat
@@ -37,12 +34,12 @@ public class AutoDrivetrain {
                 rightTarget = this.rightEncoder.getCurrentPosition()+x;
 
         }
-        public  void clockwise(int x){
+        public void clockwise(int x){
                 //Set x to # ticks for rotation
                 leftTarget = this.leftEncoder.getCurrentPosition()+x;
                 rightTarget = this.rightEncoder.getCurrentPosition()-x;
         }
-        public  void counterclockwise(int x){
+        public void counterclockwise(int x){
                 //Set x to # ticks for rotation
                 leftTarget = this.leftEncoder.getCurrentPosition()-x;
                 rightTarget = this.rightEncoder.getCurrentPosition()+x;
@@ -52,8 +49,8 @@ public class AutoDrivetrain {
                 double leftEncoderPosition = leftEncoder.getCurrentPosition();
                 double rightEncoderPosition = rightEncoder.getCurrentPosition();
 
-                double left_current_error = Math.abs(leftTarget-leftEncoderPosition);
-                double right_current_error = Math.abs(rightTarget-rightEncoderPosition);
+                double left_current_error = leftTarget-leftEncoderPosition;
+                double right_current_error = rightTarget-rightEncoderPosition;
 
                 lPower = Kp*left_current_error;
                 rPower = Kp*right_current_error;
