@@ -79,7 +79,6 @@ public class Slides{
 // whichever one has encoders going backwards is left, whichever has positive is right
         double leftPosition = (double)(this.leftSlide.getCurrentPosition());
 
-        //worried about this... check it out tomorrow
         double left_current_error = leftTarget-leftPosition;
 
         double lp = lkp * left_current_error;
