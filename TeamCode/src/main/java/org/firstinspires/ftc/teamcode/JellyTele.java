@@ -86,6 +86,9 @@ public class JellyTele extends BaseOpMode {
             telemetry.addData("precision mode", mult);
             telemetry.addData("LeftSlide", slideLeft.getCurrentPosition());
             telemetry.addData("RightSlide", slideRight.getCurrentPosition());
+            telemetry.addData("Front Encoder:", frontEncoder.getCurrentPosition());
+            telemetry.addData("Left Encoder:", leftEncoder.getCurrentPosition());
+            telemetry.addData("Right Encoder:", rightEncoder.getCurrentPosition());
             telemetry.update();
             switch (driveMode) {
                 case TANK: {
@@ -122,7 +125,6 @@ public class JellyTele extends BaseOpMode {
                     // left right
                     double pivot = gamepad1.right_stick_x;
                     double mX = gamepad1.left_stick_x;
-                    double mY = -gamepad1.left_stick_y;
                     double mY = -gamepad1.left_stick_y;
                     setMotorSpeeds(mult, new double[] {
                             (Math.signum(mY) * (Math.pow(2, Math.abs(mY)) - 1))

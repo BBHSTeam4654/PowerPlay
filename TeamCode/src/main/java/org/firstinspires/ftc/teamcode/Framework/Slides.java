@@ -4,8 +4,7 @@ import static com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior.BRAKE;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad2;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotor;import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 public class Slides{
 
@@ -42,12 +41,14 @@ public class Slides{
     }
 
     public static void high(){
-        leftTarget = -4000;
-        rightTarget = 4000;
+        leftTarget = -4053;
+        rightTarget = 4053;
     }
     public static void mid(){
-        leftTarget = -2000;
-        rightTarget = 2000;
+        leftTarget = -2865;
+        rightTarget = 2865;
+
+        //2865
     }
     public static void low(){
         leftTarget = -1696;
@@ -77,7 +78,6 @@ public class Slides{
 // whichever one has encoders going backwards is left, whichever has positive is right
         double leftPosition = (double)(this.leftSlide.getCurrentPosition());
 
-        //worried about this... check it out tomorrow
         double left_current_error = leftTarget-leftPosition;
 
         double lp = lkp * left_current_error;
