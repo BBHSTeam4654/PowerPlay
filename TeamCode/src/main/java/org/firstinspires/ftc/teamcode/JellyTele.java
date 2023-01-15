@@ -50,6 +50,7 @@ public class JellyTele extends BaseOpMode {
             if (gamepad2.right_bumper) {
                 claw.clawsClose();
             }
+            telemetry.addData("Claw",claw.getPosition());
 
             // DRIVETRAIN
             if (gamepad1.dpad_left) {
