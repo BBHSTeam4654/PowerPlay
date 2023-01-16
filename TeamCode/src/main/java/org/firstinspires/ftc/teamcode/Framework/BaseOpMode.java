@@ -44,9 +44,9 @@ public abstract class BaseOpMode extends LinearOpMode {
         claw = new Claws(hardwareMap.servo.get("servo"));
         claw.clawsOpen();
 
-        leftEncoder = hardwareMap.dcMotor.get("motor fl");
-        rightEncoder = hardwareMap.dcMotor.get("motor bl");
-        frontEncoder = hardwareMap.dcMotor.get("motor fr");
+        leftEncoder = hardwareMap.dcMotor.get("motor fl"); // 2
+        rightEncoder = hardwareMap.dcMotor.get("motor bl"); // 3
+        frontEncoder = hardwareMap.dcMotor.get("motor fr"); //0
 
         leftEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
