@@ -30,7 +30,7 @@ public class AutoDrivetrain {
 
     //generally 1 mat is -2000 ticks
         public void moveForward(int x){
-                //Set x to ticks for 1 ma
+                //Set x to ticks for 1 mat
                 leftTarget = this.leftEncoder.getCurrentPosition()+x;
                 rightTarget = this.rightEncoder.getCurrentPosition()+x;
 
