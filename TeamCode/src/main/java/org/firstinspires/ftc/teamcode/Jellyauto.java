@@ -185,6 +185,9 @@ public class Jellyauto extends BaseOpMode {
     }
 
     void tagToTelemetry(AprilTagDetection detection) {
+        telemetry.addData("Left encoder", leftEncoder.getCurrentPosition());
+        telemetry.addData("Right encoder", rightEncoder.getCurrentPosition());
+        telemetry.addData( "Front encoder", frontEncoder.getCurrentPosition());
         telemetry.addLine(String.format("\nDetected tag ID=%d", detection.id));
         telemetry.addLine(String.format("Translation X: %.2f feet", detection.pose.x * FEET_PER_METER));
         telemetry.addLine(String.format("Translation Y: %.2f feet", detection.pose.y * FEET_PER_METER));
