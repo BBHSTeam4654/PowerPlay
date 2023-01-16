@@ -22,13 +22,9 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.Framework.AutoDrivetrain;
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
-import org.firstinspires.ftc.teamcode.Framework.Slides;
 import org.firstinspires.ftc.teamcode.misc.pipeline.AprilTagDetectionPipeline;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
@@ -64,21 +60,15 @@ public class Jellyauto extends BaseOpMode {
 
     // Side
     protected static enum Side {
-        CUPS_LEFT, CUPS_RIGHT, STOP
+        CUPS_LEFT, CUPS_RIGHT
     }
 
     protected Side side = Side.CUPS_LEFT;
 
     AprilTagDetection tagOfInterest = null;
 
-
-
     @Override
     public void runOpMode() {
-        initHardware();
-
-        AutoDrivetrain AU = new AutoDrivetrain(motors);
-        claw.clawsClose();
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id",
                 hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"),
@@ -126,6 +116,7 @@ public class Jellyauto extends BaseOpMode {
 
                 if (tagFound) {
                     telemetry.addLine("Tag of interest is in sight!\n\nLocation data:");
+                    tagToTelemetry(tagOfInterest);
                 } else {
                     telemetry.addLine("Don't see tag of interest :(");
 
@@ -133,6 +124,7 @@ public class Jellyauto extends BaseOpMode {
                         telemetry.addLine("(The tag has never been seen)");
                     } else {
                         telemetry.addLine("\nBut we HAVE seen the tag before; last seen at:");
+                        tagToTelemetry(tagOfInterest);
                     }
                 }
             } else {
@@ -142,6 +134,7 @@ public class Jellyauto extends BaseOpMode {
                     telemetry.addLine("(The tag has never been seen)");
                 } else {
                     telemetry.addLine("\nBut we HAVE seen the tag before; last seen at:");
+                    tagToTelemetry(tagOfInterest);
                 }
 
             }
@@ -158,20 +151,46 @@ public class Jellyauto extends BaseOpMode {
         /* Update the telemetry */
         if (tagOfInterest != null) {
             telemetry.addLine("Tag snapshot:\n");
+            tagToTelemetry(tagOfInterest);
             telemetry.update();
         } else {
             telemetry.addLine("No tag snapshot available, it was never sighted during the init loop :(");
             telemetry.update();
         }
 
-        AU.moveForward(3000);
-
-        while (opModeIsActive()) {
-
-                AU.tLoop();
-
+        /* Actually do something useful */
+        // Auto for the left side
+        if (side == Side.CUPS_LEFT) {
+            // If camera fails, pray the the signal is for 1
+            if (tagOfInterest == null || tagOfInterest.id == LEFT) {
+                // left trajectory
+            } else if (tagOfInterest.id == MIDDLE) {
+                // middle trajectory
+            } else {
+                // right trajectory
             }
+        } else { // Auto for the right side
+            // If camera fails, pray the the signal is for 1
+            if (tagOfInterest == null || tagOfInterest.id == LEFT) {
+                // left trajectory
+            } else if (tagOfInterest.id == MIDDLE) {
+                // middle trajectory
+            } else {
+                // right trajectory
+            }
+        }
+        while (opModeIsActive()) {
+            sleep(20);
+        }
+    }
 
-
+    void tagToTelemetry(AprilTagDetection detection) {
+        telemetry.addLine(String.format("\nDetected tag ID=%d", detection.id));
+        telemetry.addLine(String.format("Translation X: %.2f feet", detection.pose.x * FEET_PER_METER));
+        telemetry.addLine(String.format("Translation Y: %.2f feet", detection.pose.y * FEET_PER_METER));
+        telemetry.addLine(String.format("Translation Z: %.2f feet", detection.pose.z * FEET_PER_METER));
+        telemetry.addLine(String.format("Rotation Yaw: %.2f degrees", Math.toDegrees(detection.pose.yaw)));
+        telemetry.addLine(String.format("Rotation Pitch: %.2f degrees", Math.toDegrees(detection.pose.pitch)));
+        telemetry.addLine(String.format("Rotation Roll: %.2f degrees", Math.toDegrees(detection.pose.roll)));
     }
 }
