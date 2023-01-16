@@ -58,6 +58,15 @@ public class Slides{
         leftTarget = 0;
         rightTarget = 0;
     }
+    public static void drop(){
+        leftTarget+=200;
+        rightTarget-=200;
+
+    }
+    public static void raise(){
+        leftTarget-=200;
+        rightTarget+=200;
+    }
     //For slide positions in auto like cups
     public static void slidesPosition(int x){
         //DO NOT USE

@@ -41,6 +41,12 @@ public class JellyTele extends BaseOpMode {
             if (gamepad2.x) {
                 slides.reset();
             }
+            if(gamepad2.dpad_up){
+                slides.raise();
+            }
+            if(gamepad2.dpad_down){
+                slides.drop();
+            }
             slides.pLoop();
 
             // CLAW

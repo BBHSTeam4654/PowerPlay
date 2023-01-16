@@ -77,7 +77,7 @@ public class Jellyauto extends BaseOpMode {
     public void runOpMode() {
         initHardware();
 
-        AutoDrivetrain AU = new AutoDrivetrain(motors);
+        AutoDrivetrain AU = new AutoDrivetrain((DcMotorEx) leftEncoder, (DcMotorEx) rightEncoder, (DcMotorEx) frontEncoder,motors);
         claw.clawsClose();
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id",
                 hardwareMap.appContext.getPackageName());
@@ -154,7 +154,6 @@ public class Jellyauto extends BaseOpMode {
          * The START command just came in: now work off the latest snapshot acquired
          * during the init loop.
          */
-
         /* Update the telemetry */
         if (tagOfInterest != null) {
             telemetry.addLine("Tag snapshot:\n");
