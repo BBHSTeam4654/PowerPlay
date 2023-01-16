@@ -26,7 +26,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.Framework.AutoDrivetrain;
+
+//import org.firstinspires.ftc.teamcode.Framework.AutoDrivetrain;
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
 import org.firstinspires.ftc.teamcode.Framework.Slides;
 import org.firstinspires.ftc.teamcode.misc.pipeline.AprilTagDetectionPipeline;
@@ -77,7 +78,7 @@ public class Jellyauto extends BaseOpMode {
     public void runOpMode() {
         initHardware();
 
-        AutoDrivetrain AU = new AutoDrivetrain((DcMotorEx) leftEncoder, (DcMotorEx) rightEncoder, (DcMotorEx) frontEncoder,motors);
+        //AutoDrivetrain AU = new AutoDrivetrain((DcMotorEx) leftEncoder, (DcMotorEx) rightEncoder, (DcMotorEx) frontEncoder,motors);
         claw.clawsClose();
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id",
                 hardwareMap.appContext.getPackageName());
@@ -145,7 +146,9 @@ public class Jellyauto extends BaseOpMode {
                 }
 
             }
-
+            telemetry.addData("Left encoder", leftEncoder.getCurrentPosition());
+            telemetry.addData("Right encoder", rightEncoder.getCurrentPosition());
+            telemetry.addData( "Front encoder", frontEncoder.getCurrentPosition());
             telemetry.update();
             sleep(20);
         }
@@ -163,13 +166,14 @@ public class Jellyauto extends BaseOpMode {
             telemetry.update();
         }
 
-        AU.moveForward(3000);
+
 
         while (opModeIsActive()) {
 
-                AU.tLoop();
+
 
             }
+
 
 
     }
