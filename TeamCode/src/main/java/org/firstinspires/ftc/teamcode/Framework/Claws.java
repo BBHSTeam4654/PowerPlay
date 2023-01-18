@@ -6,10 +6,21 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gam
 //open: 0.547399999999956
 //closed: 0.6605999999999436
 public class Claws {
-   static Servo servo;
+    static Servo servo;
     public Claws(Servo servo){this.servo = servo;}
+    static boolean open = false;
     public static void clawsOpen(){
         servo.setPosition(0.547399999999956);
     }
     public static void clawsClose() {servo.setPosition(0.6605999999999436);}
+    public static void clawsToggle(){
+        if(open){
+            clawsClose();
+            open = false;
+        }
+        else if(!open){
+            clawsOpen();
+            open = true;
+        }
+    }
 }

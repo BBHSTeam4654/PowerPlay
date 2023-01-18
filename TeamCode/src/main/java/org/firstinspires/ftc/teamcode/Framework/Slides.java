@@ -47,7 +47,6 @@ public class Slides{
     public static void mid(){
         leftTarget = -2865;
         rightTarget = 2865;
-
         //2865
     }
     public static void low(){
@@ -59,13 +58,9 @@ public class Slides{
         rightTarget = 0;
     }
     public static void drop(){
-        leftTarget+=200;
-        rightTarget-=200;
+        leftTarget+=50;
+        rightTarget-=50;
 
-    }
-    public static void raise(){
-        leftTarget-=200;
-        rightTarget+=200;
     }
     //For slide positions in auto like cups
     public static void slidesPosition(int x){
@@ -78,8 +73,8 @@ public class Slides{
         rightSlide.setVelocity(1000);
     }
     public void manual(float num){
-        this.leftTarget -= (double)num*8;
-        this.rightTarget += (double)num*8;
+        this.leftTarget += (double)num*8;
+        this.rightTarget -= (double)num*8;
     }
 
     public void pLoop(){

@@ -41,20 +41,15 @@ public class JellyTele extends BaseOpMode {
             if (gamepad2.x) {
                 slides.reset();
             }
-            if(gamepad2.dpad_up){
-                slides.raise();
-            }
-            if(gamepad2.dpad_down){
+            if(gamepad2.left_bumper){
                 slides.drop();
             }
             slides.pLoop();
 
             // CLAW
-            if (gamepad2.left_bumper) {
-                claw.clawsOpen();
-            }
+
             if (gamepad2.right_bumper) {
-                claw.clawsClose();
+                claw.clawsToggle();
             }
 
             // DRIVETRAIN
@@ -71,8 +66,12 @@ public class JellyTele extends BaseOpMode {
             // precision
             double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : 1.0;
             if (gamepad1.left_bumper){
-                gamepad1.rumbleBlips(1);
+                gamepad1.rumble( 0.5, 0.5, 10);
             }
+            else if (gamepad1.right_bumper){
+                gamepad1.rumble(0.8,0.8,10);
+            }
+
 
 
             telemetry.addData("        Gamepad2 Controls ", "as follows:");
