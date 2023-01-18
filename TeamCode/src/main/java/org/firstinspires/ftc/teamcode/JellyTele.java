@@ -66,8 +66,12 @@ public class JellyTele extends BaseOpMode {
             // precision
             double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : 1.0;
             if (gamepad1.left_bumper){
-                gamepad1.rumbleBlips(1);
+                gamepad1.rumble( 0.5, 0.5, 10);
             }
+            else if (gamepad1.right_bumper){
+                gamepad1.rumble(0.8,0.8,10);
+            }
+
 
 
             telemetry.addData("        Gamepad2 Controls ", "as follows:");
