@@ -82,10 +82,9 @@ public class MeepMeepTesting {
                         .addDisplacementMarker(() -> {
                             // open claw + slides go down
                         })
-                        .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(90)))
                         //Goes back to the signal zones
-                        .back(22)
-                        .strafeLeft(24)
+                        .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(90)))
+                        .strafeRight(24)
 
 
                         // start
