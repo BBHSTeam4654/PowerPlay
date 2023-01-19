@@ -21,6 +21,7 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -30,7 +31,9 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 //import org.firstinspires.ftc.teamcode.Framework.AutoDrivetrain;
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
 import org.firstinspires.ftc.teamcode.Framework.Slides;
+import org.firstinspires.ftc.teamcode.misc.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.misc.pipeline.AprilTagDetectionPipeline;
+import org.firstinspires.ftc.teamcode.misc.trajectorysequence.TrajectorySequence;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -166,15 +169,51 @@ public class Jellyauto extends BaseOpMode {
             telemetry.update();
         }
 
+        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+
+        Pose2d right_startPose = new Pose2d(-35, 62, Math.toRadians(270));
+        Pose2d left_startPose = new Pose2d(-35, 62, Math.toRadians(270));
+
+        drive.setPoseEstimate(right_startPose);
+        drive.setPoseEstimate(left_startPose);
+
+        TrajectorySequence rightTrajSeq = drive.trajectorySequenceBuilder(right_startPose)
+                .forward(36)
+                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
+                    slides.high();
+                })
+
+
+                .lineToLinearHeading(new Pose2d(-31, 8, Math.toRadians(315)))
+                .addTemporalMarker(() -> {
+                    claw.clawsToggle();
+                })
+                .build();
 
 
         while (opModeIsActive()) {
-
-
-
+            if (side == Side.CUPS_LEFT) {
+                if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
+                    drive.followTrajectorySequence(rightTrajSeq);
+                }
+                /*else if(tagOfInterest.id == LEFT){
+                    //left trajectory
+                }else{
+                    //right trajectory
+                }
+                */
             }
-
-
-
+            /*
+            else{
+                if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
+                    //middle trajectory
+                }else if(tagOfInterest.id == LEFT){
+                    //left trajectory
+                }else{
+                    //right trajectory
+                }
+            }
+       */
+        }
     }
 }
