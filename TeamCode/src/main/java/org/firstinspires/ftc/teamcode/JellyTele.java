@@ -33,6 +33,7 @@ public class JellyTele extends BaseOpMode {
 
             if (gamepad2.a) {
                 slides.high();
+                //do auto precision mode
             }
 
             if (gamepad2.b) {
@@ -68,6 +69,7 @@ public class JellyTele extends BaseOpMode {
 
             if (gamepad2.right_bumper) {
                 claw.clawsToggle();
+                gamepad2.rumbleBlips(1);
             }
 
             // DRIVETRAIN
