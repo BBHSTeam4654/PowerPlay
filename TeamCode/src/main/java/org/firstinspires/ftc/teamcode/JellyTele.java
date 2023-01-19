@@ -127,6 +127,7 @@ public class JellyTele extends BaseOpMode {
             telemetry.addData("Front Encoder:", frontEncoder.getCurrentPosition());
             telemetry.addData("Left Encoder:", leftEncoder.getCurrentPosition());
             telemetry.addData("Right Encoder:", rightEncoder.getCurrentPosition());
+            telemetry.addData("Claw encoder", claw.getCurrentPosition());
             telemetry.update();
             switch (driveMode) {
                 case TANK: {

@@ -23,4 +23,8 @@ public class Claws {
             open = true;
         }
     }
+
+    public double getCurrentPosition() {
+        return servo.getPosition();
+    }
 }
