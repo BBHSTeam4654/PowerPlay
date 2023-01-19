@@ -47,7 +47,6 @@ public class Slides{
     public static void mid(){
         leftTarget = -2865;
         rightTarget = 2865;
-        //2865
     }
     public static void low(){
         leftTarget = -1696;
@@ -62,15 +61,30 @@ public class Slides{
         rightTarget-=50;
 
     }
+    //For cups on stack
+    public static void fiveCups(){
+        leftTarget = -595;
+        rightTarget = 595;
+    }
+    public static void fourCups(){
+        leftTarget = -451;
+        rightTarget = 451;
+    }
+    public static void threeCups(){
+        leftTarget = -330;
+        rightTarget = 330;
+    }
+    public static void twoCups(){
+        leftTarget = -184;
+        rightTarget = 184;
+    }
+    //Reset at 0 should be the same for one cup
+    //
     //For slide positions in auto like cups
     public static void slidesPosition(int x){
         //DO NOT USE
-        leftSlide.setTargetPosition(x);
-        leftSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        leftSlide.setVelocity(1000);
-        rightSlide.setTargetPosition(x);
-        rightSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightSlide.setVelocity(1000);
+        leftTarget = -x;
+        rightTarget = x;
     }
     public void manual(float num){
         this.leftTarget += (double)num*8;

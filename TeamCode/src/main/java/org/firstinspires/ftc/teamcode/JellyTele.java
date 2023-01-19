@@ -48,6 +48,20 @@ public class JellyTele extends BaseOpMode {
             if(gamepad2.left_bumper){
                 slides.drop();
             }
+
+            if (gamepad2.dpad_down) {
+                slides.fiveCups();
+            }
+            if (gamepad2.dpad_right) {
+                slides.fourCups();
+            }
+            if (gamepad2.dpad_up) {
+                slides.threeCups();
+            }
+            if (gamepad2.dpad_left) {
+                slides.twoCups();
+            }
+
             slides.pLoop();
 
             // CLAW
@@ -92,12 +106,14 @@ public class JellyTele extends BaseOpMode {
             telemetry.addData("        Gamepad2 Controls ", "as follows:");
             telemetry.addData("+-------------------------", "--------------------------------+");
             telemetry.addData("| Gamepad2 Button: A/X Button    ", "High Junction            |");
-            telemetry.addData("| Gamepad2 Button: B/O          ", " Medium Junction          |");
-            telemetry.addData("| Gamepad2 Button: Y/△          ", "Low Junction             |");
+            telemetry.addData("| Gamepad2 Button: B/O           ", "Medium Junction          |");
             telemetry.addData("| Gamepad2 Button: Y/△           ", "Low Junction             |");
-            telemetry.addData("| Gamepad2 Button: X/□          ", " Reset Slides             |");
-            telemetry.addData("| Gamepad2 Button: Left Bumper  ", " Open Claw                |");
-            telemetry.addData("| Gamepad2 Button: Right Bumper ", " Close Claw               |");
+            telemetry.addData("| Gamepad2 Button: X/□           ", "Reset Slides/Bottom Cup  |");
+            telemetry.addData("| Gamepad2 Button: Left Bumper   ", "Claw                     |");
+            telemetry.addData("| Gamepad2 DPAD Bottom           ", "5 Cups                   |");
+            telemetry.addData("| Gamepad2 DPAD Right            ", "4 Cups                   |");
+            telemetry.addData("| Gamepad2 DPAD Up               ", "3 Cups                   |");
+            telemetry.addData("| Gamepad2 DPAD Left             ", "2 Cups                   |");
             telemetry.addData("+-------------------------", "--------------------------------+");
             telemetry.addData("        Data", ":");
             telemetry.addData("drive mode", driveMode);
