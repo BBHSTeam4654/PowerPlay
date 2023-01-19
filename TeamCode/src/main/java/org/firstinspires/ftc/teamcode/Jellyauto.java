@@ -21,16 +21,16 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import static org.firstinspires.ftc.teamcode.Framework.PoseStorage.*;
+
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 
 //import org.firstinspires.ftc.teamcode.Framework.AutoDrivetrain;
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
-import org.firstinspires.ftc.teamcode.Framework.Slides;
+import org.firstinspires.ftc.teamcode.Framework.PoseStorage;
 import org.firstinspires.ftc.teamcode.misc.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.misc.pipeline.AprilTagDetectionPipeline;
 import org.firstinspires.ftc.teamcode.misc.trajectorysequence.TrajectorySequence;
@@ -171,14 +171,11 @@ public class Jellyauto extends BaseOpMode {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        Pose2d right_startPose = new Pose2d(-35, 62, Math.toRadians(270));
-        Pose2d left_startPose = new Pose2d(-35, -62, Math.toRadians(90));
-        Pose2d right_continuedPark = new Pose2d(-35, 12, Math.toRadians(270));
-        Pose2d left_continuedLeftPark = new Pose2d(-35, -12, Math.toRadians(90));
-
-        drive.setPoseEstimate(right_startPose);
-        drive.setPoseEstimate(left_startPose);
-
+        if (side == Side.CUPS_LEFT) {
+            drive.setPoseEstimate(right_startPose);
+        }else {
+            drive.setPoseEstimate(left_startPose);
+        }
         TrajectorySequence rightTrajSeq = drive.trajectorySequenceBuilder(right_startPose)
                 .forward(36)
                 .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
@@ -188,7 +185,11 @@ public class Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                     claw.clawsOpen();
                 })
+
+                //Ending - Add stuff before this
+                .lineToLinearHeading(new Pose2d(-35, 12, Math.toRadians(270)))
                 .build();
+
         TrajectorySequence leftTrajSeq = drive.trajectorySequenceBuilder(right_startPose)
                 .forward(36)
                 .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
@@ -198,12 +199,18 @@ public class Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                     claw.clawsOpen();
                 })
+
+                //Ending - Add stuff before this
+                .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(90)))
                 .build();
 
-        TrajectorySequence leftContinuedLeftPark = drive.trajectorySequenceBuilder(left_continuedLeftPark)
-                .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(90)))
+        TrajectorySequence leftPark = drive.trajectorySequenceBuilder(currentPose)
                 .strafeLeft(24)
                 .build();
+        TrajectorySequence rightPark = drive.trajectorySequenceBuilder(currentPose)
+                .strafeRight(24)
+                .build();
+
         while (opModeIsActive()) {
             if (side == Side.CUPS_LEFT) {
                 if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
