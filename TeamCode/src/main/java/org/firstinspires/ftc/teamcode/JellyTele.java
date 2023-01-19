@@ -86,7 +86,7 @@ public class JellyTele extends BaseOpMode {
             if (gamepad1.left_bumper){
                 gamepad1.rumble( 0.5, 0.5, 10);
             }
-            else if (gamepad1.right_bumper){
+            if (gamepad1.right_bumper){
                 gamepad1.rumble(0.8,0.8,10);
             }
             //Rotate 90 degrees
