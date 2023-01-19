@@ -1,8 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
+import org.firstinspires.ftc.teamcode.misc.drive.SampleMecanumDrive;
 
 @TeleOp(name = "Power Play JellyTele")
 
@@ -19,6 +21,8 @@ public class JellyTele extends BaseOpMode {
     public void runOpMode() throws InterruptedException {
 
         initHardware();
+        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+        drive.setPoseEstimate(new Pose2d(-35, -62, Math.toRadians(90)));
         waitForStart();
 
         while (opModeIsActive()) {
@@ -71,8 +75,19 @@ public class JellyTele extends BaseOpMode {
             else if (gamepad1.right_bumper){
                 gamepad1.rumble(0.8,0.8,10);
             }
+            //Rotate 90 degrees
 
+            if (gamepad1.x) {
+                // Turns counter clockwise
+                drive.turn(Math.toRadians(90) + 1e-6);
+            }
+            if (gamepad1.b) {
+                // Turns clockwise
+                drive.turn(Math.toRadians(90) - 1e-6);
+            }
 
+            drive.update();
+            Pose2d myPose = drive.getPoseEstimate();
 
             telemetry.addData("        Gamepad2 Controls ", "as follows:");
             telemetry.addData("+-------------------------", "--------------------------------+");
