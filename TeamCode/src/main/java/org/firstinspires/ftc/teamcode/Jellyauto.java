@@ -172,7 +172,9 @@ public class Jellyauto extends BaseOpMode {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
         Pose2d right_startPose = new Pose2d(-35, 62, Math.toRadians(270));
-        Pose2d left_startPose = new Pose2d(-35, 62, Math.toRadians(270));
+        Pose2d left_startPose = new Pose2d(-35, -62, Math.toRadians(90));
+        Pose2d right_continuedPark = new Pose2d(-35, 12, Math.toRadians(270));
+        Pose2d left_continuedLeftPark = new Pose2d(-35, -12, Math.toRadians(90));
 
         drive.setPoseEstimate(right_startPose);
         drive.setPoseEstimate(left_startPose);
@@ -182,19 +184,30 @@ public class Jellyauto extends BaseOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                     slides.high();
                 })
-
-
                 .lineToLinearHeading(new Pose2d(-31, 8, Math.toRadians(315)))
                 .addTemporalMarker(() -> {
-                    claw.clawsToggle();
+                    claw.clawsOpen();
+                })
+                .build();
+        TrajectorySequence leftTrajSeq = drive.trajectorySequenceBuilder(right_startPose)
+                .forward(36)
+                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
+                    slides.high();
+                })
+                .lineToLinearHeading(new Pose2d(-31, -8, Math.toRadians(45)))
+                .addTemporalMarker(() -> {
+                    claw.clawsOpen();
                 })
                 .build();
 
-
+        TrajectorySequence leftContinuedLeftPark = drive.trajectorySequenceBuilder(left_continuedLeftPark)
+                .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(90)))
+                .strafeLeft(24)
+                .build();
         while (opModeIsActive()) {
             if (side == Side.CUPS_LEFT) {
                 if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                    drive.followTrajectorySequence(rightTrajSeq);
+                    drive.followTrajectorySequence(leftTrajSeq);
                 }
                 /*else if(tagOfInterest.id == LEFT){
                     //left trajectory
