@@ -46,9 +46,6 @@ public class JellyTele extends BaseOpMode {
             if (gamepad2.x) {
                 slides.reset();
             }
-            if(gamepad2.left_bumper){
-                slides.drop();
-            }
 
             if (gamepad2.dpad_down) {
                 slides.fiveCups();
@@ -67,8 +64,12 @@ public class JellyTele extends BaseOpMode {
 
             // CLAW
 
-            if (gamepad2.right_bumper) {
-                claw.clawsToggle();
+            if(gamepad2.right_bumper){
+                claw.clawsOpen();
+                gamepad2.rumbleBlips(1);
+            }
+            if(gamepad2.left_bumper){
+                claw.clawsClose();
                 gamepad2.rumbleBlips(1);
             }
 
@@ -86,20 +87,23 @@ public class JellyTele extends BaseOpMode {
             // precision
             double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : 1.0;
             if (gamepad1.left_bumper){
-                gamepad1.rumble( 0.5, 0.5, 10);
+                gamepad1.rumble( 1, 1, 10);
             }
             if (gamepad1.right_bumper){
-                gamepad1.rumble(0.8,0.8,10);
+                gamepad1.rumble(2.7,2.7,10);
             }
             //Rotate 90 degrees
 
             if (gamepad1.x) {
-                // Turns counter clockwise
-                drive.turn(Math.toRadians(90) + 1e-6);
+                // Turns counter clockwise 90
+                drive.turn(Math.toRadians(95) + 1e-6);
+            }
+            if (gamepad1.y){
+                drive.turn(Math.toRadians(190));
             }
             if (gamepad1.b) {
-                // Turns clockwise
-                drive.turn(Math.toRadians(90) - 1e-6);
+                // Turns clockwise 90
+                drive.turn(Math.toRadians(-95) - 1e-6);
             }
 
             drive.update();

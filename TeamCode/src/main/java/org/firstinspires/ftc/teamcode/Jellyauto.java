@@ -191,6 +191,9 @@ public class Jellyauto extends BaseOpMode {
                 .build();
 
         TrajectorySequence leftTrajSeq = drive.trajectorySequenceBuilder(right_startPose)
+                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
+                    slides.mid();
+                })
                 .forward(36)
                 .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                     slides.high();
@@ -213,7 +216,7 @@ public class Jellyauto extends BaseOpMode {
 
         while (opModeIsActive()) {
             if (side == Side.CUPS_LEFT) {
-                if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
+                if (tagOfInterest == null || tagOfInterest.id == LEFT) {
                     drive.followTrajectorySequence(leftTrajSeq);
                 }
                 /*else if(tagOfInterest.id == LEFT){
