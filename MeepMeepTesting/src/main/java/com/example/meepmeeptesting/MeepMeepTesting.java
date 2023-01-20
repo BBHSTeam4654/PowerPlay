@@ -67,11 +67,14 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
                         .forward(30)
+                        .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
+                            // slides go up
+                        })
                         .splineTo(new Vector2d(-31, -8), Math.toRadians(45))
-                        .addDisplacementMarker(() -> {
+                        .addTemporalMarker(() -> {
                             // Slides go down a little + open claw
                         })
-                        .UNSTABLE_addTemporalMarkerOffset(1, () -> {
+                        .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
                             // slides go down
                         })
                         /*
