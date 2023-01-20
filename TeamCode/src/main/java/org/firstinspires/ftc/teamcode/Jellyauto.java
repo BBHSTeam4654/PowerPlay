@@ -24,6 +24,7 @@ package org.firstinspires.ftc.teamcode;
 //import static org.firstinspires.ftc.teamcode.Framework.PoseStorage.*;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -31,7 +32,7 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
 import org.firstinspires.ftc.teamcode.misc.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.misc.pipeline.AprilTagDetectionPipeline;
-import org.firstinspires.ftc.teamcode.misc.trajectorysequence.TrajectorySequence;
+import org.firstinspires.ftc.teamcode.misc.trajectorysequence.*;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -124,10 +125,15 @@ public class Jellyauto extends BaseOpMode {
  */
 
         TrajectorySequence leftTrajSeq = drive.trajectorySequenceBuilder(startPose)
+                .forward(30)
                 .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
-                    slides.mid();
+                    slides.high();
                 })
-                .forward(36)
+                .splineTo(new Vector2d(-31, -8), Math.toRadians(45))
+                .addTemporalMarker(() -> {
+                    slides.drop();
+                    claw.clawsOpen();
+                })
                 /*
                 .lineToLinearHeading(new Pose2d(-31, -8, Math.toRadians(45)))
                 .addTemporalMarker(() -> {
