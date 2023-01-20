@@ -78,7 +78,7 @@ public class Jellyauto extends BaseOpMode {
 
 
     @Override
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException{
         initHardware();
 
         //AutoDrivetrain AU = new AutoDrivetrain((DcMotorEx) leftEncoder, (DcMotorEx) rightEncoder, (DcMotorEx) frontEncoder,motors);
@@ -103,6 +103,56 @@ public class Jellyauto extends BaseOpMode {
         });
 
         telemetry.setMsTransmissionInterval(50);
+
+        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+
+        if (side == Side.CUPS_LEFT) {
+            drive.setPoseEstimate(right_startPose);
+        }else {
+            drive.setPoseEstimate(left_startPose);
+        }
+        TrajectorySequence rightTrajSeq = drive.trajectorySequenceBuilder(right_startPose)
+                .forward(36)
+                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
+                    slides.high();
+                })
+                .lineToLinearHeading(new Pose2d(-31, 8, Math.toRadians(315)))
+                .addTemporalMarker(() -> {
+                    claw.clawsOpen();
+                })
+
+                //Ending - Add stuff before this
+                .lineToLinearHeading(new Pose2d(-35, 12, Math.toRadians(270)))
+                .build();
+
+        TrajectorySequence leftTrajSeq = drive.trajectorySequenceBuilder(right_startPose)
+                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
+                    slides.mid();
+                })
+                .forward(36)
+                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
+                    slides.high();
+                })
+                /*
+                .lineToLinearHeading(new Pose2d(-31, -8, Math.toRadians(45)))
+                .addTemporalMarker(() -> {
+                    claw.clawsOpen();
+                })
+
+
+
+                //Ending - Add stuff before this
+                .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(90)))
+                */
+                 */
+                .build();
+
+        TrajectorySequence leftPark = drive.trajectorySequenceBuilder(currentPose)
+                .strafeLeft(24)
+                .build();
+        TrajectorySequence rightPark = drive.trajectorySequenceBuilder(currentPose)
+                .strafeRight(24)
+                .build();
 
         /*
          * The INIT-loop:
@@ -169,54 +219,11 @@ public class Jellyauto extends BaseOpMode {
             telemetry.update();
         }
 
-        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        if (side == Side.CUPS_LEFT) {
-            drive.setPoseEstimate(right_startPose);
-        }else {
-            drive.setPoseEstimate(left_startPose);
-        }
-        TrajectorySequence rightTrajSeq = drive.trajectorySequenceBuilder(right_startPose)
-                .forward(36)
-                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                    slides.high();
-                })
-                .lineToLinearHeading(new Pose2d(-31, 8, Math.toRadians(315)))
-                .addTemporalMarker(() -> {
-                    claw.clawsOpen();
-                })
-
-                //Ending - Add stuff before this
-                .lineToLinearHeading(new Pose2d(-35, 12, Math.toRadians(270)))
-                .build();
-
-        TrajectorySequence leftTrajSeq = drive.trajectorySequenceBuilder(right_startPose)
-                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                    slides.mid();
-                })
-                .forward(36)
-                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                    slides.high();
-                })
-                .lineToLinearHeading(new Pose2d(-31, -8, Math.toRadians(45)))
-                .addTemporalMarker(() -> {
-                    claw.clawsOpen();
-                })
-
-                //Ending - Add stuff before this
-                .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(90)))
-                .build();
-
-        TrajectorySequence leftPark = drive.trajectorySequenceBuilder(currentPose)
-                .strafeLeft(24)
-                .build();
-        TrajectorySequence rightPark = drive.trajectorySequenceBuilder(currentPose)
-                .strafeRight(24)
-                .build();
 
         while (opModeIsActive()) {
             if (side == Side.CUPS_LEFT) {
-                if (tagOfInterest == null || tagOfInterest.id == LEFT) {
+                if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
                     drive.followTrajectorySequence(leftTrajSeq);
                 }
                 /*else if(tagOfInterest.id == LEFT){
