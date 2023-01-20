@@ -13,6 +13,7 @@ import com.noahbres.meepmeep.roadrunner.trajectorysequence.TrajectorySequence;
 
 public class MeepMeepTesting {
     public static void main(String[] args) {
+        System.setProperty("sun.java2d.opengl", "true");
         MeepMeep meepMeep = new MeepMeep(800);
 
         Pose2d startPose1 = new Pose2d(-35, 62, Math.toRadians(270));
