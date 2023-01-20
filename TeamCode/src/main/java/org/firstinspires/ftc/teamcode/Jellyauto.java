@@ -21,16 +21,14 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import static org.firstinspires.ftc.teamcode.Framework.PoseStorage.*;
+//import static org.firstinspires.ftc.teamcode.Framework.PoseStorage.*;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 
-//import org.firstinspires.ftc.teamcode.Framework.AutoDrivetrain;
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
-import org.firstinspires.ftc.teamcode.Framework.PoseStorage;
 import org.firstinspires.ftc.teamcode.misc.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.misc.pipeline.AprilTagDetectionPipeline;
 import org.firstinspires.ftc.teamcode.misc.trajectorysequence.TrajectorySequence;
@@ -106,6 +104,8 @@ public class Jellyauto extends BaseOpMode {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
+        Pose2d startPose = new Pose2d(-35, -62, Math.toRadians(90));
+
         drive.setPoseEstimate(startPose);
 /*
         TrajectorySequence rightTrajSeq = drive.trajectorySequenceBuilder(startPose)
@@ -129,9 +129,6 @@ public class Jellyauto extends BaseOpMode {
                     slides.mid();
                 })
                 .forward(36)
-                .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
-                    slides.high();
-                })
                 /*
                 .lineToLinearHeading(new Pose2d(-31, -8, Math.toRadians(45)))
                 .addTemporalMarker(() -> {
@@ -146,10 +143,10 @@ public class Jellyauto extends BaseOpMode {
 
                 .build();
 
-        TrajectorySequence leftPark = drive.trajectorySequenceBuilder(currentPose)
+        TrajectorySequence leftPark = drive.trajectorySequenceBuilder(startPose)
                 .strafeLeft(24)
                 .build();
-        TrajectorySequence rightPark = drive.trajectorySequenceBuilder(currentPose)
+        TrajectorySequence rightPark = drive.trajectorySequenceBuilder(startPose)
                 .strafeRight(24)
                 .build();
 
