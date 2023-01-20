@@ -144,7 +144,7 @@ public class Jellyauto extends BaseOpMode {
                 //Ending - Add stuff before this
                 .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(90)))
                 */
-                 */
+
                 .build();
 
         TrajectorySequence leftPark = drive.trajectorySequenceBuilder(currentPose)
