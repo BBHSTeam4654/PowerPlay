@@ -74,9 +74,8 @@ public class Jellyauto extends BaseOpMode {
     AprilTagDetection tagOfInterest = null;
 
 
-
     @Override
-    public void runOpMode() throws InterruptedException{
+    public void runOpMode() throws InterruptedException {
         initHardware();
 
         //AutoDrivetrain AU = new AutoDrivetrain((DcMotorEx) leftEncoder, (DcMotorEx) rightEncoder, (DcMotorEx) frontEncoder,motors);
@@ -197,7 +196,7 @@ public class Jellyauto extends BaseOpMode {
             }
             telemetry.addData("Left encoder", leftEncoder.getCurrentPosition());
             telemetry.addData("Right encoder", rightEncoder.getCurrentPosition());
-            telemetry.addData( "Front encoder", frontEncoder.getCurrentPosition());
+            telemetry.addData("Front encoder", frontEncoder.getCurrentPosition());
             telemetry.update();
             sleep(20);
         }
@@ -215,20 +214,17 @@ public class Jellyauto extends BaseOpMode {
             telemetry.update();
         }
 
-
-
-        while (opModeIsActive()) {
-            if (side == Side.CUPS_LEFT) {
-                if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                    drive.followTrajectorySequence(leftTrajSeq);
-                }
+        if (side == Side.CUPS_LEFT) {
+            if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
+                drive.followTrajectorySequence(leftTrajSeq);
+            }
                 /*else if(tagOfInterest.id == LEFT){
                     //left trajectory
                 }else{
                     //right trajectory
                 }
                 */
-            }
+        }
             /*
             else{
                 if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
@@ -240,6 +236,6 @@ public class Jellyauto extends BaseOpMode {
                 }
             }
        */
-        }
+
     }
 }
