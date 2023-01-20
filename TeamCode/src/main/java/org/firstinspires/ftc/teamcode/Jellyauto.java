@@ -216,7 +216,7 @@ public class Jellyauto extends BaseOpMode {
 
         if (side == Side.CUPS_LEFT) {
             if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                drive.followTrajectorySequence(leftTrajSeq);
+                drive.followTrajectorySequenceAsync(leftTrajSeq);
             }
                 /*else if(tagOfInterest.id == LEFT){
                     //left trajectory
@@ -236,6 +236,7 @@ public class Jellyauto extends BaseOpMode {
                 }
             }
        */
-
+        drive.update();
+        slides.pLoop();
     }
 }
