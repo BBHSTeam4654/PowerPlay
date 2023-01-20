@@ -106,12 +106,9 @@ public class Jellyauto extends BaseOpMode {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        if (side == Side.CUPS_LEFT) {
-            drive.setPoseEstimate(right_startPose);
-        }else {
-            drive.setPoseEstimate(left_startPose);
-        }
-        TrajectorySequence rightTrajSeq = drive.trajectorySequenceBuilder(right_startPose)
+        drive.setPoseEstimate(startPose);
+/*
+        TrajectorySequence rightTrajSeq = drive.trajectorySequenceBuilder(startPose)
                 .forward(36)
                 .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                     slides.high();
@@ -125,12 +122,14 @@ public class Jellyauto extends BaseOpMode {
                 .lineToLinearHeading(new Pose2d(-35, 12, Math.toRadians(270)))
                 .build();
 
-        TrajectorySequence leftTrajSeq = drive.trajectorySequenceBuilder(right_startPose)
-                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
+ */
+
+        TrajectorySequence leftTrajSeq = drive.trajectorySequenceBuilder(startPose)
+                .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
                     slides.mid();
                 })
                 .forward(36)
-                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
+                .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
                     slides.high();
                 })
                 /*
