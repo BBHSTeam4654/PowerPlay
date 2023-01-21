@@ -116,11 +116,11 @@ public class Jellyauto extends BaseOpMode {
                     slides.wLoop();
                 })
                 .forward(50)
+                .strafeRight(12)
                 .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                     slides.high();
                     slides.wLoop();
                 })
-                .strafeRight(12)
                 .forward(3)
                 /*
                 .addTemporalMarker(() -> {
@@ -138,18 +138,30 @@ public class Jellyauto extends BaseOpMode {
                 // start
                 .build();
 
-        TrajectorySequence rightTrajSeq = drive.trajectorySequenceBuilder(startPose)
+        TrajectorySequence experimentalTraj = drive.trajectorySequenceBuilder(startPose)
                 .forward(5)
                 .build();
         TrajectorySequence middlePark = drive.trajectorySequenceBuilder(startPose)
+                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
+                    slides.low();
+                    slides.wLoop();
+                })
                 .forward(50)
                 .build();
 
-        TrajectorySequence leftPark = drive.trajectorySequenceBuilder(startPose)
+        TrajectorySequence leftPark = drive.trajectorySequenceBuilder(new Pose2d()  )
+                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
+                    slides.low();
+                    slides.wLoop();
+                })
                 .forward(50)
                 .strafeLeft(24)
                 .build();
-        TrajectorySequence rightPark = drive.trajectorySequenceBuilder(startPose)
+        TrajectorySequence rightPark = drive.trajectorySequenceBuilder(new Pose2d())
+                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
+                    slides.low();
+                    slides.wLoop();
+                })
                 .forward(50)
                 .strafeRight(24)
                 .build();
