@@ -35,10 +35,19 @@ public class MeepMeepTesting {
                         .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                             //slides up to mid
                         })
-                        .forward(38)
+                        .forward(45)
 
-                        .splineTo(new Vector2d(-24, -8), Math.toRadians(90))
-
+                        .splineToConstantHeading(new Vector2d(-24, -8), Math.toRadians(90))
+                        //slides up high
+                        .waitSeconds(2)
+                        //go right over junction
+                        .forward(3)
+                        //drop
+//                        .waitSeconds(2)
+//                        .back(5)
+//                        .setReversed(true)
+//                        .lineToSplineHeading(new Pose2d(-40, -12, Math.toRadians(180)))
+//                        .setReversed(false)
                         // start
                         .build()
 
