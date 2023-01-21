@@ -14,7 +14,7 @@ public class Slides{
     static double rightTarget;
     static double lkp = 0.016;
     static double rkp = 0.016;
-
+    static boolean limitoverride = false;
     public Slides(DcMotorEx leftSlide, DcMotorEx rightSlide){
         this.leftSlide = leftSlide;
         this.rightSlide = rightSlide;
@@ -56,10 +56,13 @@ public class Slides{
         leftTarget = 0;
         rightTarget = 0;
     }
-    public static void drop(){
-        leftTarget+=50;
-        rightTarget-=50;
-
+    public static void override(){
+        if(limitoverride){
+            limitoverride=false;
+        }
+        else if(!limitoverride){
+            limitoverride=true;
+        }
     }
     //For cups on stack
     public static void fiveCups(){
@@ -110,14 +113,16 @@ public class Slides{
         this.rightSlide.setPower(rp);
         //Left: -4401, Right: 4405, upper limit
         //low: left: -1696, Right: 1697
-        if(leftTarget>0){
-            leftTarget = 0;
+        if(!limitoverride) {
+            if (leftTarget > 0) {
+                leftTarget = 0;
+            }
+            if (rightTarget < 0) {
+                rightTarget = 0;
+            }
         }
         if(leftTarget<-4401){
             leftTarget = -4401;
-        }
-        if(rightTarget<0){
-            rightTarget = 0;
         }
         if(rightTarget>4405){
             rightTarget = 4405;
