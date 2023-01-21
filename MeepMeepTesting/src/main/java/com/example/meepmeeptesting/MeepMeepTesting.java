@@ -66,16 +66,27 @@ public class MeepMeepTesting {
                 .setColorScheme(new ColorSchemeRedLight())
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
-                        .forward(30)
-                        .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
-
+                        .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
+                            //slides up to low
                         })
+                        .forward(30)
+                        .splineTo(new Vector2d(-33, -10), Math.toRadians(45))
+                        .addTemporalMarker(() -> {
+                            //slide up to highest
+                        })
+                        .waitSeconds(0.75)
                         .splineTo(new Vector2d(-29, -6), Math.toRadians(45))
                         .addTemporalMarker(() -> {
-
+                            //slides down little + claw open
                         })
-                        .lineToLinearHeading(new Pose2d(-35, -13, Math.toRadians(90)))
+                        .waitSeconds(1)
+                        .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
+                            //slide down
+                        })
+                        .lineToLinearHeading(new Pose2d(-36, -13, Math.toRadians(90)))
+
                         /*
+
                         .forward(30)
                         .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
                             // slides go up

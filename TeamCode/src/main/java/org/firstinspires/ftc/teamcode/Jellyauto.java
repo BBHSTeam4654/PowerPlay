@@ -127,16 +127,23 @@ public class Jellyauto extends BaseOpMode {
  */
 
         TrajectorySequence leftTrajSeq = drive.trajectorySequenceBuilder(startPose)
-                .forward(30)
-                .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
-                    slides.high();
-                    slides.wLoop();
+                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
+                    slides.low();
                 })
+                .forward(30)
+                .splineTo(new Vector2d(-33, -10), Math.toRadians(45))
+                .addTemporalMarker(() -> {
+                    slides.high();
+                })
+                .waitSeconds(0.75)
                 .splineTo(new Vector2d(-29, -6), Math.toRadians(45))
                 .addTemporalMarker(() -> {
-                    slides.drop();
-                    slides.wLoop();
+                    slides.mid();
                     claw.clawsOpen();
+                })
+                .waitSeconds(1)
+                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
+                    slides.reset();
                 })
                 .lineToLinearHeading(new Pose2d(-36, -13, Math.toRadians(90)))
                 .build();
