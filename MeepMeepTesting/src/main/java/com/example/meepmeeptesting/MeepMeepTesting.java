@@ -35,7 +35,7 @@ public class MeepMeepTesting {
                         .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                             //slides up to mid
                         })
-                        .forward(38)
+                        .forward(44)
 
                         .splineToConstantHeading(new Vector2d(-24, -8), Math.toRadians(90))
                         //slides up high

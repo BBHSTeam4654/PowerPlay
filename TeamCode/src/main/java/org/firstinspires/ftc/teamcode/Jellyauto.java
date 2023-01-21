@@ -139,7 +139,17 @@ public class Jellyauto extends BaseOpMode {
                 .build();
 
         TrajectorySequence experimentalTraj = drive.trajectorySequenceBuilder(startPose)
-                .forward(5)
+                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
+                    slides.low();
+                    slides.wLoop();
+                })
+                .forward(44)
+                .splineToConstantHeading(new Vector2d(-24, -8), Math.toRadians(90))
+                .addTemporalMarker( () -> {
+                    slides.high();
+                    slides.wLoop();
+                })
+                .waitSeconds(1)
                 .build();
         TrajectorySequence middlePark = drive.trajectorySequenceBuilder(startPose)
                 .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
@@ -240,6 +250,9 @@ public class Jellyauto extends BaseOpMode {
             }else{
                 drive.followTrajectorySequence(rightPark);
                 }
+        }
+        if(side == Side.CUPS_RIGHT){
+            drive.followTrajectorySequence(experimentalTraj);
         }
     }
     void tagToTelemetry(AprilTagDetection detection)
