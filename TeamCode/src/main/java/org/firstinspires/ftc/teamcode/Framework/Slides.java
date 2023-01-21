@@ -81,6 +81,10 @@ public class Slides{
         leftTarget = -184;
         rightTarget = 184;
     }
+    public static void drop(){
+        leftTarget+=50;
+        rightTarget-=50;
+    }
     //Reset at 0 should be the same for one cup
     //
     //For slide positions in auto like cups
