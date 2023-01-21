@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.tests;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -8,10 +9,11 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
-/* 
+@Disabled
 @TeleOp(name = "Power Play MotorTest")
 
 public class MotorTest {
+/*
     public void runOpMode() throws InterruptedException{
     protected static enum driveTest {
         frontL,
@@ -113,9 +115,12 @@ public class MotorTest {
         }
     }
 }
+
+
     }
+ */
+
 
 
 }
 
- */

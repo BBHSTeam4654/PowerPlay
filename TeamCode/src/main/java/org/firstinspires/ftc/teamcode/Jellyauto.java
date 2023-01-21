@@ -109,22 +109,6 @@ public class Jellyauto extends BaseOpMode {
         Pose2d startPose = new Pose2d(-36, -62, Math.toRadians(90));
 
         drive.setPoseEstimate(startPose);
-/*
-        TrajectorySequence rightTrajSeq = drive.trajectorySequenceBuilder(startPose)
-                .forward(36)
-                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                    slides.high();
-                })
-                .lineToLinearHeading(new Pose2d(-31, 8, Math.toRadians(315)))
-                .addTemporalMarker(() -> {
-                    claw.clawsOpen();
-                })
-
-                //Ending - Add stuff before this
-                .lineToLinearHeading(new Pose2d(-35, 12, Math.toRadians(270)))
-                .build();
-
- */
 
         TrajectorySequence leftTrajSeq = drive.trajectorySequenceBuilder(startPose)
                 .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
@@ -244,20 +228,7 @@ public class Jellyauto extends BaseOpMode {
             }else{
                 drive.followTrajectorySequence(rightPark);
                 }
-
         }
-            /*
-            else{
-                if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                    //middle trajectory
-                }else if(tagOfInterest.id == LEFT){
-                    //left trajectory
-                }else{
-                    //right trajectory
-                }
-            }
-       */
-
     }
     void tagToTelemetry(AprilTagDetection detection)
     {

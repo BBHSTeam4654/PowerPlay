@@ -1,11 +1,14 @@
 package org.firstinspires.ftc.teamcode.tests;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
+@Disabled
 @TeleOp(name = "MeasureSlides")
+
 public class MeasureSlides extends LinearOpMode {
 
     public void runOpMode() throws InterruptedException {

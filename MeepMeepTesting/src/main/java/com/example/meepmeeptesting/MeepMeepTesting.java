@@ -14,13 +14,13 @@ import com.noahbres.meepmeep.roadrunner.trajectorysequence.TrajectorySequence;
 public class MeepMeepTesting {
     public static void main(String[] args) {
         System.setProperty("sun.java2d.opengl", "true");
-        MeepMeep meepMeep = new MeepMeep(800);
+        MeepMeep meepMeep = new MeepMeep(600);
 
         Pose2d startPose1 = new Pose2d(-36, 62, Math.toRadians(270));
         Pose2d startPose2 = new Pose2d(-36, -62, Math.toRadians(90));
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 .setColorScheme(new ColorSchemeBlueLight())
-                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                .setConstraints(50, 50, Math.toRadians(180), Math.toRadians(180), 13.54331)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose1)
                         .forward(50)
                         .strafeLeft(24)
@@ -33,21 +33,12 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
                         .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                            //slides up to low
-                        })
-                        .forward(50)
-                        .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                            //slides up to high
-                        })
-                        .strafeRight(12)
-                        .forward(3)
-                        .addTemporalMarker(() -> {
                             //slides up to mid
-                            //claw open
                         })
-                        .waitSeconds(2)
-                        .back(3)
-                        .strafeLeft(12)
+                        .forward(38)
+
+                        .splineTo(new Vector2d(-24, -8), Math.toRadians(90))
+
                         // start
                         .build()
 
