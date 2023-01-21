@@ -68,6 +68,16 @@ public class MeepMeepTesting {
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
                         .forward(30)
                         .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
+
+                        })
+                        .splineTo(new Vector2d(-29, -6), Math.toRadians(45))
+                        .addTemporalMarker(() -> {
+
+                        })
+                        .lineToLinearHeading(new Pose2d(-35, -13, Math.toRadians(90)))
+                        /*
+                        .forward(30)
+                        .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
                             // slides go up
                         })
                         .splineTo(new Vector2d(-31, -8), Math.toRadians(45))
@@ -77,7 +87,7 @@ public class MeepMeepTesting {
                         .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
                             // slides go down
                         })
-                        /*
+
                         .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(180)))
                         .forward(22)
                         .addDisplacementMarker(() -> {

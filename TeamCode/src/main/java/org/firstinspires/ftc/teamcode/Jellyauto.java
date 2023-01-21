@@ -30,6 +30,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
+import org.firstinspires.ftc.teamcode.Framework.Claws;
+import org.firstinspires.ftc.teamcode.Framework.Slides;
 import org.firstinspires.ftc.teamcode.misc.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.misc.pipeline.AprilTagDetectionPipeline;
 import org.firstinspires.ftc.teamcode.misc.trajectorysequence.*;
@@ -104,7 +106,7 @@ public class Jellyauto extends BaseOpMode {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        Pose2d startPose = new Pose2d(-35, -62, Math.toRadians(90));
+        Pose2d startPose = new Pose2d(-36, -62, Math.toRadians(90));
 
         drive.setPoseEstimate(startPose);
 /*
@@ -128,24 +130,30 @@ public class Jellyauto extends BaseOpMode {
                 .forward(30)
                 .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
                     slides.high();
+                    slides.wLoop();
                 })
-                .splineTo(new Vector2d(-31, -8), Math.toRadians(45))
+                .splineTo(new Vector2d(-29, -6), Math.toRadians(45))
                 .addTemporalMarker(() -> {
                     slides.drop();
+                    slides.wLoop();
                     claw.clawsOpen();
                 })
-                /*
-                .lineToLinearHeading(new Pose2d(-31, -8, Math.toRadians(45)))
+                .lineToLinearHeading(new Pose2d(-36, -13, Math.toRadians(90)))
+                .build();
+
+        TrajectorySequence rightTrajSeq = drive.trajectorySequenceBuilder(startPose)
+                .forward(30)
+                .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
+                    slides.high();
+                    slides.wLoop();
+                })
+                .splineTo(new Vector2d(-41, -6), Math.toRadians(45))
                 .addTemporalMarker(() -> {
+                    slides.drop();
+                    slides.wLoop();
                     claw.clawsOpen();
                 })
-
-
-
-                //Ending - Add stuff before this
-                .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(90)))
-                */
-
+                .lineToLinearHeading(new Pose2d(-36, -13, Math.toRadians(90)))
                 .build();
 
         TrajectorySequence leftPark = drive.trajectorySequenceBuilder(startPose)
