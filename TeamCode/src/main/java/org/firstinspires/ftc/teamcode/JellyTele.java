@@ -98,14 +98,19 @@ public class JellyTele extends BaseOpMode {
 
             if (gamepad1.x) {
                 // Turns counter clockwise 90
-                drive.turn(Math.toRadians(90) + 1e-6);
+                drive.turn(Math.toRadians(50) + 1e-6);
             }
             if (gamepad1.y){
-                drive.turn(Math.toRadians(180));
+                //180 turn
+                drive.turn(Math.toRadians(95));
             }
             if (gamepad1.b) {
                 // Turns clockwise 90
-                drive.turn(Math.toRadians(-90) - 1e-6);
+                drive.turn(Math.toRadians(-50) - 1e-6);
+            }
+            if (gamepad1.a){
+                //360 turn lol
+                drive.turn(Math.toRadians(365));
             }
 
             drive.update();
