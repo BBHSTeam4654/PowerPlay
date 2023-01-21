@@ -93,6 +93,13 @@ public class Slides{
         this.leftTarget += (double)num*8;
         this.rightTarget -= (double)num*8;
     }
+    public boolean wLoop(){
+
+        while(leftTarget!=leftSlide.getCurrentPosition() && rightTarget!=rightSlide.getCurrentPosition()){
+            pLoop();
+        }
+        return true;
+    }
 
     public void pLoop(){
 //one of them is reversed... idk which one so use MeasureSlides to determine, 

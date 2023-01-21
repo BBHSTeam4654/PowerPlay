@@ -24,14 +24,17 @@ package org.firstinspires.ftc.teamcode;
 //import static org.firstinspires.ftc.teamcode.Framework.PoseStorage.*;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
+import org.firstinspires.ftc.teamcode.Framework.Claws;
+import org.firstinspires.ftc.teamcode.Framework.Slides;
 import org.firstinspires.ftc.teamcode.misc.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.misc.pipeline.AprilTagDetectionPipeline;
-import org.firstinspires.ftc.teamcode.misc.trajectorysequence.TrajectorySequence;
+import org.firstinspires.ftc.teamcode.misc.trajectorysequence.*;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -103,7 +106,7 @@ public class Jellyauto extends BaseOpMode {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        Pose2d startPose = new Pose2d(-35, -62, Math.toRadians(90));
+        Pose2d startPose = new Pose2d(-36, -62, Math.toRadians(90));
 
         drive.setPoseEstimate(startPose);
 /*
@@ -124,22 +127,33 @@ public class Jellyauto extends BaseOpMode {
  */
 
         TrajectorySequence leftTrajSeq = drive.trajectorySequenceBuilder(startPose)
+                .forward(30)
                 .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
-                    slides.mid();
+                    slides.high();
+                    slides.wLoop();
                 })
-                .forward(36)
-                /*
-                .lineToLinearHeading(new Pose2d(-31, -8, Math.toRadians(45)))
+                .splineTo(new Vector2d(-29, -6), Math.toRadians(45))
                 .addTemporalMarker(() -> {
+                    slides.drop();
+                    slides.wLoop();
                     claw.clawsOpen();
                 })
+                .lineToLinearHeading(new Pose2d(-36, -13, Math.toRadians(90)))
+                .build();
 
-
-
-                //Ending - Add stuff before this
-                .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(90)))
-                */
-
+        TrajectorySequence rightTrajSeq = drive.trajectorySequenceBuilder(startPose)
+                .forward(30)
+                .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
+                    slides.high();
+                    slides.wLoop();
+                })
+                .splineTo(new Vector2d(-41, -6), Math.toRadians(45))
+                .addTemporalMarker(() -> {
+                    slides.drop();
+                    slides.wLoop();
+                    claw.clawsOpen();
+                })
+                .lineToLinearHeading(new Pose2d(-36, -13, Math.toRadians(90)))
                 .build();
 
         TrajectorySequence leftPark = drive.trajectorySequenceBuilder(startPose)
@@ -216,7 +230,7 @@ public class Jellyauto extends BaseOpMode {
 
         if (side == Side.CUPS_LEFT) {
             if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                drive.followTrajectorySequenceAsync(leftTrajSeq);
+                drive.followTrajectorySequence(leftTrajSeq);
             }
                 /*else if(tagOfInterest.id == LEFT){
                     //left trajectory
@@ -236,7 +250,16 @@ public class Jellyauto extends BaseOpMode {
                 }
             }
        */
-        drive.update();
-        slides.pLoop();
+
+    }
+    void tagToTelemetry(AprilTagDetection detection)
+    {
+        telemetry.addLine(String.format("\nDetected tag ID=%d", detection.id));
+        telemetry.addLine(String.format("Translation X: %.2f feet", detection.pose.x*FEET_PER_METER));
+        telemetry.addLine(String.format("Translation Y: %.2f feet", detection.pose.y*FEET_PER_METER));
+        telemetry.addLine(String.format("Translation Z: %.2f feet", detection.pose.z*FEET_PER_METER));
+        telemetry.addLine(String.format("Rotation Yaw: %.2f degrees", Math.toDegrees(detection.pose.yaw)));
+        telemetry.addLine(String.format("Rotation Pitch: %.2f degrees", Math.toDegrees(detection.pose.pitch)));
+        telemetry.addLine(String.format("Rotation Roll: %.2f degrees", Math.toDegrees(detection.pose.roll)));
     }
 }
