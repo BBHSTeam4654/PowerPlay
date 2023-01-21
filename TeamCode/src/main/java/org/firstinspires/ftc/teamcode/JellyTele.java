@@ -68,12 +68,11 @@ public class JellyTele extends BaseOpMode {
             // CLAW
 
             if(gamepad2.right_bumper){
-                claw.clawsOpen();
-                gamepad2.rumbleBlips(1);
+                claw.clawsClose();
+
             }
             if(gamepad2.left_bumper){
-                claw.clawsClose();
-                gamepad2.rumbleBlips(1);
+                claw.clawsOpen();
             }
 
             // DRIVETRAIN

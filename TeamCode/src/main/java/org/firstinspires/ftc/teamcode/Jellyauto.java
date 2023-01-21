@@ -125,42 +125,39 @@ public class Jellyauto extends BaseOpMode {
                 .build();
 
  */
-
+        TrajectorySequence forward = drive.trajectorySequenceBuilder(startPose)
+                .forward(50)
+                .build();
         TrajectorySequence leftTrajSeq = drive.trajectorySequenceBuilder(startPose)
                 .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                     slides.low();
+                    slides.wLoop();
                 })
-                .forward(30)
-                .splineTo(new Vector2d(-33, -10), Math.toRadians(45))
-                .addTemporalMarker(() -> {
+                .forward(50)
+                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                     slides.high();
+                    slides.wLoop();
                 })
-                .waitSeconds(0.75)
-                .splineTo(new Vector2d(-29, -6), Math.toRadians(45))
+                .strafeRight(12)
+                .forward(3)
+                /*
                 .addTemporalMarker(() -> {
                     slides.mid();
-                    claw.clawsOpen();
+                    slides.wLoop();
                 })
                 .waitSeconds(1)
-                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                    slides.reset();
+                .addTemporalMarker(() -> {
+                    claw.clawsOpen();
                 })
-                .lineToLinearHeading(new Pose2d(-36, -13, Math.toRadians(90)))
+                .back(3)
+                .strafeLeft(12)
+
+                  */
+                // start
                 .build();
 
         TrajectorySequence rightTrajSeq = drive.trajectorySequenceBuilder(startPose)
-                .forward(30)
-                .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
-                    slides.high();
-                    slides.wLoop();
-                })
-                .splineTo(new Vector2d(-41, -6), Math.toRadians(45))
-                .addTemporalMarker(() -> {
-                    slides.drop();
-                    slides.wLoop();
-                    claw.clawsOpen();
-                })
-                .lineToLinearHeading(new Pose2d(-36, -13, Math.toRadians(90)))
+                .forward(5)
                 .build();
 
         TrajectorySequence leftPark = drive.trajectorySequenceBuilder(startPose)
@@ -237,14 +234,17 @@ public class Jellyauto extends BaseOpMode {
 
         if (side == Side.CUPS_LEFT) {
             if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                drive.followTrajectorySequence(leftTrajSeq);
+                //drive.followTrajectorySequence(leftTrajSeq);
+                drive.followTrajectorySequence(forward);
             }
-                /*else if(tagOfInterest.id == LEFT){
-                    //left trajectory
-                }else{
-                    //right trajectory
+            else if(tagOfInterest.id == LEFT){
+                drive.followTrajectorySequence(forward);
+                drive.followTrajectorySequence(leftPark);
+            }else{
+                drive.followTrajectorySequence(forward);
+                drive.followTrajectorySequence(rightPark);
                 }
-                */
+
         }
             /*
             else{

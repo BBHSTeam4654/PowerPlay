@@ -16,48 +16,14 @@ public class MeepMeepTesting {
         System.setProperty("sun.java2d.opengl", "true");
         MeepMeep meepMeep = new MeepMeep(800);
 
-        Pose2d startPose1 = new Pose2d(-35, 62, Math.toRadians(270));
-        Pose2d startPose2 = new Pose2d(-35, -62, Math.toRadians(90));
+        Pose2d startPose1 = new Pose2d(-36, 62, Math.toRadians(270));
+        Pose2d startPose2 = new Pose2d(-36, -62, Math.toRadians(90));
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 .setColorScheme(new ColorSchemeBlueLight())
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose1)
-                        .forward(36)
-                        .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                            // slides go up
-                        })
-
-
-                        .lineToLinearHeading(new Pose2d(-31, 8, Math.toRadians(315)))
-                        .addTemporalMarker(() -> {
-                            // open claw
-                        })
-
-                        .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                            // slides go down
-                        })
-
-
-                        // 1+1
-                        .lineToLinearHeading(new Pose2d(-35, 12, Math.toRadians(180)))
-                        .forward(22)
-                        .addTemporalMarker(() -> {
-                            // close claw
-                        })
-
-                        .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
-                            // slides go up
-                        })
-
-
-                        .back(22)
-                        .lineToLinearHeading(new Pose2d(-31, 8, Math.toRadians(315)))
-                        .addTemporalMarker(() -> {
-                            // open claw
-                        })
-                        .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                            // slides go down
-                        })
+                        .forward(50)
+                        .strafeLeft(24)
                         // start
                         .build()
 
@@ -69,54 +35,19 @@ public class MeepMeepTesting {
                         .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
                             //slides up to low
                         })
-                        .forward(30)
-                        .splineTo(new Vector2d(-33, -10), Math.toRadians(45))
-                        .addTemporalMarker(() -> {
-                            //slide up to highest
-                        })
-                        .waitSeconds(0.75)
-                        .splineTo(new Vector2d(-29, -6), Math.toRadians(45))
-                        .addTemporalMarker(() -> {
-                            //slides down little + claw open
-                        })
-                        .waitSeconds(1)
+                        .forward(50)
                         .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                            //slide down
+                            //slides up to high
                         })
-                        .lineToLinearHeading(new Pose2d(-36, -13, Math.toRadians(90)))
-
-                        /*
-
-                        .forward(30)
-                        .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
-                            // slides go up
-                        })
-                        .splineTo(new Vector2d(-31, -8), Math.toRadians(45))
+                        .strafeRight(12)
+                        .forward(3)
                         .addTemporalMarker(() -> {
-                            // Slides go down a little + open claw
+                            //slides up to mid
+                            //claw open
                         })
-                        .UNSTABLE_addTemporalMarkerOffset(0.25, () -> {
-                            // slides go down
-                        })
-
-                        .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(180)))
-                        .forward(22)
-                        .addDisplacementMarker(() -> {
-                            // claw grabs cup -> slides go up
-                        })
-
-
-                        .back(22)
-                        .lineToLinearHeading(new Pose2d(-31, -8, Math.toRadians(45)))
-
-                        .addDisplacementMarker(() -> {
-                            // open claw + slides go down
-                        })
-                        //Goes back to the signal zones
-                        .lineToLinearHeading(new Pose2d(-35, -12, Math.toRadians(90)))
-                        .strafeRight(24)
-
-*/
+                        .waitSeconds(2)
+                        .back(3)
+                        .strafeLeft(12)
                         // start
                         .build()
 
