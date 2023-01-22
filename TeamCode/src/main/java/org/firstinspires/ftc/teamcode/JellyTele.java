@@ -22,7 +22,7 @@ public class JellyTele extends BaseOpMode {
 
         initHardware();
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
-        drive.setPoseEstimate(new Pose2d(-35, -62, Math.toRadians(90)));
+        drive.setPoseEstimate(new Pose2d(0, 0, Math.toRadians(0)));
         waitForStart();
 
         while (opModeIsActive()) {
@@ -98,19 +98,19 @@ public class JellyTele extends BaseOpMode {
 
             if (gamepad1.x) {
                 // Turns counter clockwise 90
-                drive.turn(Math.toRadians(50) + 1e-6);
+                drive.turn(Math.toRadians(90) + 1e-6);
             }
             if (gamepad1.y){
                 //180 turn
-                drive.turn(Math.toRadians(95) + 1e-6);
+                drive.turn(Math.toRadians(180) + 1e-6);
             }
             if (gamepad1.b) {
                 // Turns clockwise 90
-                drive.turn(Math.toRadians(-50) - 1e-6);
+                drive.turn(Math.toRadians(90) - 1e-6);
             }
             if (gamepad1.a){
                 //360 turn lol
-                drive.turn(Math.toRadians(-365)- 1e-6);
+                drive.turn(Math.toRadians(180)- 1e-6);
             }
 
             drive.update();

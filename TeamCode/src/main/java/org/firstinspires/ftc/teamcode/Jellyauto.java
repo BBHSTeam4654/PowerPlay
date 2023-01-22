@@ -122,58 +122,54 @@ public class Jellyauto extends BaseOpMode {
                     slides.wLoop();
                 })
                 .forward(3)
-                /*
-                .addTemporalMarker(() -> {
-                    slides.mid();
-                    slides.wLoop();
-                })
-                .waitSeconds(1)
-                .addTemporalMarker(() -> {
-                    claw.clawsOpen();
-                })
-                .back(3)
-                .strafeLeft(12)
-
-                  */
-                // start
                 .build();
 
         TrajectorySequence experimentalTraj = drive.trajectorySequenceBuilder(startPose)
                 .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                    slides.low();
+                    slides.fourCups();
                     slides.wLoop();
                 })
                 .forward(44)
-                .splineToConstantHeading(new Vector2d(-24, -8), Math.toRadians(90))
-                .addTemporalMarker( () -> {
-                    slides.high();
-                    slides.wLoop();
-                })
-                .waitSeconds(1)
+                .back(24)
                 .build();
         TrajectorySequence middlePark = drive.trajectorySequenceBuilder(startPose)
-                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                    slides.low();
+                .addTemporalMarker(() -> {
+                    slides.fourCups();
                     slides.wLoop();
                 })
                 .forward(50)
+                .back(8)
+                .addTemporalMarker(() -> {
+                    slides.reset();
+                    slides.wLoop();
+                })
                 .build();
 
         TrajectorySequence leftPark = drive.trajectorySequenceBuilder(new Pose2d()  )
-                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                    slides.low();
+                .addTemporalMarker(() -> {
+                    slides.fourCups();
                     slides.wLoop();
                 })
                 .forward(50)
                 .strafeLeft(24)
+                .back(8)
+                .addTemporalMarker(() -> {
+                    slides.reset();
+                    slides.wLoop();
+                })
                 .build();
         TrajectorySequence rightPark = drive.trajectorySequenceBuilder(new Pose2d())
-                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                    slides.low();
+                .addTemporalMarker(() -> {
+                    slides.fourCups();
                     slides.wLoop();
                 })
                 .forward(50)
                 .strafeRight(24)
+                .back(8)
+                .addTemporalMarker(() -> {
+                    slides.reset();
+                    slides.wLoop();
+                })
                 .build();
 
         /*
@@ -250,9 +246,6 @@ public class Jellyauto extends BaseOpMode {
             }else{
                 drive.followTrajectorySequence(rightPark);
                 }
-        }
-        if(side == Side.CUPS_RIGHT){
-            drive.followTrajectorySequence(experimentalTraj);
         }
     }
     void tagToTelemetry(AprilTagDetection detection)
