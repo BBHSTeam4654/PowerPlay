@@ -32,25 +32,16 @@ public class MeepMeepTesting {
                 .setColorScheme(new ColorSchemeRedLight())
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
-                        .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                            //slides up to mid
+                        .addTemporalMarker(() -> {
+
                         })
-                        .forward(44)
+                        .forward(50)
+                        .strafeLeft(24)
+                        .back(8)
+                        .addTemporalMarker(() -> {
 
-                        .splineToConstantHeading(new Vector2d(-24, -8), Math.toRadians(90))
-                        //slides up high
-                        .waitSeconds(2)
-                        //go right over junction
-                        .forward(3)
-                        //drop
-//                        .waitSeconds(2)
-//                        .back(5)
-//                        .setReversed(true)
-//                        .lineToSplineHeading(new Pose2d(-40, -12, Math.toRadians(180)))
-//                        .setReversed(false)
-                        // start
+                        })
                         .build()
-
                 );
         System.setProperty("sun.java2d.opengl", "true");
         meepMeep.setBackground(MeepMeep.Background.FIELD_POWERPLAY_OFFICIAL)

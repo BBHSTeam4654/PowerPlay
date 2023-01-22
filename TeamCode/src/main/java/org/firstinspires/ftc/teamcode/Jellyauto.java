@@ -145,7 +145,7 @@ public class Jellyauto extends BaseOpMode {
                 })
                 .build();
 
-        TrajectorySequence leftPark = drive.trajectorySequenceBuilder(new Pose2d()  )
+        TrajectorySequence leftPark = drive.trajectorySequenceBuilder(startPose)
                 .addTemporalMarker(() -> {
                     slides.fourCups();
                     slides.wLoop();
@@ -158,7 +158,7 @@ public class Jellyauto extends BaseOpMode {
                     slides.wLoop();
                 })
                 .build();
-        TrajectorySequence rightPark = drive.trajectorySequenceBuilder(new Pose2d())
+        TrajectorySequence rightPark = drive.trajectorySequenceBuilder(startPose)
                 .addTemporalMarker(() -> {
                     slides.fourCups();
                     slides.wLoop();
