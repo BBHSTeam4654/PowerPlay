@@ -25,6 +25,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
+import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -110,66 +111,17 @@ public class Jellyauto extends BaseOpMode {
 
         drive.setPoseEstimate(startPose);
 
-        TrajectorySequence leftTrajSeq = drive.trajectorySequenceBuilder(startPose)
-                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                    slides.low();
-                    slides.wLoop();
-                })
-                .forward(50)
-                .strafeRight(12)
-                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                    slides.high();
-                    slides.wLoop();
-                })
-                .forward(3)
-                .build();
-
-        TrajectorySequence experimentalTraj = drive.trajectorySequenceBuilder(startPose)
-                .UNSTABLE_addTemporalMarkerOffset(0.5, () -> {
-                    slides.fourCups();
-                    slides.wLoop();
-                })
-                .forward(44)
-                .back(24)
-                .build();
         TrajectorySequence middlePark = drive.trajectorySequenceBuilder(startPose)
-                .addTemporalMarker(() -> {
-                    slides.fourCups();
-                    slides.wLoop();
-                })
-                .forward(50)
-                .back(8)
-                .addTemporalMarker(() -> {
-                    slides.reset();
-                    slides.wLoop();
-                })
+                .forward(30)
                 .build();
 
         TrajectorySequence leftPark = drive.trajectorySequenceBuilder(startPose)
-                .addTemporalMarker(() -> {
-                    slides.fourCups();
-                    slides.wLoop();
-                })
-                .forward(50)
-                .strafeLeft(24)
-                .back(8)
-                .addTemporalMarker(() -> {
-                    slides.reset();
-                    slides.wLoop();
-                })
+                .strafeTo(new Vector2d(-56, -59))
+                .forward(30)
                 .build();
         TrajectorySequence rightPark = drive.trajectorySequenceBuilder(startPose)
-                .addTemporalMarker(() -> {
-                    slides.fourCups();
-                    slides.wLoop();
-                })
-                .forward(50)
-                .strafeRight(24)
-                .back(8)
-                .addTemporalMarker(() -> {
-                    slides.reset();
-                    slides.wLoop();
-                })
+                .strafeTo(new Vector2d(-16, -59))
+                .forward(30)
                 .build();
 
         /*

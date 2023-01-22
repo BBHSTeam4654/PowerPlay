@@ -32,15 +32,8 @@ public class MeepMeepTesting {
                 .setColorScheme(new ColorSchemeRedLight())
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
-                        .addTemporalMarker(() -> {
-
-                        })
-                        .forward(50)
-                        .strafeLeft(24)
-                        .back(8)
-                        .addTemporalMarker(() -> {
-
-                        })
+                        .strafeTo(new Vector2d(-20, -59))
+                        .forward(30)
                         .build()
                 );
         System.setProperty("sun.java2d.opengl", "true");
