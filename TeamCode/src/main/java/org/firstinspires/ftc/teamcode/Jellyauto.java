@@ -21,7 +21,6 @@
 
 package org.firstinspires.ftc.teamcode;
 
-//import static org.firstinspires.ftc.teamcode.Framework.PoseStorage.*;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
@@ -116,11 +115,11 @@ public class Jellyauto extends BaseOpMode {
                 .build();
 
         TrajectorySequence leftPark = drive.trajectorySequenceBuilder(startPose)
-                .strafeTo(new Vector2d(-56, -59))
+                .lineToSplineHeading(new Pose2d(-56, -59, Math.toRadians(90)))
                 .forward(30)
                 .build();
         TrajectorySequence rightPark = drive.trajectorySequenceBuilder(startPose)
-                .strafeTo(new Vector2d(-16, -59))
+                .lineToSplineHeading(new Pose2d(-16, -59, Math.toRadians(90)))
                 .forward(30)
                 .build();
 
