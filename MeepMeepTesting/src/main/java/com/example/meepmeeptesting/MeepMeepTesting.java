@@ -32,8 +32,11 @@ public class MeepMeepTesting {
                 .setColorScheme(new ColorSchemeRedLight())
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
-                        .lineToSplineHeading(new Pose2d(-56, -59, Math.toRadians(90)))
-                        .lineToSplineHeading(new Pose2d(-60, -24, Math.toRadians(90)))
+                        .lineToConstantHeading(new Vector2d(-24, -62))
+                        .splineToConstantHeading(new Vector2d(-12, -46), Math.toRadians(90))
+                        .lineToConstantHeading(new Vector2d(-12, -24))
+                        .splineToSplineHeading(new Pose2d(-18, -6, Math.toRadians(135)), Math.toRadians(135))
+
                         .build()
                 );
         System.setProperty("sun.java2d.opengl", "true");

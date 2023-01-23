@@ -110,17 +110,19 @@ public class Jellyauto extends BaseOpMode {
 
         drive.setPoseEstimate(startPose);
 
+
+
         TrajectorySequence middlePark = drive.trajectorySequenceBuilder(startPose)
                 .forward(30)
                 .build();
 
         TrajectorySequence leftPark = drive.trajectorySequenceBuilder(startPose)
-                .lineToSplineHeading(new Pose2d(-56, -59, Math.toRadians(90)))
-                .forward(30)
+                .lineToSplineHeading(new Pose2d(-60, -59, Math.toRadians(95)))
+                .forward(24)
                 .build();
         TrajectorySequence rightPark = drive.trajectorySequenceBuilder(startPose)
-                .lineToSplineHeading(new Pose2d(-16, -59, Math.toRadians(90)))
-                .forward(30)
+                .lineToSplineHeading(new Pose2d(-12, -59, Math.toRadians(95)))
+                .forward(24)
                 .build();
 
         /*
