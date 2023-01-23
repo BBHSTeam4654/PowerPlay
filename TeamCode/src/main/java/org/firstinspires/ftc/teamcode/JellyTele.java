@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
 import org.firstinspires.ftc.teamcode.misc.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.misc.trajectorysequence.TrajectorySequence;
 
 @TeleOp(name = "Power Play JellyTele")
 
@@ -23,6 +24,23 @@ public class JellyTele extends BaseOpMode {
         initHardware();
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         drive.setPoseEstimate(new Pose2d(0, 0, Math.toRadians(0)));
+
+        TrajectorySequence clockwise90 = drive.trajectorySequenceBuilder(new Pose2d())
+                .turn(Math.toRadians(90))
+                .build();
+
+        TrajectorySequence clockwise180 = drive.trajectorySequenceBuilder(new Pose2d())
+                .turn(Math.toRadians(180))
+                .build();
+
+        TrajectorySequence counterClockwise90 = drive.trajectorySequenceBuilder(new Pose2d())
+                .turn(Math.toRadians(-90))
+                .build();
+
+        TrajectorySequence counterClockwise180 = drive.trajectorySequenceBuilder(new Pose2d())
+                .turn(Math.toRadians(-180))
+                .build();
+
         waitForStart();
 
         while (opModeIsActive()) {
@@ -97,20 +115,20 @@ public class JellyTele extends BaseOpMode {
             //Rotate 90 degrees
 
             if (gamepad1.x) {
-                // Turns counter clockwise 90
-                drive.turn(Math.toRadians(90) + 1e-6);
+                // Turns clockwise 90
+                drive.followTrajectorySequenceAsync(clockwise90);
             }
             if (gamepad1.y){
-                //180 turn
-                drive.turn(Math.toRadians(180) + 1e-6);
+                // Turns clockwise 180
+                drive.followTrajectorySequenceAsync(clockwise180);
             }
             if (gamepad1.b) {
-                // Turns clockwise 90
-                drive.turn(Math.toRadians(90) - 1e-6);
+                // Turns counter clockwise 90
+                drive.followTrajectorySequenceAsync(counterClockwise90);
             }
             if (gamepad1.a){
-                //360 turn lol
-                drive.turn(Math.toRadians(180)- 1e-6);
+                // Turns counter clockwise 180
+                drive.followTrajectorySequenceAsync(counterClockwise180);
             }
 
             drive.update();
