@@ -32,15 +32,28 @@ public class MeepMeepTesting {
                 .setColorScheme(new ColorSchemeRedLight())
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
-                                .lineToConstantHeading(new Vector2d(-36, -24))
-                                .splineToSplineHeading(new Pose2d(-29, -5, Math.toRadians(45)), Math.toRadians(45))
-                        //slow down
-                                .lineToConstantHeading(new Vector2d(-21, 3))
-                        .waitSeconds(2)
-                        //Drop marker
-                                .lineToSplineHeading(new Pose2d(-30, -6, Math.toRadians(135)))
-                                .splineToSplineHeading(new Pose2d(-36, -12, Math.toRadians(180)), Math.toRadians(180))
-                                .lineToSplineHeading(new Pose2d(-65, -12, Math.toRadians(180)))
+                        .lineToSplineHeading(new Pose2d(-24, -62, Math.toRadians(135)))
+                        .splineToSplineHeading(new Pose2d(-12, -46, Math.toRadians(180)), Math.toRadians(90))
+                        .lineToSplineHeading(new Pose2d(-12, -30, Math.toRadians(180)))
+                        .splineToConstantHeading(new Vector2d(-14, -24), Math.toRadians(180))
+                        //Lift Marker
+                        //slows down
+                        .forward(5)
+                        //Drop Marker
+                        .waitSeconds(1.5)
+                        .back(5)
+                        .splineToConstantHeading(new Vector2d(-24, -12), Math.toRadians(180))
+                        //Lift offset to being by the end
+                        .lineToSplineHeading(new Pose2d(-60, -12, Math.toRadians(180)))
+                        //Slow down
+                        .forward(3)
+                        //close and lift to low
+                        .waitSeconds(0.75)
+                        .lineToSplineHeading(new Pose2d(-24, -12, Math.toRadians(180)))
+                        .splineToConstantHeading(new Vector2d(-14, -24), Math.toRadians(180))
+                        //Lift Marker
+                        //slows down
+                        .forward(5)
                         .build()
                 );
         System.setProperty("sun.java2d.opengl", "true");
