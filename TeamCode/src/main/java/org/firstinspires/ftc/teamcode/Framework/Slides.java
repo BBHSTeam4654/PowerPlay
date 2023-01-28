@@ -15,6 +15,7 @@ public class Slides{
     static double lkp = 0.016;
     static double rkp = 0.016;
     static boolean limitoverride = false;
+    public static boolean multPrecision = false;
     public Slides(DcMotorEx leftSlide, DcMotorEx rightSlide){
         this.leftSlide = leftSlide;
         this.rightSlide = rightSlide;
@@ -137,6 +138,12 @@ public class Slides{
         }
         if(rightTarget>4405){
             rightTarget = 4405;
+        }
+        if(rightTarget>4000){
+            multPrecision = true;
+        }
+        if(rightTarget<4000){
+            multPrecision = false;
         }
         if(rightSlide.getCurrentPosition()==0){
             rightSlide.setPower(0);

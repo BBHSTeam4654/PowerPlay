@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import static org.firstinspires.ftc.teamcode.Framework.Slides.multPrecision;
+
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -105,7 +107,7 @@ public class JellyTele extends BaseOpMode {
                 gamepad1.rumbleBlips(3);
             }
             // precision
-            double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : 1.0;
+            double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : multPrecision ? 0.8 : 1.0;
             if (gamepad1.left_bumper){
                 gamepad1.rumble( 1, 1, 10);
             }
