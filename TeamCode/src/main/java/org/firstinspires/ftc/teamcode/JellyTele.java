@@ -3,8 +3,12 @@ package org.firstinspires.ftc.teamcode;
 import static org.firstinspires.ftc.teamcode.Framework.Slides.multPrecision;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.IMU;
 
+
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
 import org.firstinspires.ftc.teamcode.misc.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.misc.trajectorysequence.TrajectorySequence;
@@ -17,15 +21,25 @@ public class JellyTele extends BaseOpMode {
         TANK,
         DRIVE,
         MECANUM,
+        FIELDCENTRIC,
     }
 
-    protected DriveMode driveMode = DriveMode.MECANUM;
+    protected DriveMode driveMode = DriveMode.FIELDCENTRIC;
 
     public void runOpMode() throws InterruptedException {
 
         initHardware();
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         drive.setPoseEstimate(new Pose2d(0, 0, Math.toRadians(0)));
+
+        // Retrieve the IMU from the hardware map
+        IMU imu = hardwareMap.get(IMU.class, "imu");
+        // Adjust the orientation parameters to match your robot
+        IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
+                RevHubOrientationOnRobot.LogoFacingDirection.UP,
+                RevHubOrientationOnRobot.UsbFacingDirection.FORWARD));
+        // Without this, the REV Hub's orientation is assumed to be logo up / USB forward
+        imu.initialize(parameters);
 
         TrajectorySequence clockwise90 = drive.trajectorySequenceBuilder(new Pose2d())
                 .turn(Math.toRadians(90))
@@ -105,6 +119,10 @@ public class JellyTele extends BaseOpMode {
             } else if (gamepad1.dpad_right) {
                 driveMode = DriveMode.DRIVE;
                 gamepad1.rumbleBlips(3);
+            }
+            else if (gamepad1.dpad_down) {
+                driveMode = DriveMode.FIELDCENTRIC;
+                gamepad1.rumbleBlips(4);
             }
             // precision
             double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : multPrecision ? 0.8 : 1.0;
@@ -214,7 +232,23 @@ public class JellyTele extends BaseOpMode {
                                     , Math.abs(mX)) - 1)) + pivot });
                     break;
                 }
+                case FIELDCENTRIC: {
+                    double y = -gamepad1.left_stick_y; // Remember, this is reversed!
+                    double x = gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
+                    double rx = gamepad1.right_stick_x;
 
+                    double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+
+                    // Rotate the movement direction counter to the bot's rotation
+                    double rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
+                    double rotY = x * Math.sin(-botHeading) + y * Math.cos(-botHeading);
+                    setMotorSpeeds(mult, new double[] {
+                            rotY - rotX - rx,
+                            rotY + rotX - rx,
+                            rotY + rotX + rx,
+                            rotY - rotX + rx});
+                    break;
+                }
             }
 
         }
