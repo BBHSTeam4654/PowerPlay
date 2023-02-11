@@ -30,9 +30,45 @@ public class MeepMeepTesting {
                 );
         RoadRunnerBotEntity myBot2 = new DefaultBotBuilder(meepMeep)
                 .setColorScheme(new ColorSchemeRedLight())
-                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                .setConstraints(30, 10, Math.toRadians(180), Math.toRadians(180), 13.54331)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
-                        .lineToSplineHeading(new Pose2d(-24, -62, Math.toRadians(90)))
+                        .lineToConstantHeading(new Vector2d(-36, -16))
+                        //Lift -> mid
+                        .splineToConstantHeading(new Vector2d(-24, -10), Math.toRadians(90))
+                        //Lift -> High
+                        .forward(5)
+                        //Drop
+                        .waitSeconds(1)
+                        //Lift -> c5
+                        .lineToConstantHeading(new Vector2d(-24, -15))
+                        .lineToLinearHeading(new Pose2d(-36, -12, Math.toRadians(180)))
+                        .lineToConstantHeading(new Vector2d(-60, -12))
+                        //Pick
+                        .waitSeconds(0.5)
+                        .lineToConstantHeading(new Vector2d(-36, -12))
+                        .lineToLinearHeading(new Pose2d(-24, -15, Math.toRadians(90)))
+                        .forward(10)
+                        //Drop
+                        .waitSeconds(1)
+                        //Lift -> c5
+                        .lineToConstantHeading(new Vector2d(-24, -12))
+                        .strafeTo(new Vector2d(-60, -12))
+                        .build()
+                );
+        System.setProperty("sun.java2d.opengl", "true");
+        meepMeep.setBackground(MeepMeep.Background.FIELD_POWERPLAY_OFFICIAL)
+                .setDarkMode(true)
+                .setBackgroundAlpha(0.95f)
+                .addEntity(myBot)
+                .addEntity(myBot2)
+                .start();
+    }
+}
+
+//Save for later
+/*
+
+.lineToSplineHeading(new Pose2d(-24, -62, Math.toRadians(90)))
                         .splineToSplineHeading(new Pose2d(-12, -46, Math.toRadians(180)), Math.toRadians(90))
                         .lineToSplineHeading(new Pose2d(-12, -30, Math.toRadians(180)))
                         .splineToConstantHeading(new Vector2d(-14, -24), Math.toRadians(180))
@@ -54,14 +90,5 @@ public class MeepMeepTesting {
                         //Lift Marker
                         //slows down
                         .forward(2)
-                        .build()
-                );
-        System.setProperty("sun.java2d.opengl", "true");
-        meepMeep.setBackground(MeepMeep.Background.FIELD_POWERPLAY_OFFICIAL)
-                .setDarkMode(true)
-                .setBackgroundAlpha(0.95f)
-                .addEntity(myBot)
-                .addEntity(myBot2)
-                .start();
-    }
-}
+
+ */
