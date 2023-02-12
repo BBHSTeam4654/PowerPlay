@@ -18,6 +18,7 @@ public class MeepMeepTesting {
 
         Pose2d startPose1 = new Pose2d(-36, 62, Math.toRadians(270));
         Pose2d startPose2 = new Pose2d(-36, -62, Math.toRadians(90));
+        Pose2d startPose3 = new Pose2d(36, -62, Math.toRadians(90));
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 .setColorScheme(new ColorSchemeBlueLight())
                 .setConstraints(50, 50, Math.toRadians(180), Math.toRadians(180), 13.54331)
@@ -30,37 +31,39 @@ public class MeepMeepTesting {
                 );
         RoadRunnerBotEntity myBot2 = new DefaultBotBuilder(meepMeep)
                 .setColorScheme(new ColorSchemeRedLight())
-                .setConstraints(30, 10, Math.toRadians(180), Math.toRadians(180), 13.54331)
+                .setConstraints(40, 10, Math.toRadians(180), Math.toRadians(180), 13.54331)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
-                        .lineToConstantHeading(new Vector2d(-36, -16))
-                        //Lift -> mid
-                        .splineToConstantHeading(new Vector2d(-24, -10), Math.toRadians(90))
-                        //Lift -> High
+                        .lineToConstantHeading(new Vector2d(-36, -12))
+                        .turn(Math.toRadians(135))
+                        .forward(10)
+                        //drop
+                        .waitSeconds(0.25)
+                        .lineToSplineHeading(new Pose2d(-36, -12, Math.toRadians(180)))
+                        .build()
+                );
+        RoadRunnerBotEntity myBot3 = new DefaultBotBuilder(meepMeep)
+                .setColorScheme(new ColorSchemeBlueLight())
+                .setConstraints(40, 10, Math.toRadians(180), Math.toRadians(180), 13.54331)
+                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose3)
+                        //offset 3 seconds - Lift -> low
+                        .lineToSplineHeading(new Pose2d(36, -24, Math.toRadians(0)))
                         .forward(5)
                         //Drop
-                        .waitSeconds(1)
-                        //Lift -> c5
-                        .lineToConstantHeading(new Vector2d(-24, -15))
-                        .lineToLinearHeading(new Pose2d(-36, -12, Math.toRadians(180)))
-                        .lineToConstantHeading(new Vector2d(-60, -12))
-                        //Pick
-                        .waitSeconds(0.5)
-                        .lineToConstantHeading(new Vector2d(-36, -12))
-                        .lineToLinearHeading(new Pose2d(-24, -15, Math.toRadians(90)))
-                        .forward(10)
-                        //Drop
-                        .waitSeconds(1)
-                        //Lift -> c5
-                        .lineToConstantHeading(new Vector2d(-24, -12))
-                        .strafeTo(new Vector2d(-60, -12))
+                        .waitSeconds(0.25)
+                        .back(2)
+                        .splineToConstantHeading(new Vector2d(36, -18), Math.toRadians(90))
+                        .splineToConstantHeading(new Vector2d(42, -12), Math.toRadians(0))
+                        // start
                         .build()
+
                 );
         System.setProperty("sun.java2d.opengl", "true");
         meepMeep.setBackground(MeepMeep.Background.FIELD_POWERPLAY_OFFICIAL)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
-                .addEntity(myBot)
+                //.addEntity(myBot)
                 .addEntity(myBot2)
+                .addEntity(myBot3)
                 .start();
     }
 }
