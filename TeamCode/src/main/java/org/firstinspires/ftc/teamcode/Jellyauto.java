@@ -199,6 +199,15 @@ public class Jellyauto extends BaseOpMode {
             }else{
                 drive.followTrajectorySequence(rightPark);
                 }
+        }else{
+            if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
+                drive.followTrajectorySequence(middlePark);
+            }
+            else if(tagOfInterest.id == LEFT){
+                drive.followTrajectorySequence(leftPark);
+            }else{
+                drive.followTrajectorySequence(rightPark);
+            }
         }
     }
     void tagToTelemetry(AprilTagDetection detection)

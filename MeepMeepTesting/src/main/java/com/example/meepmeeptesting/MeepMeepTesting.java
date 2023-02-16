@@ -31,28 +31,28 @@ public class MeepMeepTesting {
                 );
         RoadRunnerBotEntity myBot2 = new DefaultBotBuilder(meepMeep)
                 .setColorScheme(new ColorSchemeRedLight())
-                .setConstraints(40, 10, Math.toRadians(180), Math.toRadians(180), 13.54331)
+                .setConstraints(30, 10, Math.toRadians(180), Math.toRadians(180), 13.54331)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
                         .lineToConstantHeading(new Vector2d(-36, -12))
-                        .turn(Math.toRadians(135))
-                        .forward(10)
-                        //drop
-                        .waitSeconds(0.25)
-                        .lineToSplineHeading(new Pose2d(-36, -12, Math.toRadians(180)))
+                        .addTemporalMarker(4.47, () -> {
+                            //Lift mid
+                            //WLoop
+                        })
+                        .lineToConstantHeading(new Vector2d(-24, -12))
+                        .addTemporalMarker(6.66, () -> {
+                            //Lift high
+                            //WLoop
+                        })
+                        .forward(5)
                         .build()
                 );
         RoadRunnerBotEntity myBot3 = new DefaultBotBuilder(meepMeep)
                 .setColorScheme(new ColorSchemeBlueLight())
-                .setConstraints(40, 10, Math.toRadians(180), Math.toRadians(180), 13.54331)
+                .setConstraints(45, 15, Math.toRadians(180), Math.toRadians(180), 13.54331)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose3)
                         //offset 3 seconds - Lift -> low
                         .lineToSplineHeading(new Pose2d(36, -24, Math.toRadians(0)))
-                        .forward(5)
-                        //Drop
-                        .waitSeconds(0.25)
-                        .back(2)
-                        .splineToConstantHeading(new Vector2d(36, -18), Math.toRadians(90))
-                        .splineToConstantHeading(new Vector2d(42, -12), Math.toRadians(0))
+
                         // start
                         .build()
 
@@ -63,7 +63,7 @@ public class MeepMeepTesting {
                 .setBackgroundAlpha(0.95f)
                 //.addEntity(myBot)
                 .addEntity(myBot2)
-                .addEntity(myBot3)
+                //.addEntity(myBot3)
                 .start();
     }
 }
