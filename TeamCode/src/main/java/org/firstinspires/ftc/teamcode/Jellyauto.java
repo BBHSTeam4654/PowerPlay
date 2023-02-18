@@ -113,24 +113,24 @@ public class Jellyauto extends BaseOpMode {
 
 
         TrajectorySequence LMAuto = drive.trajectorySequenceBuilder(startPose)
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     claw.clawsClose();
                 })
                 .lineToConstantHeading(new Vector2d(-36, -36))
 
                 .lineToConstantHeading(new Vector2d(-24, -36))
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     slides.mid();
                     slides.wLoop();
                 })
                 .waitSeconds(1)
                 .lineToConstantHeading(new Vector2d(-24, -28.5))
                 .waitSeconds(0.25)
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     claw.clawsOpen();
                 })
                 .lineToConstantHeading(new Vector2d(-24, -36))
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     slides.reset();
                     slides.wLoop();
                 })
@@ -138,120 +138,120 @@ public class Jellyauto extends BaseOpMode {
                 .build();
 
         TrajectorySequence LLAuto = drive.trajectorySequenceBuilder(startPose)
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     claw.clawsClose();
                 })
                 .lineToConstantHeading(new Vector2d(-36, -36))
 
                 .lineToConstantHeading(new Vector2d(-24, -36))
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     slides.mid();
                     slides.wLoop();
                 })
                 .waitSeconds(1)
                 .lineToConstantHeading(new Vector2d(-24, -28.5))
                 .waitSeconds(0.25)
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     claw.clawsOpen();
                 })
                 .lineToConstantHeading(new Vector2d(-24, -36))
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     slides.reset();
                     slides.wLoop();
                 })
                 .lineToConstantHeading(new Vector2d(-60, -36))
                 .build();
         TrajectorySequence LRAuto = drive.trajectorySequenceBuilder(startPose)
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     claw.clawsClose();
                 })
                 .lineToConstantHeading(new Vector2d(-36, -36))
 
                 .lineToConstantHeading(new Vector2d(-24, -36))
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     slides.mid();
                     slides.wLoop();
                 })
                 .waitSeconds(1)
                 .lineToConstantHeading(new Vector2d(-24, -28.5))
                 .waitSeconds(0.25)
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     claw.clawsOpen();
                 })
                 .lineToConstantHeading(new Vector2d(-24, -36))
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     slides.reset();
                     slides.wLoop();
                 })
                 .lineToConstantHeading(new Vector2d(-12, -36))
                 .build();
         TrajectorySequence RMAuto = drive.trajectorySequenceBuilder(startPose)
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     claw.clawsClose();
                 })
                 .lineToConstantHeading(new Vector2d(-36, -36))
 
                 .lineToConstantHeading(new Vector2d(-48, -36))
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     slides.mid();
                     slides.wLoop();
                 })
                 .waitSeconds(1)
                 .lineToConstantHeading(new Vector2d(-48, -28.5))
                 .waitSeconds(0.25)
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     claw.clawsOpen();
                 })
                 .lineToConstantHeading(new Vector2d(-48, -36))
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     slides.reset();
                     slides.wLoop();
                 })
                 .lineToConstantHeading(new Vector2d(-36, -36))
                 .build();
         TrajectorySequence RLAuto = drive.trajectorySequenceBuilder(startPose)
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     claw.clawsClose();
                 })
                 .lineToConstantHeading(new Vector2d(-36, -36))
 
                 .lineToConstantHeading(new Vector2d(-48, -36))
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     slides.mid();
                     slides.wLoop();
                 })
                 .waitSeconds(1)
                 .lineToConstantHeading(new Vector2d(-48, -28.5))
                 .waitSeconds(0.25)
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     claw.clawsOpen();
                 })
                 .lineToConstantHeading(new Vector2d(-48, -36))
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     slides.reset();
                     slides.wLoop();
                 })
                 .lineToConstantHeading(new Vector2d(-60, -36))
                 .build();
         TrajectorySequence RRAuto = drive.trajectorySequenceBuilder(startPose)
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     claw.clawsClose();
                 })
                 .lineToConstantHeading(new Vector2d(-36, -36))
 
                 .lineToConstantHeading(new Vector2d(-48, -36))
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     slides.mid();
                     slides.wLoop();
                 })
                 .waitSeconds(1)
                 .lineToConstantHeading(new Vector2d(-48, -28.5))
                 .waitSeconds(0.25)
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     claw.clawsOpen();
                 })
                 .lineToConstantHeading(new Vector2d(-48, -36))
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     slides.reset();
                     slides.wLoop();
                 })
