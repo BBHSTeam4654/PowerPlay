@@ -112,15 +112,68 @@ public class Jellyauto extends BaseOpMode {
 
 
 
-        TrajectorySequence middlePark = drive.trajectorySequenceBuilder(startPose)
-                .forward(30)
+        TrajectorySequence LMAuto = drive.trajectorySequenceBuilder(startPose)
+                .addTemporalMarker(0.01, () -> {
+                    claw.clawsClose();
+                })
+                .lineToConstantHeading(new Vector2d(-36, -36))
+
+                .lineToConstantHeading(new Vector2d(-24, -35.5))
+                .addTemporalMarker(5.42, () -> {
+                    slides.mid();
+                    slides.wLoop();
+                })
+                .waitSeconds(1)
+                .forward(7)
+                .addTemporalMarker(8.09, () -> {
+                    claw.clawsOpen();
+                })
+                .waitSeconds(0.25)
+                .back(7)
+                .addTemporalMarker(10.01, () -> {
+                    slides.reset();
+                    slides.wLoop();
+                })
+                .lineToConstantHeading(new Vector2d(-36, -36))
                 .build();
 
-        TrajectorySequence leftPark = drive.trajectorySequenceBuilder(startPose)
+        TrajectorySequence LLAuto = drive.trajectorySequenceBuilder(startPose)
                 .lineToSplineHeading(new Pose2d(-60, -59, Math.toRadians(95)))
                 .forward(24)
                 .build();
-        TrajectorySequence rightPark = drive.trajectorySequenceBuilder(startPose)
+        TrajectorySequence LRAuto = drive.trajectorySequenceBuilder(startPose)
+                .lineToSplineHeading(new Pose2d(-12, -59, Math.toRadians(95)))
+                .forward(24)
+                .build();
+        TrajectorySequence RMAuto = drive.trajectorySequenceBuilder(startPose)
+                .addTemporalMarker(0.01, () -> {
+                    claw.clawsClose();
+                })
+                .lineToConstantHeading(new Vector2d(-36, -36))
+
+                .lineToConstantHeading(new Vector2d(-48, -35.5))
+                .addTemporalMarker(5.42, () -> {
+                    slides.mid();
+                    slides.wLoop();
+                })
+                .waitSeconds(1)
+                .forward(7)
+                .addTemporalMarker(8.09, () -> {
+                    claw.clawsOpen();
+                })
+                .waitSeconds(0.25)
+                .back(7)
+                .addTemporalMarker(10.01, () -> {
+                    slides.reset();
+                    slides.wLoop();
+                })
+                .lineToConstantHeading(new Vector2d(-36, -36))
+                .build();
+        TrajectorySequence RLAuto = drive.trajectorySequenceBuilder(startPose)
+                .lineToSplineHeading(new Pose2d(-12, -59, Math.toRadians(95)))
+                .forward(24)
+                .build();
+        TrajectorySequence RRAuto = drive.trajectorySequenceBuilder(startPose)
                 .lineToSplineHeading(new Pose2d(-12, -59, Math.toRadians(95)))
                 .forward(24)
                 .build();
@@ -192,22 +245,23 @@ public class Jellyauto extends BaseOpMode {
 
         if (side == Side.CUPS_LEFT) {
             if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                drive.followTrajectorySequence(middlePark);
+                drive.followTrajectorySequence(LMAuto);
             }
             else if(tagOfInterest.id == LEFT){
-                drive.followTrajectorySequence(leftPark);
+                drive.followTrajectorySequence(LMAuto);
             }else{
-                drive.followTrajectorySequence(rightPark);
+                drive.followTrajectorySequence(LMAuto);
                 }
         }else{
             if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                drive.followTrajectorySequence(middlePark);
+                drive.followTrajectorySequence(RMAuto);
             }
             else if(tagOfInterest.id == LEFT){
-                drive.followTrajectorySequence(leftPark);
+                drive.followTrajectorySequence(RLAuto);
             }else{
-                drive.followTrajectorySequence(rightPark);
+                drive.followTrajectorySequence(RRAuto);
             }
+            slides.pLoop();
         }
     }
     void tagToTelemetry(AprilTagDetection detection)
