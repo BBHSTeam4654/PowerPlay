@@ -57,6 +57,11 @@ public class Slides{
         leftTarget = 0;
         rightTarget = 0;
     }
+
+    public static void overrideReset(){
+        leftSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
     public static void override(){
         if(limitoverride){
             limitoverride=false;
