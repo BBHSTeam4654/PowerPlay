@@ -44,12 +44,13 @@ public class MeepMeepTesting {
 //                            slides.wLoop();
                         })
                         .waitSeconds(1)
-                        .forward(7.5)
+                        .lineToConstantHeading(new Vector2d(-24, -28.5))
+                        .waitSeconds(0.25)
                         .addDisplacementMarker(() -> {
 //                            claw.clawsOpen();
                         })
                         .waitSeconds(0.25)
-                        .back(7.5)
+                        .lineToConstantHeading(new Vector2d(-24, -36))
                         .addDisplacementMarker(() -> {
 //                            slides.reset();
 //                            slides.wLoop();

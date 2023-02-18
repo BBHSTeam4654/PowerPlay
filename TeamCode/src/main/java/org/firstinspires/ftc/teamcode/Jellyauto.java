@@ -125,6 +125,7 @@ public class Jellyauto extends BaseOpMode {
                 })
                 .waitSeconds(1)
                 .lineToConstantHeading(new Vector2d(-24, -28.5))
+                .waitSeconds(0.25)
                 .addDisplacementMarker(() -> {
                     claw.clawsOpen();
                 })
@@ -150,6 +151,7 @@ public class Jellyauto extends BaseOpMode {
                 })
                 .waitSeconds(1)
                 .lineToConstantHeading(new Vector2d(-24, -28.5))
+                .waitSeconds(0.25)
                 .addDisplacementMarker(() -> {
                     claw.clawsOpen();
                 })
@@ -174,6 +176,7 @@ public class Jellyauto extends BaseOpMode {
                 })
                 .waitSeconds(1)
                 .lineToConstantHeading(new Vector2d(-24, -28.5))
+                .waitSeconds(0.25)
                 .addDisplacementMarker(() -> {
                     claw.clawsOpen();
                 })
@@ -198,6 +201,7 @@ public class Jellyauto extends BaseOpMode {
                 })
                 .waitSeconds(1)
                 .lineToConstantHeading(new Vector2d(-48, -28.5))
+                .waitSeconds(0.25)
                 .addDisplacementMarker(() -> {
                     claw.clawsOpen();
                 })
@@ -222,6 +226,7 @@ public class Jellyauto extends BaseOpMode {
                 })
                 .waitSeconds(1)
                 .lineToConstantHeading(new Vector2d(-48, -28.5))
+                .waitSeconds(0.25)
                 .addDisplacementMarker(() -> {
                     claw.clawsOpen();
                 })
@@ -246,6 +251,7 @@ public class Jellyauto extends BaseOpMode {
                 })
                 .waitSeconds(1)
                 .lineToConstantHeading(new Vector2d(-48, -28.5))
+                .waitSeconds(0.25)
                 .addDisplacementMarker(() -> {
                     claw.clawsOpen();
                 })
@@ -328,9 +334,9 @@ public class Jellyauto extends BaseOpMode {
                 drive.followTrajectorySequence(LMAuto);
             }
             else if(tagOfInterest.id == LEFT){
-                drive.followTrajectorySequence(LMAuto);
+                drive.followTrajectorySequence(LLAuto);
             }else{
-                drive.followTrajectorySequence(LMAuto);
+                drive.followTrajectorySequence(LRAuto);
                 }
         }else{
             if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
