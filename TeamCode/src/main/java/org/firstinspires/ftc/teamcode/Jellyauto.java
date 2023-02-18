@@ -129,7 +129,6 @@ public class Jellyauto extends BaseOpMode {
                 .addDisplacementMarker(() -> {
                     claw.clawsOpen();
                 })
-                .waitSeconds(0.25)
                 .lineToConstantHeading(new Vector2d(-24, -36))
                 .addDisplacementMarker(() -> {
                     slides.reset();
@@ -155,7 +154,6 @@ public class Jellyauto extends BaseOpMode {
                 .addDisplacementMarker(() -> {
                     claw.clawsOpen();
                 })
-                .waitSeconds(0.25)
                 .lineToConstantHeading(new Vector2d(-24, -36))
                 .addDisplacementMarker(() -> {
                     slides.reset();
@@ -180,7 +178,6 @@ public class Jellyauto extends BaseOpMode {
                 .addDisplacementMarker(() -> {
                     claw.clawsOpen();
                 })
-                .waitSeconds(0.25)
                 .lineToConstantHeading(new Vector2d(-24, -36))
                 .addDisplacementMarker(() -> {
                     slides.reset();
@@ -205,7 +202,6 @@ public class Jellyauto extends BaseOpMode {
                 .addDisplacementMarker(() -> {
                     claw.clawsOpen();
                 })
-                .waitSeconds(0.25)
                 .lineToConstantHeading(new Vector2d(-48, -36))
                 .addDisplacementMarker(() -> {
                     slides.reset();
@@ -230,7 +226,6 @@ public class Jellyauto extends BaseOpMode {
                 .addDisplacementMarker(() -> {
                     claw.clawsOpen();
                 })
-                .waitSeconds(0.25)
                 .lineToConstantHeading(new Vector2d(-48, -36))
                 .addDisplacementMarker(() -> {
                     slides.reset();
@@ -255,7 +250,6 @@ public class Jellyauto extends BaseOpMode {
                 .addDisplacementMarker(() -> {
                     claw.clawsOpen();
                 })
-                .waitSeconds(0.25)
                 .lineToConstantHeading(new Vector2d(-48, -36))
                 .addDisplacementMarker(() -> {
                     slides.reset();
