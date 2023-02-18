@@ -16,6 +16,9 @@ public class Slides{
     static double rkp = 0.01;
     static boolean limitoverride = false;
     public static boolean multPrecision = false;
+    static int left_position = 0;
+    static int right_position = 0;
+
     public Slides(DcMotorEx leftSlide, DcMotorEx rightSlide){
         this.leftSlide = leftSlide;
         this.rightSlide = rightSlide;
@@ -28,8 +31,8 @@ public class Slides{
         leftSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         
-        int left_position = leftSlide.getCurrentPosition();
-        int right_position = rightSlide.getCurrentPosition();
+        this.left_position = leftSlide.getCurrentPosition();
+        this.right_position = rightSlide.getCurrentPosition();
 
         this.leftTarget=0;
         this.rightTarget=0;
@@ -56,6 +59,21 @@ public class Slides{
     public static void reset(){
         leftTarget = 0;
         rightTarget = 0;
+    }
+
+    public static void overrideReset(){
+        leftSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        leftSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        left_position = leftSlide.getCurrentPosition();
+        right_position = rightSlide.getCurrentPosition();
+
+        leftTarget=0;
+        rightTarget=0;
+
     }
     public static void override(){
         if(limitoverride){

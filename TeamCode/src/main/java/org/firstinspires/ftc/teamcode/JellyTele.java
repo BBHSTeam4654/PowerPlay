@@ -96,6 +96,9 @@ public class JellyTele extends BaseOpMode {
             if(gamepad2.left_stick_button){
                slides.override();
             }
+            if(gamepad2.right_stick_button){
+                slides.overrideReset();
+            }
 
             slides.pLoop();
 
