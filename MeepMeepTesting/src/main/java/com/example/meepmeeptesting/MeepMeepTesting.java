@@ -32,28 +32,29 @@ public class MeepMeepTesting {
         RoadRunnerBotEntity myBot2 = new DefaultBotBuilder(meepMeep)
                 .setColorScheme(new ColorSchemeRedLight())
                 .setConstraints(30, 10, Math.toRadians(180), Math.toRadians(180), 13.54331)
-                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2).addTemporalMarker(0.01, () -> {
-//                                    claw.clawsClose();
-                                })
-                                .lineToConstantHeading(new Vector2d(-36, -36))
+                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
+                        .addDisplacementMarker(() -> {
+//                            claw.clawsClose();
+                        })
+                        .lineToConstantHeading(new Vector2d(-36, -36))
 
-                                .lineToConstantHeading(new Vector2d(-24, -35.5))
-                                .addTemporalMarker(5.42, () -> {
-//                                    slides.mid();
-//                                    slides.wLoop();
-                                })
-                                .waitSeconds(1)
-                                .forward(7)
-                                .addTemporalMarker(8.09, () -> {
-//                                    claw.clawsOpen();
-                                })
-                                .waitSeconds(0.25)
-                                .back(7)
-                                .addTemporalMarker(10.01, () -> {
-//                                    slides.reset();
-//                                    slides.wLoop();
-                                })
-                                .lineToConstantHeading(new Vector2d(-36, -36))
+                        .lineToConstantHeading(new Vector2d(-24, -36))
+                        .addDisplacementMarker(() -> {
+//                            slides.mid();
+//                            slides.wLoop();
+                        })
+                        .waitSeconds(1)
+                        .forward(7.5)
+                        .addDisplacementMarker(() -> {
+//                            claw.clawsOpen();
+                        })
+                        .waitSeconds(0.25)
+                        .back(7.5)
+                        .addDisplacementMarker(() -> {
+//                            slides.reset();
+//                            slides.wLoop();
+                        })
+                        .lineToConstantHeading(new Vector2d(-36, -36))
                         .build()
                 );
         RoadRunnerBotEntity myBot3 = new DefaultBotBuilder(meepMeep)
