@@ -146,28 +146,8 @@ public class Jellyauto extends BaseOpMode {
                 .forward(24)
                 .build();
         TrajectorySequence RMAuto = drive.trajectorySequenceBuilder(startPose)
-                .addTemporalMarker(0.01, () -> {
-                    claw.clawsClose();
-                })
-                .lineToConstantHeading(new Vector2d(-36, -36))
-
-                .lineToConstantHeading(new Vector2d(-48, -35.5))
-                .addTemporalMarker(5.42, () -> {
-                    slides.mid();
-                    slides.wLoop();
-                })
-                .waitSeconds(1)
-                .forward(7)
-                .addTemporalMarker(8.09, () -> {
-                    claw.clawsOpen();
-                })
-                .waitSeconds(0.25)
-                .back(7)
-                .addTemporalMarker(10.01, () -> {
-                    slides.reset();
-                    slides.wLoop();
-                })
-                .lineToConstantHeading(new Vector2d(-36, -36))
+                .lineToSplineHeading(new Pose2d(-12, -59, Math.toRadians(95)))
+                .forward(24)
                 .build();
         TrajectorySequence RLAuto = drive.trajectorySequenceBuilder(startPose)
                 .lineToSplineHeading(new Pose2d(-12, -59, Math.toRadians(95)))

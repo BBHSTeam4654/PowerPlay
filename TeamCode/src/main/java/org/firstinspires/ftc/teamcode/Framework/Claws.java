@@ -11,9 +11,9 @@ public class Claws {
     static boolean open = false;
 
     public static void clawsOpen(){
-        servo.setPosition(0.459399999999956);
+        servo.setPosition(0.765);
     }
-    public static void clawsClose() {servo.setPosition(0.6605999999999436);}
+    public static void clawsClose() {servo.setPosition(0.9);}
 
 
     public double getCurrentPosition() {

@@ -12,8 +12,8 @@ public class Slides{
     static DcMotorEx rightSlide;
     static double leftTarget;
     static double rightTarget;
-    static double lkp = 0.016;
-    static double rkp = 0.016;
+    static double lkp = 0.01;
+    static double rkp = 0.01;
     static boolean limitoverride = false;
     public static boolean multPrecision = false;
     public Slides(DcMotorEx leftSlide, DcMotorEx rightSlide){
