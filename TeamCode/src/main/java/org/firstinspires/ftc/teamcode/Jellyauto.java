@@ -337,25 +337,25 @@ public class Jellyauto extends BaseOpMode {
             telemetry.addLine("No tag snapshot available, it was never sighted during the init loop :(");
             telemetry.update();
         }
-
-        if (side == Side.CUPS_LEFT) {
-            if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                drive.followTrajectorySequence(MPark);
-            }
-            else if(tagOfInterest.id == LEFT){
-                drive.followTrajectorySequence(LPark);
-            }else{
-                drive.followTrajectorySequence(RPark);
+        while (opModeIsActive() && !isStopRequested()) {
+            if (side == Side.CUPS_LEFT) {
+                if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
+                    drive.followTrajectorySequence(MPark);
+                } else if (tagOfInterest.id == LEFT) {
+                    drive.followTrajectorySequence(LPark);
+                } else {
+                    drive.followTrajectorySequence(RPark);
                 }
-        }else{
-            if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                drive.followTrajectorySequence(MPark);
+            } else {
+                if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
+                    drive.followTrajectorySequence(MPark);
+                } else if (tagOfInterest.id == LEFT) {
+                    drive.followTrajectorySequence(LPark);
+                } else {
+                    drive.followTrajectorySequence(RPark);
+                }
             }
-            else if(tagOfInterest.id == LEFT){
-                drive.followTrajectorySequence(LPark);
-            }else{
-                drive.followTrajectorySequence(RPark);
-            }
+            drive.update();
             slides.pLoop();
         }
     }
