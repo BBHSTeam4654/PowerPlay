@@ -33,26 +33,25 @@ public class MeepMeepTesting {
                 .setColorScheme(new ColorSchemeRedLight())
                 .setConstraints(30, 10, Math.toRadians(180), Math.toRadians(180), 13.54331)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
-                                .addTemporalMarker(() -> {
-//                                    claw.clawsClose();
+                                .addDisplacementMarker(() -> {
+//                            claw.clawsClose();
                                 })
                                 .lineToConstantHeading(new Vector2d(-36, -36))
-
-                                .lineToConstantHeading(new Vector2d(-24, -36))
-                                .addTemporalMarker(() -> {
-//                                    slides.mid();
-//                                    slides.wLoop();
+                                .UNSTABLE_addTemporalMarkerOffset(0.1,() -> {
+//                            slides.mid();
+//                            slides.wLoop();
                                 })
-                                .waitSeconds(1)
+                                .lineToConstantHeading(new Vector2d(-24, -36))
+
                                 .lineToConstantHeading(new Vector2d(-24, -28.5))
                                 .waitSeconds(0.25)
-                                .addTemporalMarker(() -> {
-//                                    claw.clawsOpen();
+                                .addDisplacementMarker(() -> {
+//                            claw.clawsOpen();
                                 })
                                 .lineToConstantHeading(new Vector2d(-24, -36))
-                                .addTemporalMarker(() -> {
-//                                    slides.reset();
-//                                    slides.wLoop();
+                                .UNSTABLE_addTemporalMarkerOffset(0.1,() -> {
+//                            slides.reset();
+//                            slides.wLoop();
                                 })
                                 .lineToConstantHeading(new Vector2d(-36, -36))
                         .build()

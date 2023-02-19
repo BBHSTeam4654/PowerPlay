@@ -111,26 +111,45 @@ public class Jellyauto extends BaseOpMode {
         drive.setPoseEstimate(startPose);
 
 
+        TrajectorySequence MPark = drive.trajectorySequenceBuilder(startPose)
+                .addDisplacementMarker(() -> {
+                    claw.clawsClose();
+                })
+                .lineToConstantHeading(new Vector2d(-36, -36))
+                .build();
+        TrajectorySequence LPark = drive.trajectorySequenceBuilder(startPose)
+                .addDisplacementMarker(() -> {
+                    claw.clawsClose();
+                })
+                .lineToConstantHeading(new Vector2d(-36, -36))
+                .lineToConstantHeading(new Vector2d(-60, -36))
+                .build();
+        TrajectorySequence RPark = drive.trajectorySequenceBuilder(startPose)
+                .addDisplacementMarker(() -> {
+                    claw.clawsClose();
+                })
+                .lineToConstantHeading(new Vector2d(-36, -36))
+                .lineToConstantHeading(new Vector2d(-12, -36))
+                .build();
 
         TrajectorySequence LMAuto = drive.trajectorySequenceBuilder(startPose)
                 .addDisplacementMarker(() -> {
                     claw.clawsClose();
                 })
                 .lineToConstantHeading(new Vector2d(-36, -36))
-
-                .lineToConstantHeading(new Vector2d(-24, -36))
-                .addDisplacementMarker(() -> {
+                .UNSTABLE_addTemporalMarkerOffset(0.1,() -> {
                     slides.mid();
                     slides.wLoop();
                 })
-                .waitSeconds(1)
+                .lineToConstantHeading(new Vector2d(-24, -36))
+
                 .lineToConstantHeading(new Vector2d(-24, -28.5))
                 .waitSeconds(0.25)
                 .addDisplacementMarker(() -> {
                     claw.clawsOpen();
                 })
                 .lineToConstantHeading(new Vector2d(-24, -36))
-                .addDisplacementMarker(() -> {
+                .UNSTABLE_addTemporalMarkerOffset(0.1,() -> {
                     slides.reset();
                     slides.wLoop();
                 })
@@ -142,13 +161,12 @@ public class Jellyauto extends BaseOpMode {
                     claw.clawsClose();
                 })
                 .lineToConstantHeading(new Vector2d(-36, -36))
-
-                .lineToConstantHeading(new Vector2d(-24, -36))
                 .addDisplacementMarker(() -> {
                     slides.mid();
                     slides.wLoop();
                 })
-                .waitSeconds(1)
+                .lineToConstantHeading(new Vector2d(-24, -36))
+
                 .lineToConstantHeading(new Vector2d(-24, -28.5))
                 .waitSeconds(0.25)
                 .addDisplacementMarker(() -> {
@@ -166,13 +184,12 @@ public class Jellyauto extends BaseOpMode {
                     claw.clawsClose();
                 })
                 .lineToConstantHeading(new Vector2d(-36, -36))
-
-                .lineToConstantHeading(new Vector2d(-24, -36))
                 .addDisplacementMarker(() -> {
                     slides.mid();
                     slides.wLoop();
                 })
-                .waitSeconds(1)
+                .lineToConstantHeading(new Vector2d(-24, -36))
+
                 .lineToConstantHeading(new Vector2d(-24, -28.5))
                 .waitSeconds(0.25)
                 .addDisplacementMarker(() -> {
@@ -190,20 +207,19 @@ public class Jellyauto extends BaseOpMode {
                     claw.clawsClose();
                 })
                 .lineToConstantHeading(new Vector2d(-36, -36))
-
-                .lineToConstantHeading(new Vector2d(-48, -36))
-                .addDisplacementMarker(() -> {
+                .UNSTABLE_addTemporalMarkerOffset(0.1,() -> {
                     slides.mid();
                     slides.wLoop();
                 })
-                .waitSeconds(1)
+                .lineToConstantHeading(new Vector2d(-48, -36))
+
                 .lineToConstantHeading(new Vector2d(-48, -28.5))
                 .waitSeconds(0.25)
                 .addDisplacementMarker(() -> {
                     claw.clawsOpen();
                 })
                 .lineToConstantHeading(new Vector2d(-48, -36))
-                .addDisplacementMarker(() -> {
+                .UNSTABLE_addTemporalMarkerOffset(0.1,() -> {
                     slides.reset();
                     slides.wLoop();
                 })
@@ -214,13 +230,12 @@ public class Jellyauto extends BaseOpMode {
                     claw.clawsClose();
                 })
                 .lineToConstantHeading(new Vector2d(-36, -36))
-
-                .lineToConstantHeading(new Vector2d(-48, -36))
                 .addDisplacementMarker(() -> {
                     slides.mid();
                     slides.wLoop();
                 })
-                .waitSeconds(1)
+                .lineToConstantHeading(new Vector2d(-48, -36))
+
                 .lineToConstantHeading(new Vector2d(-48, -28.5))
                 .waitSeconds(0.25)
                 .addDisplacementMarker(() -> {
@@ -325,21 +340,21 @@ public class Jellyauto extends BaseOpMode {
 
         if (side == Side.CUPS_LEFT) {
             if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                drive.followTrajectorySequence(LMAuto);
+                drive.followTrajectorySequence(MPark);
             }
             else if(tagOfInterest.id == LEFT){
-                drive.followTrajectorySequence(LLAuto);
+                drive.followTrajectorySequence(LPark);
             }else{
-                drive.followTrajectorySequence(LRAuto);
+                drive.followTrajectorySequence(RPark);
                 }
         }else{
             if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                drive.followTrajectorySequence(RMAuto);
+                drive.followTrajectorySequence(MPark);
             }
             else if(tagOfInterest.id == LEFT){
-                drive.followTrajectorySequence(RLAuto);
+                drive.followTrajectorySequence(LPark);
             }else{
-                drive.followTrajectorySequence(RRAuto);
+                drive.followTrajectorySequence(RPark);
             }
             slides.pLoop();
         }
