@@ -42,19 +42,19 @@ public class JellyTele extends BaseOpMode {
         imu.initialize(parameters);
 
         TrajectorySequence clockwise90 = drive.trajectorySequenceBuilder(new Pose2d())
-                .turn(Math.toRadians(90))
-                .build();
-
-        TrajectorySequence clockwise180 = drive.trajectorySequenceBuilder(new Pose2d())
-                .turn(Math.toRadians(180))
-                .build();
-
-        TrajectorySequence counterClockwise90 = drive.trajectorySequenceBuilder(new Pose2d())
                 .turn(Math.toRadians(-90))
                 .build();
 
-        TrajectorySequence counterClockwise180 = drive.trajectorySequenceBuilder(new Pose2d())
+        TrajectorySequence clockwise180 = drive.trajectorySequenceBuilder(new Pose2d())
                 .turn(Math.toRadians(-180))
+                .build();
+
+        TrajectorySequence counterClockwise90 = drive.trajectorySequenceBuilder(new Pose2d())
+                .turn(Math.toRadians(90))
+                .build();
+
+        TrajectorySequence counterClockwise180 = drive.trajectorySequenceBuilder(new Pose2d())
+                .turn(Math.toRadians(180))
                 .build();
 
         waitForStart();

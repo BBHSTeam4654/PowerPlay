@@ -33,57 +33,47 @@ public class MeepMeepTesting {
                 .setColorScheme(new ColorSchemeRedLight())
                 .setConstraints(30, 10, Math.toRadians(180), Math.toRadians(180), 13.54331)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
-                                .addDisplacementMarker(() -> {
-//                            claw.clawsClose();
-                                })
-                                .lineToConstantHeading(new Vector2d(-36, -36))
-                                .UNSTABLE_addTemporalMarkerOffset(0.1,() -> {
-//                            slides.mid();
-//                            slides.wLoop();
-                                })
-                                .lineToConstantHeading(new Vector2d(-24, -36))
-
-                                .lineToConstantHeading(new Vector2d(-24, -28.5))
-                                .waitSeconds(0.25)
-                                .addDisplacementMarker(() -> {
-//                            claw.clawsOpen();
-                                })
-                                .lineToConstantHeading(new Vector2d(-24, -36))
-                                .UNSTABLE_addTemporalMarkerOffset(0.1,() -> {
-//                            slides.reset();
-//                            slides.wLoop();
-                                })
-                                .lineToConstantHeading(new Vector2d(-36, -36))
+                        //Slides mid halfway through
+                        .lineToConstantHeading(new Vector2d(-36, -20))
+                        //Slides High, claw right
+                        //Note to self, if speed too much, change spline type
+                        .splineToSplineHeading(new Pose2d(-24, -10, Math.toRadians(180)), Math.toRadians(0))
+                        //back(2)
+                        .waitSeconds(0.25)
+                        .addTemporalMarker(() -> {
+                            // Drop
+                        })
+                        .waitSeconds(0.25)
+                        //Slide C stack, claw center
+                        .splineToConstantHeading(new Vector2d(-48, -12), Math.toRadians(180))
+                        .forward(15)
+                        .waitSeconds(0.25)
+                        .addTemporalMarker(() -> {
+                            // pick
+                        })
+                        .waitSeconds(0.25)
+                        .back(15)
+                        //Slides High, claw right
+                        .splineToConstantHeading(new Vector2d(-24, -10), Math.toRadians(0))
                         .build()
                 );
         RoadRunnerBotEntity myBot3 = new DefaultBotBuilder(meepMeep)
                 .setColorScheme(new ColorSchemeBlueLight())
                 .setConstraints(45, 15, Math.toRadians(180), Math.toRadians(180), 13.54331)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose3)
-                                .addDisplacementMarker(() -> {
-//                            claw.clawsClose();
-                                })
-                                .lineToConstantHeading(new Vector2d(-36, -36))
-
-                                .lineToConstantHeading(new Vector2d(-24, -36))
-                                .addDisplacementMarker(() -> {
-//                            slides.mid();
-//                            slides.wLoop();
-                                })
-                                .waitSeconds(1)
-                                .lineToConstantHeading(new Vector2d(-24, -28.5))
-                                .waitSeconds(0.25)
-                                .addDisplacementMarker(() -> {
-//                            claw.clawsOpen();
-                                })
-                                .waitSeconds(0.25)
-                                .lineToConstantHeading(new Vector2d(-24, -36))
-                                .addDisplacementMarker(() -> {
-//                            slides.reset();
-//                            slides.wLoop();
-                                })
-                                .lineToConstantHeading(new Vector2d(-36, -36))
+                        .turn(Math.toRadians(-90))
+                        .waitSeconds(1)
+                        .turn(Math.toRadians(-90))
+                        .waitSeconds(1)
+                        .turn(Math.toRadians(-90))
+                        .waitSeconds(1)
+                        .turn(Math.toRadians(-90))
+                        .waitSeconds(1)
+                        .turn(Math.toRadians(-90))
+                        .waitSeconds(1)
+                        .turn(Math.toRadians(90))
                         .build()
+
 
                 );
         System.setProperty("sun.java2d.opengl", "true");
@@ -92,7 +82,7 @@ public class MeepMeepTesting {
                 .setBackgroundAlpha(0.95f)
                 //.addEntity(myBot)
                 .addEntity(myBot2)
-                //.addEntity(myBot3)
+//                .addEntity(myBot3)
                 .start();
     }
 }
