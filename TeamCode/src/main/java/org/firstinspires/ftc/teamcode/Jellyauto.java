@@ -121,6 +121,20 @@ public class Jellyauto extends BaseOpMode {
                 .lineToConstantHeading(new Vector2d(-36, -36))
                 .lineToConstantHeading(new Vector2d(-12, -36))
                 .build();
+        TrajectorySequence Test = drive.trajectorySequenceBuilder(startPose)
+                .lineToConstantHeading(new Vector2d(-36, -36))
+                .addTemporalMarker(() -> {
+                    slides.high();
+                })
+                .lineToConstantHeading(new Vector2d(-36, -60))
+                .addTemporalMarker(() -> {
+                    claw.clawsOpen();
+                })
+                .lineToConstantHeading(new Vector2d(-36, -36))
+                .addTemporalMarker(() -> {
+                    slides.reset();
+                })
+                .build();
 
         TrajectorySequence LMAuto = drive.trajectorySequenceBuilder(startPose)
                 .addDisplacementMarker(() -> {
@@ -330,19 +344,19 @@ public class Jellyauto extends BaseOpMode {
         while (opModeIsActive() && !isStopRequested()) {
             if (side == Side.CUPS_LEFT) {
                 if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                    drive.followTrajectorySequence(MPark);
+                    drive.followTrajectorySequence(Test);
                 } else if (tagOfInterest.id == LEFT) {
-                    drive.followTrajectorySequence(LPark);
+                    drive.followTrajectorySequence(Test);
                 } else {
-                    drive.followTrajectorySequence(RPark);
+                    drive.followTrajectorySequence(Test);
                 }
             } else {
                 if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                    drive.followTrajectorySequence(MPark);
+                    drive.followTrajectorySequence(Test);
                 } else if (tagOfInterest.id == LEFT) {
-                    drive.followTrajectorySequence(LPark);
+                    drive.followTrajectorySequence(Test);
                 } else {
-                    drive.followTrajectorySequence(RPark);
+                    drive.followTrajectorySequence(Test);
                 }
             }
             drive.update();

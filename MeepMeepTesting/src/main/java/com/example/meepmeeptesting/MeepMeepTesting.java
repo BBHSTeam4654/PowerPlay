@@ -33,28 +33,18 @@ public class MeepMeepTesting {
                 .setColorScheme(new ColorSchemeRedLight())
                 .setConstraints(30, 10, Math.toRadians(180), Math.toRadians(180), 13.54331)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
-                        //Slides mid halfway through
-                        .lineToConstantHeading(new Vector2d(-36, -20))
-                        //Slides High, claw right
-                        //Note to self, if speed too much, change spline type
-                        .splineToSplineHeading(new Pose2d(-24, -10, Math.toRadians(180)), Math.toRadians(0))
-                        //back(2)
-                        .waitSeconds(0.25)
+                        .lineToConstantHeading(new Vector2d(-36, -36))
                         .addTemporalMarker(() -> {
-                            // Drop
+//                            slides.high();
                         })
-                        .waitSeconds(0.25)
-                        //Slide C stack, claw center
-                        .splineToConstantHeading(new Vector2d(-48, -12), Math.toRadians(180))
-                        .forward(15)
-                        .waitSeconds(0.25)
+                        .lineToConstantHeading(new Vector2d(-36, -60))
                         .addTemporalMarker(() -> {
-                            // pick
+//                            claw.clawsOpen();
                         })
-                        .waitSeconds(0.25)
-                        .back(15)
-                        //Slides High, claw right
-                        .splineToConstantHeading(new Vector2d(-24, -10), Math.toRadians(0))
+                        .lineToConstantHeading(new Vector2d(-36, -36))
+                        .addTemporalMarker(() -> {
+//                            slides.reset();
+                        })
                         .build()
                 );
         RoadRunnerBotEntity myBot3 = new DefaultBotBuilder(meepMeep)
