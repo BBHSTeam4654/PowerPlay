@@ -343,24 +343,24 @@ public class Jellyauto extends BaseOpMode {
         }
 
 
-        while (opModeIsActive() && !isStopRequested()) {
-            if (side == Side.CUPS_LEFT) {
-                if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                    drive.followTrajectorySequenceAsync(Test);
-                } else if (tagOfInterest.id == LEFT) {
-                    drive.followTrajectorySequenceAsync(Test);
-                } else {
-                    drive.followTrajectorySequenceAsync(Test);
-                }
+        if (side == Side.CUPS_LEFT) {
+            if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
+                drive.followTrajectorySequenceAsync(Test);
+            } else if (tagOfInterest.id == LEFT) {
+                drive.followTrajectorySequenceAsync(Test);
             } else {
-                if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                    drive.followTrajectorySequenceAsync(Test);
-                } else if (tagOfInterest.id == LEFT) {
-                    drive.followTrajectorySequenceAsync(Test);
-                } else {
-                    drive.followTrajectorySequenceAsync(Test);
-                }
+                drive.followTrajectorySequenceAsync(Test);
             }
+        } else {
+            if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
+                drive.followTrajectorySequenceAsync(Test);
+            } else if (tagOfInterest.id == LEFT) {
+                drive.followTrajectorySequenceAsync(Test);
+            } else {
+                drive.followTrajectorySequenceAsync(Test);
+            }
+        }
+        while (opModeIsActive() && !isStopRequested()) {
             drive.update();
             slides.pLoop();
         }
