@@ -344,19 +344,19 @@ public class Jellyauto extends BaseOpMode {
         while (opModeIsActive() && !isStopRequested()) {
             if (side == Side.CUPS_LEFT) {
                 if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                    drive.followTrajectorySequence(Test);
+                    drive.followTrajectorySequenceAsync(Test);
                 } else if (tagOfInterest.id == LEFT) {
-                    drive.followTrajectorySequence(Test);
+                    drive.followTrajectorySequenceAsync(Test);
                 } else {
-                    drive.followTrajectorySequence(Test);
+                    drive.followTrajectorySequenceAsync(Test);
                 }
             } else {
                 if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                    drive.followTrajectorySequence(Test);
+                    drive.followTrajectorySequenceAsync(Test);
                 } else if (tagOfInterest.id == LEFT) {
-                    drive.followTrajectorySequence(Test);
+                    drive.followTrajectorySequenceAsync(Test);
                 } else {
-                    drive.followTrajectorySequence(Test);
+                    drive.followTrajectorySequenceAsync(Test);
                 }
             }
             drive.update();
