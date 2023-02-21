@@ -33,35 +33,21 @@ public class MeepMeepTesting {
                 .setColorScheme(new ColorSchemeRedLight())
                 .setConstraints(30, 10, Math.toRadians(180), Math.toRadians(180), 13.54331)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
-                        .lineToConstantHeading(new Vector2d(-36, -36))
-                        .addTemporalMarker(() -> {
-//                            slides.high();
-                        })
-                        .lineToConstantHeading(new Vector2d(-36, -60))
-                        .addTemporalMarker(() -> {
-//                            claw.clawsOpen();
-                        })
-                        .lineToConstantHeading(new Vector2d(-36, -36))
-                        .addTemporalMarker(() -> {
-//                            slides.reset();
-                        })
+                        .lineToConstantHeading(new Vector2d(-36, -24))
+                        .splineToSplineHeading(new Pose2d(-20, -10, Math.toRadians(180)), Math.toRadians(0))
+                        .waitSeconds(0.5)
+                        .splineToConstantHeading(new Vector2d(-48, -12), Math.toRadians(180))
+                        .lineToConstantHeading(new Vector2d(-65, -12))
+                        .waitSeconds(0.5)
+                        .lineToConstantHeading(new Vector2d(-48, -12))
+                        .splineToConstantHeading(new Vector2d(-20, -10), Math.toRadians(0))
                         .build()
                 );
         RoadRunnerBotEntity myBot3 = new DefaultBotBuilder(meepMeep)
                 .setColorScheme(new ColorSchemeBlueLight())
                 .setConstraints(45, 15, Math.toRadians(180), Math.toRadians(180), 13.54331)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose3)
-                        .turn(Math.toRadians(-90))
                         .waitSeconds(1)
-                        .turn(Math.toRadians(-90))
-                        .waitSeconds(1)
-                        .turn(Math.toRadians(-90))
-                        .waitSeconds(1)
-                        .turn(Math.toRadians(-90))
-                        .waitSeconds(1)
-                        .turn(Math.toRadians(-90))
-                        .waitSeconds(1)
-                        .turn(Math.toRadians(90))
                         .build()
 
 
