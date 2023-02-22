@@ -34,13 +34,10 @@ public class MeepMeepTesting {
                 .setConstraints(30, 10, Math.toRadians(180), Math.toRadians(180), 13.54331)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
                         .lineToConstantHeading(new Vector2d(-36, -24))
-                        .splineToSplineHeading(new Pose2d(-20, -10, Math.toRadians(180)), Math.toRadians(0))
+                        .splineToConstantHeading(new Vector2d(-34, -0), Math.toRadians(90))
                         .waitSeconds(0.5)
-                        .splineToConstantHeading(new Vector2d(-48, -12), Math.toRadians(180))
-                        .lineToConstantHeading(new Vector2d(-65, -12))
-                        .waitSeconds(0.5)
-                        .lineToConstantHeading(new Vector2d(-48, -12))
-                        .splineToConstantHeading(new Vector2d(-20, -10), Math.toRadians(0))
+                        .lineToConstantHeading(new Vector2d(-36, -9))
+                        .splineToConstantHeading(new Vector2d(-39, -12), Math.toRadians(180))
                         .build()
                 );
         RoadRunnerBotEntity myBot3 = new DefaultBotBuilder(meepMeep)
@@ -66,27 +63,13 @@ public class MeepMeepTesting {
 //Save for later
 /*
 
-.lineToSplineHeading(new Pose2d(-24, -62, Math.toRadians(90)))
-                        .splineToSplineHeading(new Pose2d(-12, -46, Math.toRadians(180)), Math.toRadians(90))
-                        .lineToSplineHeading(new Pose2d(-12, -30, Math.toRadians(180)))
-                        .splineToConstantHeading(new Vector2d(-14, -24), Math.toRadians(180))
-                        //Lift Marker
-                        //slows down
-                        .forward(5)
-                        //Drop Marker
-                        .waitSeconds(1.5)
-                        .back(2)
-                        .splineToConstantHeading(new Vector2d(-20, -12), Math.toRadians(180))
-                        //Lift offset to being by the end
-                        .lineToSplineHeading(new Pose2d(-60, -12, Math.toRadians(180)))
-                        //Slow down
-                        .forward(3)
-                        //close and lift to low
-                        .waitSeconds(0.75)
-                        .lineToSplineHeading(new Pose2d(-20, -12, Math.toRadians(180)))
-                        .splineToConstantHeading(new Vector2d(-17, -24), Math.toRadians(180))
-                        //Lift Marker
-                        //slows down
-                        .forward(2)
+.lineToConstantHeading(new Vector2d(-36, -22))
+                        .splineToSplineHeading(new Pose2d(-20, -10, Math.toRadians(180)), Math.toRadians(0))
+                        .waitSeconds(0.5)
+                        .splineToConstantHeading(new Vector2d(-48, -12), Math.toRadians(180))
+                        .lineToConstantHeading(new Vector2d(-65, -12))
+                        .waitSeconds(0.5)
+                        .lineToConstantHeading(new Vector2d(-48, -12))
+                        .splineToConstantHeading(new Vector2d(-20, -10), Math.toRadians(0))
 
  */
