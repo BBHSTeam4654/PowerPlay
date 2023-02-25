@@ -14,6 +14,7 @@ public abstract class BaseOpMode extends LinearOpMode {
 
 
         protected Claws claw;
+        protected Arm arm;
         protected DcMotor[] motors;
         protected DcMotor leftEncoder, rightEncoder, frontEncoder;
 
@@ -42,6 +43,7 @@ public abstract class BaseOpMode extends LinearOpMode {
 
 
         claw = new Claws(hardwareMap.servo.get("servo"));
+        arm = new Arm(hardwareMap.servo.get("servo1"));
         claw.clawsOpen();
 
         leftEncoder = hardwareMap.dcMotor.get("motor fl");
