@@ -43,8 +43,8 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
 
-@Autonomous(name = "Jellyauto")
-public class Jellyauto extends BaseOpMode {
+@Autonomous(name = "Right Jellyauto")
+public class right_Jellyauto extends BaseOpMode {
     OpenCvCamera camera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
 
@@ -67,13 +67,6 @@ public class Jellyauto extends BaseOpMode {
     int LEFT = 1;
     int MIDDLE = 2;
     int RIGHT = 3;
-
-    // Side
-    protected static enum Side {
-        CUPS_LEFT, CUPS_RIGHT, STOP
-    }
-
-    protected Side side = Side.CUPS_LEFT;
 
     AprilTagDetection tagOfInterest = null;
 
@@ -121,22 +114,7 @@ public class Jellyauto extends BaseOpMode {
                 .lineToConstantHeading(new Vector2d(-36, -36))
                 .lineToConstantHeading(new Vector2d(-12, -36))
                 .build();
-        TrajectorySequence Test = drive.trajectorySequenceBuilder(startPose)
-                .lineToConstantHeading(new Vector2d(-36, -36))
-                .addTemporalMarker(() -> {
-                    slides.high();
-                })
-                .lineToConstantHeading(new Vector2d(-36, -60))
-                .addTemporalMarker(() -> {
-                    claw.clawsOpen();
-                })
-                .lineToConstantHeading(new Vector2d(-36, -36))
-                .addTemporalMarker(() -> {
-                    slides.reset();
-                })
-                .build();
-
-        TrajectorySequence LMAuto = drive.trajectorySequenceBuilder(startPose)
+        TrajectorySequence MAuto = drive.trajectorySequenceBuilder(startPose)
                 .addDisplacementMarker(() -> {
                     claw.clawsClose();
                 })
@@ -160,7 +138,7 @@ public class Jellyauto extends BaseOpMode {
                 .lineToConstantHeading(new Vector2d(-36, -36))
                 .build();
 
-        TrajectorySequence LLAuto = drive.trajectorySequenceBuilder(startPose)
+        TrajectorySequence LAuto = drive.trajectorySequenceBuilder(startPose)
                 .addDisplacementMarker(() -> {
                     claw.clawsClose();
                 })
@@ -183,7 +161,7 @@ public class Jellyauto extends BaseOpMode {
                 })
                 .lineToConstantHeading(new Vector2d(-60, -36))
                 .build();
-        TrajectorySequence LRAuto = drive.trajectorySequenceBuilder(startPose)
+        TrajectorySequence RAuto = drive.trajectorySequenceBuilder(startPose)
                 .addDisplacementMarker(() -> {
                     claw.clawsClose();
                 })
@@ -200,76 +178,6 @@ public class Jellyauto extends BaseOpMode {
                     claw.clawsOpen();
                 })
                 .lineToConstantHeading(new Vector2d(-24, -36))
-                .addDisplacementMarker(() -> {
-                    slides.reset();
-                    slides.wLoop();
-                })
-                .lineToConstantHeading(new Vector2d(-12, -36))
-                .build();
-        TrajectorySequence RMAuto = drive.trajectorySequenceBuilder(startPose)
-                .addDisplacementMarker(() -> {
-                    claw.clawsClose();
-                })
-                .lineToConstantHeading(new Vector2d(-36, -36))
-                .UNSTABLE_addTemporalMarkerOffset(0.1,() -> {
-                    slides.mid();
-                    slides.wLoop();
-                })
-                .lineToConstantHeading(new Vector2d(-48, -36))
-
-                .lineToConstantHeading(new Vector2d(-48, -28.5))
-                .waitSeconds(0.25)
-                .addDisplacementMarker(() -> {
-                    claw.clawsOpen();
-                })
-                .lineToConstantHeading(new Vector2d(-48, -36))
-                .UNSTABLE_addTemporalMarkerOffset(0.1,() -> {
-                    slides.reset();
-                    slides.wLoop();
-                })
-                .lineToConstantHeading(new Vector2d(-36, -36))
-                .build();
-        TrajectorySequence RLAuto = drive.trajectorySequenceBuilder(startPose)
-                .addDisplacementMarker(() -> {
-                    claw.clawsClose();
-                })
-                .lineToConstantHeading(new Vector2d(-36, -36))
-                .addDisplacementMarker(() -> {
-                    slides.mid();
-                    slides.wLoop();
-                })
-                .lineToConstantHeading(new Vector2d(-48, -36))
-
-                .lineToConstantHeading(new Vector2d(-48, -28.5))
-                .waitSeconds(0.25)
-                .addDisplacementMarker(() -> {
-                    claw.clawsOpen();
-                })
-                .lineToConstantHeading(new Vector2d(-48, -36))
-                .addDisplacementMarker(() -> {
-                    slides.reset();
-                    slides.wLoop();
-                })
-                .lineToConstantHeading(new Vector2d(-60, -36))
-                .build();
-        TrajectorySequence RRAuto = drive.trajectorySequenceBuilder(startPose)
-                .addDisplacementMarker(() -> {
-                    claw.clawsClose();
-                })
-                .lineToConstantHeading(new Vector2d(-36, -36))
-
-                .lineToConstantHeading(new Vector2d(-48, -36))
-                .addDisplacementMarker(() -> {
-                    slides.mid();
-                    slides.wLoop();
-                })
-                .waitSeconds(1)
-                .lineToConstantHeading(new Vector2d(-48, -28.5))
-                .waitSeconds(0.25)
-                .addDisplacementMarker(() -> {
-                    claw.clawsOpen();
-                })
-                .lineToConstantHeading(new Vector2d(-48, -36))
                 .addDisplacementMarker(() -> {
                     slides.reset();
                     slides.wLoop();
@@ -282,12 +190,6 @@ public class Jellyauto extends BaseOpMode {
          * This REPLACES waitForStart!
          */
         while (!isStarted() && !isStopRequested()) {
-            if (gamepad1.x)
-                side = Side.CUPS_LEFT;
-            if (gamepad1.b)
-                side = Side.CUPS_RIGHT;
-            telemetry.addData("Side", side);
-
             ArrayList<AprilTagDetection> currentDetections = aprilTagDetectionPipeline.getLatestDetections();
 
             if (currentDetections.size() != 0) {
@@ -342,24 +244,14 @@ public class Jellyauto extends BaseOpMode {
             telemetry.update();
         }
 
-
-        if (side == Side.CUPS_LEFT) {
-            if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                drive.followTrajectorySequenceAsync(Test);
-            } else if (tagOfInterest.id == LEFT) {
-                drive.followTrajectorySequenceAsync(Test);
-            } else {
-                drive.followTrajectorySequenceAsync(Test);
-            }
+        if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
+            drive.followTrajectorySequenceAsync(MPark);
+        } else if (tagOfInterest.id == LEFT) {
+            drive.followTrajectorySequenceAsync(LPark);
         } else {
-            if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                drive.followTrajectorySequenceAsync(Test);
-            } else if (tagOfInterest.id == LEFT) {
-                drive.followTrajectorySequenceAsync(Test);
-            } else {
-                drive.followTrajectorySequenceAsync(Test);
-            }
+            drive.followTrajectorySequenceAsync(RPark);
         }
+
         while (opModeIsActive() && !isStopRequested()) {
             drive.update();
             slides.pLoop();
