@@ -23,8 +23,13 @@ public class JellyTele extends BaseOpMode {
         MECANUM,
         FIELDCENTRIC,
     }
-
+    protected static enum LiftState {
+        RETRACTED,
+        ARM_EXTRACTED,
+        NORM_EXTRACTED
+    }
     protected DriveMode driveMode = DriveMode.FIELDCENTRIC;
+    protected LiftState liftState = LiftState.RETRACTED;
 
     public void runOpMode() throws InterruptedException {
 
@@ -70,7 +75,7 @@ public class JellyTele extends BaseOpMode {
                 //do auto precision mode
             }
 
-            if (gamepad2.b) {
+            if (gamepad2.b && gamepad2.right_trigger==0) {
                 slides.mid();
             }
 
@@ -251,6 +256,17 @@ public class JellyTele extends BaseOpMode {
                             rotY + rotX + rx,
                             rotY - rotX + rx});
                     break;
+                }
+            }
+            switch (liftState){
+                case RETRACTED:{
+
+                }
+                case ARM_EXTRACTED:{
+
+                }
+                case NORM_EXTRACTED:{
+
                 }
             }
 
