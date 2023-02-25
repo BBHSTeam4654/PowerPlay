@@ -162,19 +162,6 @@ public class JellyTele extends BaseOpMode {
             drive.update();
             Pose2d myPose = drive.getPoseEstimate();
 
-            telemetry.addData("        Gamepad2 Controls ", "as follows:");
-            telemetry.addData("+-------------------------", "--------------------------------+");
-            telemetry.addData("| Gamepad2 Button: A/X Button    ", "High Junction            |");
-            telemetry.addData("| Gamepad2 Button: B/O           ", "Medium Junction          |");
-            telemetry.addData("| Gamepad2 Button: Y/△           ", "Low Junction             |");
-            telemetry.addData("| Gamepad2 Button: X/□           ", "Reset Slides/Bottom Cup  |");
-            telemetry.addData("| Gamepad2 Button: Left Bumper   ", "Claw                     |");
-            telemetry.addData("| Gamepad2 DPAD Bottom           ", "5 Cups                   |");
-            telemetry.addData("| Gamepad2 DPAD Right            ", "4 Cups                   |");
-            telemetry.addData("| Gamepad2 DPAD Up               ", "3 Cups                   |");
-            telemetry.addData("| Gamepad2 DPAD Left             ", "2 Cups                   |");
-            telemetry.addData("+-------------------------", "--------------------------------+");
-            telemetry.addData("        Data", ":");
             telemetry.addData("drive mode", driveMode);
             telemetry.addData("mX", gamepad2.left_stick_x);
             telemetry.addData("mY", gamepad2.left_stick_y);
