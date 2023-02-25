@@ -191,30 +191,25 @@ public class JellyTele extends BaseOpMode {
                     // front back
                     double l = -gamepad1.left_stick_y;
                     double r = -gamepad1.right_stick_y;
+                    double eR = (Math.signum(r) * (Math.pow(2, Math.abs(r)) - 1));
+                    double eL = (Math.signum(l) * (Math.pow(2, Math.abs(l)) - 1));
                     setMotorSpeeds(mult, new double[] {
-                            (Math.signum(r) * (Math.pow(2
-                                    , Math.abs(r)) - 1)),
-                            (Math.signum(r) * (Math.pow(2
-                                    , Math.abs(r)) - 1)),
-                            (Math.signum(l) * (Math.pow(2
-                                    , Math.abs(l)) - 1)),
-                            (Math.signum(l) * (Math.pow(2
-                                    , Math.abs(l)) - 1)) });
+                            eR,
+                            eR,
+                            eL,
+                            eL});
                     break;
                 }
                 case DRIVE: {
                     // turning
                     double pivot = gamepad1.left_stick_x;
                     double y = -gamepad1.left_stick_y;
+                    double e = (Math.signum(y) * (Math.pow(2, Math.abs(y)) - 1));
                     setMotorSpeeds(mult, new double[] {
-                            (Math.signum(y) * (Math.pow(2
-                                    , Math.abs(y)) - 1)) - pivot,
-                            (Math.signum(y) * (Math.pow(2
-                                    , Math.abs(y)) - 1)) - pivot,
-                            (Math.signum(y) * (Math.pow(2
-                                    , Math.abs(y)) - 1)) + pivot,
-                            (Math.signum(y) * (Math.pow(2
-                                    , Math.abs(y)) - 1)) + pivot });
+                            e - pivot,
+                            e - pivot,
+                            e + pivot,
+                            e + pivot });
                     break;
                 }
                 case MECANUM: {
@@ -222,22 +217,13 @@ public class JellyTele extends BaseOpMode {
                     double pivot = gamepad1.right_stick_x;
                     double mX = gamepad1.left_stick_x;
                     double mY = -gamepad1.left_stick_y;
+                    double eY = (Math.signum(mY) * (Math.pow(2, Math.abs(mY)) - 1));
+                    double eX = (Math.signum(mX) * (Math.pow(2, Math.abs(mX)) - 1));
                     setMotorSpeeds(mult, new double[] {
-                            (Math.signum(mY) * (Math.pow(2, Math.abs(mY)) - 1))
-                                    - (Math.signum(mX) * (Math.pow(2
-                                    , Math.abs(mX)) - 1)) - pivot,
-                            (Math.signum(mY) * (Math.pow(2
-                                    , Math.abs(mY)) - 1))
-                                    + (Math.signum(mX) * (Math.pow(2
-                                    , Math.abs(mX)) - 1)) - pivot,
-                            (Math.signum(mY) * (Math.pow(2
-                                    , Math.abs(mY)) - 1))
-                                    + (Math.signum(mX) * (Math.pow(2
-                                    , Math.abs(mX)) - 1)) + pivot,
-                            (Math.signum(mY) * (Math.pow(2
-                                    , Math.abs(mY)) - 1))
-                                    - (Math.signum(mX) * (Math.pow(2
-                                    , Math.abs(mX)) - 1)) + pivot });
+                            eY - eX - pivot,
+                            eY + eX - pivot,
+                            eY + eX + pivot,
+                            eY - eX + pivot });
                     break;
                 }
                 case FIELDCENTRIC: {
