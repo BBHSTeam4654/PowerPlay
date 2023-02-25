@@ -32,6 +32,7 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
 import org.firstinspires.ftc.teamcode.Framework.Claws;
 import org.firstinspires.ftc.teamcode.Framework.Slides;
+import org.firstinspires.ftc.teamcode.misc.trajectorysequence.sequencesegment.*;
 import org.firstinspires.ftc.teamcode.misc.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.misc.pipeline.AprilTagDetectionPipeline;
 import org.firstinspires.ftc.teamcode.misc.trajectorysequence.*;
@@ -80,8 +81,6 @@ public class Jellyauto extends BaseOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         initHardware();
-
-        //AutoDrivetrain AU = new AutoDrivetrain((DcMotorEx) leftEncoder, (DcMotorEx) rightEncoder, (DcMotorEx) frontEncoder,motors);
         claw.clawsClose();
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id",
                 hardwareMap.appContext.getPackageName());
@@ -111,25 +110,30 @@ public class Jellyauto extends BaseOpMode {
         drive.setPoseEstimate(startPose);
 
 
-        TrajectorySequence MPark = drive.trajectorySequenceBuilder(startPose)
-                .addDisplacementMarker(() -> {
-                    claw.clawsClose();
-                })
-                .lineToConstantHeading(new Vector2d(-36, -36))
-                .build();
         TrajectorySequence LPark = drive.trajectorySequenceBuilder(startPose)
-                .addDisplacementMarker(() -> {
-                    claw.clawsClose();
-                })
                 .lineToConstantHeading(new Vector2d(-36, -36))
                 .lineToConstantHeading(new Vector2d(-60, -36))
                 .build();
+        TrajectorySequence MPark = drive.trajectorySequenceBuilder(startPose)
+                .lineToConstantHeading(new Vector2d(-36, -36))
+                .build();
         TrajectorySequence RPark = drive.trajectorySequenceBuilder(startPose)
-                .addDisplacementMarker(() -> {
-                    claw.clawsClose();
-                })
                 .lineToConstantHeading(new Vector2d(-36, -36))
                 .lineToConstantHeading(new Vector2d(-12, -36))
+                .build();
+        TrajectorySequence Test = drive.trajectorySequenceBuilder(startPose)
+                .lineToConstantHeading(new Vector2d(-36, -36))
+                .addTemporalMarker(() -> {
+                    slides.high();
+                })
+                .lineToConstantHeading(new Vector2d(-36, -60))
+                .addTemporalMarker(() -> {
+                    claw.clawsOpen();
+                })
+                .lineToConstantHeading(new Vector2d(-36, -36))
+                .addTemporalMarker(() -> {
+                    slides.reset();
+                })
                 .build();
 
         TrajectorySequence LMAuto = drive.trajectorySequenceBuilder(startPose)
@@ -338,24 +342,26 @@ public class Jellyauto extends BaseOpMode {
             telemetry.update();
         }
 
+
         if (side == Side.CUPS_LEFT) {
             if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                drive.followTrajectorySequence(MPark);
+                drive.followTrajectorySequenceAsync(Test);
+            } else if (tagOfInterest.id == LEFT) {
+                drive.followTrajectorySequenceAsync(Test);
+            } else {
+                drive.followTrajectorySequenceAsync(Test);
             }
-            else if(tagOfInterest.id == LEFT){
-                drive.followTrajectorySequence(LPark);
-            }else{
-                drive.followTrajectorySequence(RPark);
-                }
-        }else{
+        } else {
             if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-                drive.followTrajectorySequence(MPark);
+                drive.followTrajectorySequenceAsync(Test);
+            } else if (tagOfInterest.id == LEFT) {
+                drive.followTrajectorySequenceAsync(Test);
+            } else {
+                drive.followTrajectorySequenceAsync(Test);
             }
-            else if(tagOfInterest.id == LEFT){
-                drive.followTrajectorySequence(LPark);
-            }else{
-                drive.followTrajectorySequence(RPark);
-            }
+        }
+        while (opModeIsActive() && !isStopRequested()) {
+            drive.update();
             slides.pLoop();
         }
     }
