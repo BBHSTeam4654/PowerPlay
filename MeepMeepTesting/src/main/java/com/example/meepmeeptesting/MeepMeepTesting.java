@@ -33,11 +33,8 @@ public class MeepMeepTesting {
                 .setColorScheme(new ColorSchemeRedLight())
                 .setConstraints(30, 10, Math.toRadians(180), Math.toRadians(180), 13.54331)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
-                        .lineToConstantHeading(new Vector2d(-36, -24))
-                        .splineToConstantHeading(new Vector2d(-34, -0), Math.toRadians(90))
-                        .waitSeconds(0.5)
-                        .lineToConstantHeading(new Vector2d(-36, -9))
-                        .splineToConstantHeading(new Vector2d(-39, -12), Math.toRadians(180))
+                        .lineToConstantHeading(new Vector2d(-36, -18))
+                        .splineToConstantHeading(new Vector2d(-24, -9), Math.toRadians(90))
                         .build()
                 );
         RoadRunnerBotEntity myBot3 = new DefaultBotBuilder(meepMeep)
