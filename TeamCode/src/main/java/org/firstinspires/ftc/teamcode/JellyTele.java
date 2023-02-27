@@ -24,9 +24,10 @@ public class JellyTele extends BaseOpMode {
         FIELDCENTRIC,
     }
     protected static enum LiftState {
-        RETRACTED,
-        ARM_EXTRACTED,
-        NORM_EXTRACTED
+        RETRACTED, //Full usage of slides - no l+r
+        ARM_EXTRACTED, //Limited usage of slides
+        ARM_DOWN, //Limited usage of slides - no l+r
+        NORM_EXTRACTED //Full usage of everything
     }
     protected DriveMode driveMode = DriveMode.FIELDCENTRIC;
     protected LiftState liftState = LiftState.RETRACTED;
@@ -237,6 +238,9 @@ public class JellyTele extends BaseOpMode {
 
                 }
                 case ARM_EXTRACTED:{
+
+                }
+                case ARM_DOWN:{
 
                 }
                 case NORM_EXTRACTED:{
