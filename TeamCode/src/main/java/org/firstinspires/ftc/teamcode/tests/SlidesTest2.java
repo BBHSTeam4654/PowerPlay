@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp(name = "Slides Test2")
+@TeleOp(name = "Slides Test2 DO NOT USE")
 public class SlidesTest2 extends LinearOpMode {
     ElapsedTime timer = new ElapsedTime();
     private double lastError = 0;
