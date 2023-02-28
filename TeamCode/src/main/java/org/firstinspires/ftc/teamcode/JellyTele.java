@@ -24,10 +24,13 @@ public class JellyTele extends BaseOpMode {
         FIELDCENTRIC,
     }
     protected static enum LiftState {
-        RETRACTED, //Full usage of slides - no l+r
-        ARM_EXTRACTED, //Limited usage of slides
-        ARM_DOWN, //Limited usage of slides - no l+r
-        NORM_EXTRACTED //Full usage of everything
+        RETRACTED, //Full usage of slides - no l+r to prevent army from hitting drivetrain
+        NORM_EXTRACTED, //Full usage of everything - Also use this for Right_Arm because its the same function
+        RIGHT_DOWN, //Full usage of slides - no l+r to prevent arm from hitting front motors
+        LEFT_ARM, //Limited usage of slides to prevent arm from hitting drivetrain
+        LEFT_DOWN, //Limited usage of slides and l+r to prevent arm from hitting drivetrain and front motors
+
+
     }
     protected DriveMode driveMode = DriveMode.FIELDCENTRIC;
     protected LiftState liftState = LiftState.RETRACTED;
@@ -141,8 +144,7 @@ public class JellyTele extends BaseOpMode {
             if (gamepad1.right_bumper){
                 gamepad1.rumble(2.7,2.7,10);
             }
-            //Rotate 90 degrees
-
+            // Degree turns
             if (gamepad1.x) {
                 // Turns clockwise 90
                 drive.followTrajectorySequenceAsync(clockwise90);
@@ -237,13 +239,16 @@ public class JellyTele extends BaseOpMode {
                 case RETRACTED:{
 
                 }
-                case ARM_EXTRACTED:{
-
-                }
-                case ARM_DOWN:{
-
-                }
                 case NORM_EXTRACTED:{
+
+                }
+                case RIGHT_DOWN:{
+
+                }
+                case LEFT_ARM:{
+
+                }
+                case LEFT_DOWN:{
 
                 }
             }
