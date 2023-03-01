@@ -13,13 +13,11 @@ public class NewSlidesTest extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         DcMotorEx slideLeft;
         DcMotorEx slideRight;
-        Slides slides;
-
         slideLeft = (DcMotorEx) hardwareMap.dcMotor.get("leftSlide");
 
 
         slideRight = (DcMotorEx) hardwareMap.dcMotor.get("rightSlide");
-        slides = new Slides(slideLeft, slideRight);
+        Slides slides = new Slides(slideLeft, slideRight);
 
         waitForStart();
 
@@ -66,6 +64,9 @@ public class NewSlidesTest extends LinearOpMode {
 
             slides.pLoop();
         }
+
+        telemetry.addData("LeftSlide", slideLeft.getCurrentPosition());
+        telemetry.addData("RightSlide", slideRight.getCurrentPosition());
 
     }
 }
