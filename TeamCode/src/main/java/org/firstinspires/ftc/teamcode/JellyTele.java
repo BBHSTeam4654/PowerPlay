@@ -25,12 +25,7 @@ public class JellyTele extends BaseOpMode {
     }
     protected static enum LiftState {
         RETRACTED, //Full usage of slides - no l+r to prevent army from hitting drivetrain
-        NORM_EXTRACTED, //Full usage of everything - Also use this for Right_Arm because its the same function
-        RIGHT_DOWN, //Full usage of slides - no l+r to prevent arm from hitting front motors
-        LEFT_ARM, //Limited usage of slides to prevent arm from hitting drivetrain
-        LEFT_DOWN, //Limited usage of slides and l+r to prevent arm from hitting drivetrain and front motors
-
-
+        EXTRACTED //Limited usage of slides
     }
     protected DriveMode driveMode = DriveMode.FIELDCENTRIC;
     protected LiftState liftState = LiftState.RETRACTED;
@@ -239,16 +234,7 @@ public class JellyTele extends BaseOpMode {
                 case RETRACTED:{
 
                 }
-                case NORM_EXTRACTED:{
-
-                }
-                case RIGHT_DOWN:{
-
-                }
-                case LEFT_ARM:{
-
-                }
-                case LEFT_DOWN:{
+                case EXTRACTED:{
 
                 }
             }
