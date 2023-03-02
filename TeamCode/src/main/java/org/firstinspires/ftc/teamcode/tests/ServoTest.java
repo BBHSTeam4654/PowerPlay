@@ -18,19 +18,22 @@ public class ServoTest extends LinearOpMode{
             telemetry.addData("Servo", clawServo.getPosition());
             telemetry.update();
             clawServo.setPosition(servoPosition);
+            /*
             if(gamepad1.a){
                 servoPosition+=0.00002;
             }
             if(gamepad1.b){
                 servoPosition-=0.00002;
             }
-            /*
+
+             */
+
             if (gamepad1.a){
-                clawServo.setPosition(1);
+                servoPosition = 1.0;
             } else if (gamepad1.b){
-                clawServo.setPosition(0);
+                servoPosition = 0;
             }
-            */
+
         }
     }
 }
