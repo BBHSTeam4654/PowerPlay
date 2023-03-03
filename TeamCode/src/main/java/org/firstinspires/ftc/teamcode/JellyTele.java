@@ -40,8 +40,8 @@ public class JellyTele extends BaseOpMode {
         IMU imu = hardwareMap.get(IMU.class, "imu");
         // Adjust the orientation parameters to match your robot
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
-                RevHubOrientationOnRobot.UsbFacingDirection.FORWARD));
+                RevHubOrientationOnRobot.LogoFacingDirection.FORWARD,
+                RevHubOrientationOnRobot.UsbFacingDirection.UP));
         // Without this, the REV Hub's orientation is assumed to be logo up / USB forward
         imu.initialize(parameters);
 
@@ -79,7 +79,6 @@ public class JellyTele extends BaseOpMode {
 
             if(gamepad2.right_bumper){
                 claw.clawsClose();
-
             }
             if(gamepad2.left_bumper){
                 claw.clawsOpen();
