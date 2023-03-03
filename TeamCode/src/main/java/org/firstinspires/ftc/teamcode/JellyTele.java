@@ -66,44 +66,13 @@ public class JellyTele extends BaseOpMode {
         while (opModeIsActive()) {
 
             // Slides
-
-            slides.manual(gamepad2.left_stick_y);
-
-            if (gamepad2.a) {
-                slides.high();
-                //do auto precision mode
-            }
-
-            if (gamepad2.b && gamepad2.right_trigger==0) {
-                slides.mid();
-            }
-
-            if (gamepad2.y) {
-                slides.low();
-            }
-            if (gamepad2.x) {
-                slides.reset();
-            }
-
-            if (gamepad2.dpad_down) {
-                slides.fiveCups();
-            }
-            if (gamepad2.dpad_right) {
-                slides.fourCups();
-            }
-            if (gamepad2.dpad_up) {
-                slides.threeCups();
-            }
-            if (gamepad2.dpad_left) {
-                slides.twoCups();
-            }
             if(gamepad2.left_stick_button){
                slides.override();
             }
             if(gamepad2.right_stick_button){
                 slides.overrideReset();
             }
-
+            slides.manual(gamepad2.left_stick_y);
             slides.pLoop();
 
             // CLAW
@@ -230,6 +199,7 @@ public class JellyTele extends BaseOpMode {
                     break;
                 }
             }
+            //Finite State Machine
             switch (liftState){
                 case RETRACTED:{
                     if (gamepad2.a && gamepad2.right_trigger==0) {
