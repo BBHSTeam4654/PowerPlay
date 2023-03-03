@@ -112,7 +112,7 @@ public class JellyTele extends BaseOpMode {
                 // Turns clockwise 90
                 drive.followTrajectorySequenceAsync(clockwise90);
             }
-            if (gamepad1.y){
+            if (gamepad1.y && gamepad1.right_trigger==0 && gamepad1.left_trigger==0){
                 // Turns clockwise 180
                 drive.followTrajectorySequenceAsync(clockwise180);
             }
@@ -124,7 +124,10 @@ public class JellyTele extends BaseOpMode {
                 // Turns counter clockwise 180
                 drive.followTrajectorySequenceAsync(counterClockwise180);
             }
-
+            if (gamepad1.y && gamepad1.right_trigger>0 && gamepad1.left_trigger>0){
+                imu.resetYaw();
+                gamepad1.rumbleBlips(5);
+            }
             drive.update();
             Pose2d myPose = drive.getPoseEstimate();
 
