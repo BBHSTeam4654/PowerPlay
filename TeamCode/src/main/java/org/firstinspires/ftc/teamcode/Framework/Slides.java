@@ -20,8 +20,8 @@ public class Slides{
     static int right_position = 0;
 
     public Slides(DcMotorEx leftSlide, DcMotorEx rightSlide){
-        this.leftSlide = leftSlide;
-        this.rightSlide = rightSlide;
+        Slides.leftSlide = leftSlide;
+        Slides.rightSlide = rightSlide;
         leftSlide.setZeroPowerBehavior(BRAKE);
         rightSlide.setZeroPowerBehavior(BRAKE);
         
@@ -31,11 +31,11 @@ public class Slides{
         leftSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         
-        this.left_position = leftSlide.getCurrentPosition();
-        this.right_position = rightSlide.getCurrentPosition();
+        left_position = leftSlide.getCurrentPosition();
+        right_position = rightSlide.getCurrentPosition();
 
-        this.leftTarget=0;
-        this.rightTarget=0;
+        leftTarget=0;
+        rightTarget=0;
 /*
         telemetry.addData("EncoderLeft", left_position);
         telemetry.addData("EncoderRight", right_position);
@@ -113,8 +113,8 @@ public class Slides{
         rightTarget = x;
     }
     public void manual(float num){
-        this.leftTarget += (double)num*8;
-        this.rightTarget -= (double)num*8;
+        leftTarget += (double)num*8;
+        rightTarget -= (double)num*8;
     }
     public boolean wLoop(){
 
@@ -127,20 +127,20 @@ public class Slides{
     public void pLoop(){
 //one of them is reversed... idk which one so use MeasureSlides to determine, 
 // whichever one has encoders going backwards is left, whichever has positive is right
-        double leftPosition = (double)(this.leftSlide.getCurrentPosition());
+        double leftPosition = (double)(leftSlide.getCurrentPosition());
 
         double left_current_error = leftTarget-leftPosition;
 
         double lp = lkp * left_current_error;
 
-        double rightPosition = (double)(this.rightSlide.getCurrentPosition());
+        double rightPosition = (double)(rightSlide.getCurrentPosition());
 
         double right_current_error = rightTarget-rightPosition;
 
         double rp = rkp * right_current_error;
         
-        this.leftSlide.setPower(lp);
-        this.rightSlide.setPower(rp);
+        leftSlide.setPower(lp);
+        rightSlide.setPower(rp);
         //Left: -4401, Right: 4405, upper limit
         //low: left: -1696, Right: 1697
         if(!limitoverride) {

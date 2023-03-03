@@ -74,7 +74,7 @@ public class left_Jellyauto extends BaseOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         initHardware();
-        claw.clawsClose();
+        Claws.clawsClose();
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id",
                 hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"),
@@ -116,11 +116,11 @@ public class left_Jellyauto extends BaseOpMode {
                 .build();
         TrajectorySequence MAuto = drive.trajectorySequenceBuilder(startPose)
                 .addDisplacementMarker(() -> {
-                    claw.clawsClose();
+                    Claws.clawsClose();
                 })
                 .lineToConstantHeading(new Vector2d(-36, -36))
                 .UNSTABLE_addTemporalMarkerOffset(0.1,() -> {
-                    slides.mid();
+                    Slides.mid();
                     slides.wLoop();
                 })
                 .lineToConstantHeading(new Vector2d(-24, -36))
@@ -128,11 +128,11 @@ public class left_Jellyauto extends BaseOpMode {
                 .lineToConstantHeading(new Vector2d(-24, -28.5))
                 .waitSeconds(0.25)
                 .addDisplacementMarker(() -> {
-                    claw.clawsOpen();
+                    Claws.clawsOpen();
                 })
                 .lineToConstantHeading(new Vector2d(-24, -36))
                 .UNSTABLE_addTemporalMarkerOffset(0.1,() -> {
-                    slides.reset();
+                    Slides.reset();
                     slides.wLoop();
                 })
                 .lineToConstantHeading(new Vector2d(-36, -36))
@@ -140,11 +140,11 @@ public class left_Jellyauto extends BaseOpMode {
 
         TrajectorySequence LAuto = drive.trajectorySequenceBuilder(startPose)
                 .addDisplacementMarker(() -> {
-                    claw.clawsClose();
+                    Claws.clawsClose();
                 })
                 .lineToConstantHeading(new Vector2d(-36, -36))
                 .addDisplacementMarker(() -> {
-                    slides.mid();
+                    Slides.mid();
                     slides.wLoop();
                 })
                 .lineToConstantHeading(new Vector2d(-24, -36))
@@ -152,22 +152,22 @@ public class left_Jellyauto extends BaseOpMode {
                 .lineToConstantHeading(new Vector2d(-24, -28.5))
                 .waitSeconds(0.25)
                 .addDisplacementMarker(() -> {
-                    claw.clawsOpen();
+                    Claws.clawsOpen();
                 })
                 .lineToConstantHeading(new Vector2d(-24, -36))
                 .addDisplacementMarker(() -> {
-                    slides.reset();
+                    Slides.reset();
                     slides.wLoop();
                 })
                 .lineToConstantHeading(new Vector2d(-60, -36))
                 .build();
         TrajectorySequence RAuto = drive.trajectorySequenceBuilder(startPose)
                 .addDisplacementMarker(() -> {
-                    claw.clawsClose();
+                    Claws.clawsClose();
                 })
                 .lineToConstantHeading(new Vector2d(-36, -36))
                 .addDisplacementMarker(() -> {
-                    slides.mid();
+                    Slides.mid();
                     slides.wLoop();
                 })
                 .lineToConstantHeading(new Vector2d(-24, -36))
@@ -175,11 +175,11 @@ public class left_Jellyauto extends BaseOpMode {
                 .lineToConstantHeading(new Vector2d(-24, -28.5))
                 .waitSeconds(0.25)
                 .addDisplacementMarker(() -> {
-                    claw.clawsOpen();
+                    Claws.clawsOpen();
                 })
                 .lineToConstantHeading(new Vector2d(-24, -36))
                 .addDisplacementMarker(() -> {
-                    slides.reset();
+                    Slides.reset();
                     slides.wLoop();
                 })
                 .lineToConstantHeading(new Vector2d(-12, -36))

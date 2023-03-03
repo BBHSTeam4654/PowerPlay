@@ -9,7 +9,10 @@ import com.qualcomm.robotcore.hardware.IMU;
 
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.teamcode.Framework.Arm;
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
+import org.firstinspires.ftc.teamcode.Framework.Claws;
+import org.firstinspires.ftc.teamcode.Framework.Slides;
 import org.firstinspires.ftc.teamcode.misc.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.misc.trajectorysequence.TrajectorySequence;
 
@@ -17,13 +20,13 @@ import org.firstinspires.ftc.teamcode.misc.trajectorysequence.TrajectorySequence
 
 public class JellyTele extends BaseOpMode {
 
-    protected static enum DriveMode {
+    protected enum DriveMode {
         TANK,
         DRIVE,
         MECANUM,
         FIELDCENTRIC,
     }
-    protected static enum LiftState {
+    protected enum LiftState {
         RETRACTED, //Full usage of slides - no l+r to prevent army from hitting drivetrain
         EXTRACTED //Limited usage of slides
     }
@@ -67,10 +70,10 @@ public class JellyTele extends BaseOpMode {
 
             // Slides
             if(gamepad2.left_stick_button){
-               slides.override();
+               Slides.override();
             }
             if(gamepad2.right_stick_button){
-                slides.overrideReset();
+                Slides.overrideReset();
             }
             slides.manual(gamepad2.left_stick_y);
             slides.pLoop();
@@ -78,10 +81,10 @@ public class JellyTele extends BaseOpMode {
             // CLAW
 
             if(gamepad2.right_bumper){
-                claw.clawsClose();
+                Claws.clawsClose();
             }
             if(gamepad2.left_bumper){
-                claw.clawsOpen();
+                Claws.clawsOpen();
             }
 
             // DRIVETRAIN
@@ -132,6 +135,7 @@ public class JellyTele extends BaseOpMode {
             Pose2d myPose = drive.getPoseEstimate();
 
             telemetry.addData("drive mode", driveMode);
+            telemetry.addData("liftState", liftState);
             telemetry.addData("mX", gamepad2.left_stick_x);
             telemetry.addData("mY", gamepad2.left_stick_y);
             telemetry.addData("precision mode", mult);
@@ -205,89 +209,89 @@ public class JellyTele extends BaseOpMode {
             switch (liftState){
                 case RETRACTED:{
                     if (gamepad2.a && gamepad2.right_trigger==0) {
-                        slides.high();
+                        Slides.high();
                         liftState=LiftState.EXTRACTED;
                     }
 
                     if (gamepad2.b && gamepad2.right_trigger==0) {
-                        slides.mid();
+                        Slides.mid();
                         liftState=LiftState.EXTRACTED;
                     }
 
                     if (gamepad2.y && gamepad2.right_trigger==0) {
-                        slides.low();
+                        Slides.low();
                         liftState=LiftState.EXTRACTED;
                     }
                     if (gamepad2.dpad_down) {
-                        slides.fiveCups();
+                        Slides.fiveCups();
                         liftState=LiftState.EXTRACTED;
                     }
                     if (gamepad2.dpad_right) {
-                        slides.fourCups();
+                        Slides.fourCups();
                         liftState=LiftState.EXTRACTED;
                     }
                     if (gamepad2.dpad_up) {
-                        slides.threeCups();
+                        Slides.threeCups();
                     }
                     if (gamepad2.dpad_left) {
-                        slides.twoCups();
+                        Slides.twoCups();
                     }
                     if (gamepad2.x && gamepad2.right_trigger==0) {
-                        slides.reset();
+                        Slides.reset();
                     }
 
                     if(gamepad2.right_bumper){
-                        claw.clawsClose();
+                        Claws.clawsClose();
 
                     }
                     if(gamepad2.left_bumper){
-                        claw.clawsOpen();
+                        Claws.clawsOpen();
                     }
                 }
                 case EXTRACTED:{
                     if (gamepad2.a && gamepad2.right_trigger==0) {
-                        slides.high();
+                        Slides.high();
                     }
                     if (gamepad2.b && gamepad2.right_trigger==0) {
-                        slides.mid();
+                        Slides.mid();
                     }
                     if (gamepad2.y && gamepad2.right_trigger==0) {
-                        slides.low();
+                        Slides.low();
                     }
                     if (gamepad2.dpad_down) {
-                        slides.fiveCups();
+                        Slides.fiveCups();
                     }
                     if (gamepad2.dpad_right) {
-                        slides.fourCups();
+                        Slides.fourCups();
                     }
                     if (gamepad2.dpad_up) {
-                        slides.threeCups();
+                        Slides.threeCups();
                         liftState=LiftState.RETRACTED;
                     }
                     if (gamepad2.dpad_left) {
-                        slides.twoCups();
+                        Slides.twoCups();
                         liftState=LiftState.RETRACTED;
                     }
                     if (gamepad2.x && gamepad2.right_trigger==0) {
-                        slides.reset();
+                        Slides.reset();
                         liftState=LiftState.RETRACTED;
                     }
 
                     if(gamepad2.right_bumper){
-                        claw.clawsClose();
+                        Claws.clawsClose();
 
                     }
                     if(gamepad2.left_bumper){
-                        claw.clawsOpen();
+                        Claws.clawsOpen();
                     }
                     if (gamepad2.x && gamepad2.right_trigger>0) {
-                        arm.armLeft();
+                        Arm.armLeft();
                     }
                     if (gamepad2.b && gamepad2.right_trigger>0) {
-                        arm.armNorm();
+                        Arm.armNorm();
                     }
                     if (gamepad2.y && gamepad2.right_trigger>0) {
-                        arm.armRight();
+                        Arm.armRight();
                     }
                 }
             }
