@@ -232,10 +232,91 @@ public class JellyTele extends BaseOpMode {
             }
             switch (liftState){
                 case RETRACTED:{
+                    if (gamepad2.a && gamepad2.right_trigger==0) {
+                        slides.high();
+                        liftState=LiftState.EXTRACTED;
+                    }
 
+                    if (gamepad2.b && gamepad2.right_trigger==0) {
+                        slides.mid();
+                        liftState=LiftState.EXTRACTED;
+                    }
+
+                    if (gamepad2.y && gamepad2.right_trigger==0) {
+                        slides.low();
+                        liftState=LiftState.EXTRACTED;
+                    }
+                    if (gamepad2.dpad_down) {
+                        slides.fiveCups();
+                        liftState=LiftState.EXTRACTED;
+                    }
+                    if (gamepad2.dpad_right) {
+                        slides.fourCups();
+                        liftState=LiftState.EXTRACTED;
+                    }
+                    if (gamepad2.dpad_up) {
+                        slides.threeCups();
+                    }
+                    if (gamepad2.dpad_left) {
+                        slides.twoCups();
+                    }
+                    if (gamepad2.x && gamepad2.right_trigger==0) {
+                        slides.reset();
+                    }
+
+                    if(gamepad2.right_bumper){
+                        claw.clawsClose();
+
+                    }
+                    if(gamepad2.left_bumper){
+                        claw.clawsOpen();
+                    }
                 }
                 case EXTRACTED:{
+                    if (gamepad2.a && gamepad2.right_trigger==0) {
+                        slides.high();
+                    }
+                    if (gamepad2.b && gamepad2.right_trigger==0) {
+                        slides.mid();
+                    }
+                    if (gamepad2.y && gamepad2.right_trigger==0) {
+                        slides.low();
+                    }
+                    if (gamepad2.dpad_down) {
+                        slides.fiveCups();
+                    }
+                    if (gamepad2.dpad_right) {
+                        slides.fourCups();
+                    }
+                    if (gamepad2.dpad_up) {
+                        slides.threeCups();
+                        liftState=LiftState.RETRACTED;
+                    }
+                    if (gamepad2.dpad_left) {
+                        slides.twoCups();
+                        liftState=LiftState.RETRACTED;
+                    }
+                    if (gamepad2.x && gamepad2.right_trigger==0) {
+                        slides.reset();
+                        liftState=LiftState.RETRACTED;
+                    }
 
+                    if(gamepad2.right_bumper){
+                        claw.clawsClose();
+
+                    }
+                    if(gamepad2.left_bumper){
+                        claw.clawsOpen();
+                    }
+                    if (gamepad2.x && gamepad2.right_trigger>0) {
+                        arm.armLeft();
+                    }
+                    if (gamepad2.b && gamepad2.right_trigger>0) {
+                        arm.armNorm();
+                    }
+                    if (gamepad2.y && gamepad2.right_trigger>0) {
+                        arm.armRight();
+                    }
                 }
             }
 
