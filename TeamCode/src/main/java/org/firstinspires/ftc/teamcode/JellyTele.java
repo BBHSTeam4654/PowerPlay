@@ -110,7 +110,7 @@ public class JellyTele extends BaseOpMode {
                 gamepad1.rumbleBlips(4);
             }
             // precision
-            double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : multPrecision ? 0.9 : 1.0;
+            double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : multPrecision ? 0.5 : 1.0;
             if (gamepad1.left_bumper){
                 gamepad1.rumble( 1, 1, 10);
             }
