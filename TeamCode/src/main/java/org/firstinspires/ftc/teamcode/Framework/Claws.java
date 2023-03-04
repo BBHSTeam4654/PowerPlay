@@ -7,7 +7,8 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gam
 //closed: 0.6605999999999436
 public class Claws {
     static Servo servo;
-    public Claws(Servo servo){this.servo = servo;}
+    public Claws(Servo servo){
+        Claws.servo = servo;}
     static boolean open = false;
 
     public static void clawsOpen(){

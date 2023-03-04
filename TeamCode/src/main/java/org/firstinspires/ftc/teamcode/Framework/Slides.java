@@ -16,6 +16,7 @@ public class Slides{
     static double rkp = 0.01;
     static boolean limitoverride = false;
     public static boolean multPrecision = false;
+    public static boolean slideExtracted = false;
     static int left_position = 0;
     static int right_position = 0;
 
@@ -162,6 +163,12 @@ public class Slides{
         }
         if(rightTarget<4000){
             multPrecision = false;
+        }
+        if(rightTarget>450){
+            slideExtracted = true;
+        }
+        if(rightTarget<450){
+            slideExtracted = false;
         }
         if(rightSlide.getCurrentPosition()==0){
             rightSlide.setPower(0);

@@ -3,9 +3,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Arm {
     static Servo servo;
-    public Arm(Servo servo){this.servo = servo;}
+    public Arm(Servo servo){Arm.servo = servo;}
 
-    public static void armLeft(){servo.setPosition(0.97054);}
-    public static void armRight() {servo.setPosition(0.4249399999);}
-    public static void armNorm() {servo.setPosition(0.691);}
+    public static void armLeft(){Arm.servo.setPosition(0.7254);}
+    public static void armRight() {Arm.servo.setPosition(0.1757);}
+    public static void armNorm() {Arm.servo.setPosition(0.4457);}
 }

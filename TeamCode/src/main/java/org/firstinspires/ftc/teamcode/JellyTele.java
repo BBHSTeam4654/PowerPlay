@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import static org.firstinspires.ftc.teamcode.Framework.Slides.multPrecision;
+import static org.firstinspires.ftc.teamcode.Framework.Slides.slideExtracted;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
@@ -75,6 +76,12 @@ public class JellyTele extends BaseOpMode {
             if(gamepad2.right_stick_button){
                 Slides.overrideReset();
             }
+            if(slideExtracted){
+                liftState=LiftState.EXTRACTED;
+            }
+            if(!slideExtracted){
+                liftState=LiftState.RETRACTED;
+            }
             slides.manual(gamepad2.left_stick_y);
             slides.pLoop();
 
@@ -115,7 +122,7 @@ public class JellyTele extends BaseOpMode {
                 // Turns clockwise 90
                 drive.followTrajectorySequenceAsync(clockwise90);
             }
-            if (gamepad1.y && gamepad1.right_trigger==0 && gamepad1.left_trigger==0){
+            if (gamepad1.y && !gamepad1.back){
                 // Turns clockwise 180
                 drive.followTrajectorySequenceAsync(clockwise180);
             }
@@ -127,7 +134,7 @@ public class JellyTele extends BaseOpMode {
                 // Turns counter clockwise 180
                 drive.followTrajectorySequenceAsync(counterClockwise180);
             }
-            if (gamepad1.y && gamepad1.right_trigger>0 && gamepad1.left_trigger>0){
+            if (gamepad1.y && gamepad1.back){
                 imu.resetYaw();
                 gamepad1.rumbleBlips(5);
             }
@@ -208,17 +215,17 @@ public class JellyTele extends BaseOpMode {
             //Finite State Machine
             switch (liftState){
                 case RETRACTED:{
-                    if (gamepad2.a && gamepad2.right_trigger==0) {
+                    if (gamepad2.a && !gamepad2.back) {
                         Slides.high();
                         liftState=LiftState.EXTRACTED;
                     }
 
-                    if (gamepad2.b && gamepad2.right_trigger==0) {
+                    if (gamepad2.b && !gamepad2.back) {
                         Slides.mid();
                         liftState=LiftState.EXTRACTED;
                     }
 
-                    if (gamepad2.y && gamepad2.right_trigger==0) {
+                    if (gamepad2.y && !gamepad2.back) {
                         Slides.low();
                         liftState=LiftState.EXTRACTED;
                     }
@@ -236,7 +243,7 @@ public class JellyTele extends BaseOpMode {
                     if (gamepad2.dpad_left) {
                         Slides.twoCups();
                     }
-                    if (gamepad2.x && gamepad2.right_trigger==0) {
+                    if (gamepad2.x && !gamepad2.back) {
                         Slides.reset();
                     }
 
@@ -247,15 +254,16 @@ public class JellyTele extends BaseOpMode {
                     if(gamepad2.left_bumper){
                         Claws.clawsOpen();
                     }
+                    break;
                 }
                 case EXTRACTED:{
-                    if (gamepad2.a && gamepad2.right_trigger==0) {
+                    if (gamepad2.a && !gamepad2.back) {
                         Slides.high();
                     }
-                    if (gamepad2.b && gamepad2.right_trigger==0) {
+                    if (gamepad2.b && !gamepad2.back) {
                         Slides.mid();
                     }
-                    if (gamepad2.y && gamepad2.right_trigger==0) {
+                    if (gamepad2.y && !gamepad2.back) {
                         Slides.low();
                     }
                     if (gamepad2.dpad_down) {
@@ -272,27 +280,27 @@ public class JellyTele extends BaseOpMode {
                         Slides.twoCups();
                         liftState=LiftState.RETRACTED;
                     }
-                    if (gamepad2.x && gamepad2.right_trigger==0) {
+                    if (gamepad2.x && !gamepad2.back) {
                         Slides.reset();
                         liftState=LiftState.RETRACTED;
                     }
 
                     if(gamepad2.right_bumper){
                         Claws.clawsClose();
-
                     }
                     if(gamepad2.left_bumper){
                         Claws.clawsOpen();
                     }
-                    if (gamepad2.x && gamepad2.right_trigger>0) {
+                    if (gamepad2.x && gamepad2.back) {
                         Arm.armLeft();
                     }
-                    if (gamepad2.b && gamepad2.right_trigger>0) {
-                        Arm.armNorm();
-                    }
-                    if (gamepad2.y && gamepad2.right_trigger>0) {
+                    if (gamepad2.b && gamepad2.back) {
                         Arm.armRight();
                     }
+                    if (gamepad2.y && gamepad2.back) {
+                        Arm.armNorm();
+                    }
+                    break;
                 }
             }
 
