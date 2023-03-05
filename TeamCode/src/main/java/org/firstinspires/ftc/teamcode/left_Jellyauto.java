@@ -114,6 +114,53 @@ public class left_Jellyauto extends BaseOpMode {
                 .lineToConstantHeading(new Vector2d(-36, -36))
                 .lineToConstantHeading(new Vector2d(-12, -36))
                 .build();
+
+        TrajectorySequence RAuto = drive.trajectorySequenceBuilder(startPose)
+                .addTemporalMarker(() -> {
+                    Claws.clawsClose();
+                })
+                .waitSeconds(1)
+                .addTemporalMarker(() -> {
+                    Slides.high();
+                })
+                .lineToConstantHeading(new Vector2d(-36, -12))
+                .addTemporalMarker(() -> {
+                    Arm.armNorm();
+                })
+                .lineToConstantHeading(new Vector2d(-25.5, -12))
+                .waitSeconds(0.1)
+                .addTemporalMarker(() -> {
+                    Claws.clawsOpen();
+                })
+                .back(2)
+                .addTemporalMarker(() -> {
+                    Arm.armLeft();
+                    Slides.fiveCups();
+                })
+                .lineToConstantHeading(new Vector2d(-62, -14))
+                .addTemporalMarker(() -> {
+                    Claws.clawsClose();
+                })
+                .waitSeconds(1.25)
+                .addTemporalMarker(() -> {
+                    Slides.high();
+                })
+                .lineToConstantHeading(new Vector2d(-25.5, -13.5))
+                .addTemporalMarker(() -> {
+                    Arm.armNorm();
+                })
+                .forward(1.5)
+                .waitSeconds(0.1)
+                .addTemporalMarker(() -> {
+                    Claws.clawsOpen();
+                })
+                .lineToConstantHeading(new Vector2d(-10, -14))
+                .addTemporalMarker(() -> {
+                    Arm.armLeft();
+                    Slides.reset();
+                })
+                .build();
+
         TrajectorySequence MAuto = drive.trajectorySequenceBuilder(startPose)
                 .addTemporalMarker(() -> {
                     Claws.clawsClose();
@@ -134,7 +181,7 @@ public class left_Jellyauto extends BaseOpMode {
                 .back(2)
                 .addTemporalMarker(() -> {
                     Arm.armLeft();
-                    Slides.reset();
+                    Slides.fiveCups();
                 })
                 .lineToConstantHeading(new Vector2d(-62, -14))
                 .addTemporalMarker(() -> {
@@ -153,53 +200,57 @@ public class left_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                     Claws.clawsOpen();
                 })
+                .lineToConstantHeading(new Vector2d(-34, -14))
+                .addTemporalMarker(() -> {
+                    Arm.armLeft();
+                    Slides.reset();
+                })
                 .build();
 
         TrajectorySequence LAuto = drive.trajectorySequenceBuilder(startPose)
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     Claws.clawsClose();
                 })
-                .lineToConstantHeading(new Vector2d(-36, -36))
-                .addDisplacementMarker(() -> {
-                    Slides.mid();
-                    slides.wLoop();
+                .waitSeconds(1)
+                .addTemporalMarker(() -> {
+                    Slides.high();
                 })
-                .lineToConstantHeading(new Vector2d(-24, -36))
-
-                .lineToConstantHeading(new Vector2d(-24, -28.5))
-                .waitSeconds(0.25)
-                .addDisplacementMarker(() -> {
+                .lineToConstantHeading(new Vector2d(-36, -12))
+                .addTemporalMarker(() -> {
+                    Arm.armNorm();
+                })
+                .lineToConstantHeading(new Vector2d(-25.5, -12))
+                .waitSeconds(0.1)
+                .addTemporalMarker(() -> {
                     Claws.clawsOpen();
                 })
-                .lineToConstantHeading(new Vector2d(-24, -36))
-                .addDisplacementMarker(() -> {
-                    Slides.reset();
-                    slides.wLoop();
+                .back(2)
+                .addTemporalMarker(() -> {
+                    Arm.armLeft();
+                    Slides.fiveCups();
                 })
-                .lineToConstantHeading(new Vector2d(-60, -36))
-                .build();
-        TrajectorySequence RAuto = drive.trajectorySequenceBuilder(startPose)
-                .addDisplacementMarker(() -> {
+                .lineToConstantHeading(new Vector2d(-62, -14))
+                .addTemporalMarker(() -> {
                     Claws.clawsClose();
                 })
-                .lineToConstantHeading(new Vector2d(-36, -36))
-                .addDisplacementMarker(() -> {
-                    Slides.mid();
-                    slides.wLoop();
+                .waitSeconds(1.25)
+                .addTemporalMarker(() -> {
+                    Slides.high();
                 })
-                .lineToConstantHeading(new Vector2d(-24, -36))
-
-                .lineToConstantHeading(new Vector2d(-24, -28.5))
-                .waitSeconds(0.25)
-                .addDisplacementMarker(() -> {
+                .lineToConstantHeading(new Vector2d(-25.5, -13.5))
+                .addTemporalMarker(() -> {
+                    Arm.armNorm();
+                })
+                .forward(1.5)
+                .waitSeconds(0.1)
+                .addTemporalMarker(() -> {
                     Claws.clawsOpen();
                 })
-                .lineToConstantHeading(new Vector2d(-24, -36))
-                .addDisplacementMarker(() -> {
+                .lineToConstantHeading(new Vector2d(-58, -14))
+                .addTemporalMarker(() -> {
+                    Arm.armLeft();
                     Slides.reset();
-                    slides.wLoop();
                 })
-                .lineToConstantHeading(new Vector2d(-12, -36))
                 .build();
 
         /*
