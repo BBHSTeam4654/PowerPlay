@@ -29,6 +29,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 
+import org.firstinspires.ftc.teamcode.Framework.Arm;
 import org.firstinspires.ftc.teamcode.Framework.BaseOpMode;
 import org.firstinspires.ftc.teamcode.Framework.Claws;
 import org.firstinspires.ftc.teamcode.Framework.Slides;
@@ -74,7 +75,6 @@ public class left_Jellyauto extends BaseOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         initHardware();
-        Claws.clawsClose();
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id",
                 hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"),
@@ -115,27 +115,27 @@ public class left_Jellyauto extends BaseOpMode {
                 .lineToConstantHeading(new Vector2d(-12, -36))
                 .build();
         TrajectorySequence MAuto = drive.trajectorySequenceBuilder(startPose)
-                .addDisplacementMarker(() -> {
+                .addTemporalMarker(() -> {
                     Claws.clawsClose();
                 })
-                .lineToConstantHeading(new Vector2d(-36, -36))
-                .UNSTABLE_addTemporalMarkerOffset(0.1,() -> {
-                    Slides.mid();
-                    slides.wLoop();
+                .waitSeconds(2)
+                .addTemporalMarker(2,() -> {
+                    Slides.high();
                 })
-                .lineToConstantHeading(new Vector2d(-24, -36))
-
-                .lineToConstantHeading(new Vector2d(-24, -28.5))
-                .waitSeconds(0.25)
-                .addDisplacementMarker(() -> {
+                .lineToConstantHeading(new Vector2d(-36, -18))
+                .splineToConstantHeading(new Vector2d(-23.75, -12), Math.toRadians(90))
+                .addTemporalMarker(() -> {
+                    Arm.armNorm();
+                })
+                .waitSeconds(0.5)
+                .addTemporalMarker(() -> {
                     Claws.clawsOpen();
                 })
-                .lineToConstantHeading(new Vector2d(-24, -36))
-                .UNSTABLE_addTemporalMarkerOffset(0.1,() -> {
-                    Slides.reset();
-                    slides.wLoop();
-                })
-                .lineToConstantHeading(new Vector2d(-36, -36))
+//                .waitSeconds(0.25)
+//                .addTemporalMarker(() -> {
+//                            Arm.armLeft();
+//                            Slides.fiveCups();
+//                })
                 .build();
 
         TrajectorySequence LAuto = drive.trajectorySequenceBuilder(startPose)
@@ -245,11 +245,11 @@ public class left_Jellyauto extends BaseOpMode {
         }
 
         if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
-            drive.followTrajectorySequenceAsync(MPark);
+            drive.followTrajectorySequenceAsync(MAuto);
         } else if (tagOfInterest.id == LEFT) {
-            drive.followTrajectorySequenceAsync(LPark);
+            drive.followTrajectorySequenceAsync(MAuto);
         } else {
-            drive.followTrajectorySequenceAsync(RPark);
+            drive.followTrajectorySequenceAsync(MAuto);
         }
 
         while (opModeIsActive() && !isStopRequested()) {

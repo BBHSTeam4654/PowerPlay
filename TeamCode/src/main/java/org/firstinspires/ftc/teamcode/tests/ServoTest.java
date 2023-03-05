@@ -12,7 +12,7 @@ public class ServoTest extends BaseOpMode {
     @Override
     public void runOpMode() throws InterruptedException{
         Servo clawServo  = null;
-        clawServo = hardwareMap.get(Servo.class, "servo1");
+        clawServo = hardwareMap.get(Servo.class, "servo");
         waitForStart();
 
         double position = 0.5;
