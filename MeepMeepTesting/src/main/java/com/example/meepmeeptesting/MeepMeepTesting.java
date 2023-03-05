@@ -33,15 +33,98 @@ public class MeepMeepTesting {
                 .setColorScheme(new ColorSchemeRedLight())
                 .setConstraints(30, 10, Math.toRadians(180), Math.toRadians(180), 13.54331)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose2)
+                        .addTemporalMarker(() -> {
+//                            Claws.clawsClose();
+                        })
+                        .waitSeconds(1)
+                        .addTemporalMarker(() -> {
+//                            Slides.high();
+                        })
                         .lineToConstantHeading(new Vector2d(-36, -12))
-                        .lineToConstantHeading(new Vector2d(-24, -12))
+                        .addTemporalMarker(() -> {
+//                            Arm.armNorm();
+                        })
+                        .lineToConstantHeading(new Vector2d(-25.5, -12))
+                        .waitSeconds(0.1)
+                        .addTemporalMarker(() -> {
+//                            Claws.clawsOpen();
+                        })
+                        .back(2)
+                        .addTemporalMarker(() -> {
+//                            Arm.armLeft();
+//                            Slides.fiveCups();
+                        })
+                        .lineToConstantHeading(new Vector2d(-62, -14))
+                        .addTemporalMarker(() -> {
+//                            Claws.clawsClose();
+                        })
+                        .waitSeconds(1.25)
+                        .addTemporalMarker(() -> {
+//                            Slides.high();
+                        })
+                        .lineToConstantHeading(new Vector2d(-25.5, -13.5))
+                        .addTemporalMarker(() -> {
+//                            Arm.armNorm();
+                        })
+                        .forward(1.5)
+                        .waitSeconds(0.1)
+                        .addTemporalMarker(() -> {
+//                            Claws.clawsOpen();
+                        })
+                        .lineToConstantHeading(new Vector2d(-58, -14))
+                        .addTemporalMarker(() -> {
+//                            Arm.armLeft();
+//                            Slides.reset();
+                        })
                         .build()
                 );
         RoadRunnerBotEntity myBot3 = new DefaultBotBuilder(meepMeep)
                 .setColorScheme(new ColorSchemeBlueLight())
-                .setConstraints(45, 15, Math.toRadians(180), Math.toRadians(180), 13.54331)
+                .setConstraints(30, 10, Math.toRadians(180), Math.toRadians(180), 13.54331)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(startPose3)
+                        .addTemporalMarker(() -> {
+//                            Claws.clawsClose();
+                        })
                         .waitSeconds(1)
+                        .addTemporalMarker(() -> {
+//                            Slides.high();
+                        })
+                        .lineToConstantHeading(new Vector2d(36, -12))
+                        .addTemporalMarker(() -> {
+//                            Arm.armNorm();
+                        })
+                        .lineToConstantHeading(new Vector2d(25.5, -12))
+                        .waitSeconds(0.1)
+                        .addTemporalMarker(() -> {
+//                            Claws.clawsOpen();
+                        })
+                        .back(2)
+                        .addTemporalMarker(() -> {
+//                            Arm.armRight();
+//                            Slides.fiveCups();
+                        })
+                        .lineToConstantHeading(new Vector2d(62, -14))
+                        .addTemporalMarker(() -> {
+//                            Claws.clawsClose();
+                        })
+                        .waitSeconds(1.25)
+                        .addTemporalMarker(() -> {
+//                            Slides.high();
+                        })
+                        .lineToConstantHeading(new Vector2d(25.5, -13.5))
+                        .addTemporalMarker(() -> {
+//                            Arm.armNorm();
+                        })
+                        .forward(1.5)
+                        .waitSeconds(0.1)
+                        .addTemporalMarker(() -> {
+//                            Claws.clawsOpen();
+                        })
+                        .lineToConstantHeading(new Vector2d(58, -14))
+                        .addTemporalMarker(() -> {
+//                            Arm.armLeft();
+//                            Slides.reset();
+                        })
                         .build()
 
 
@@ -52,7 +135,7 @@ public class MeepMeepTesting {
                 .setBackgroundAlpha(0.95f)
                 //.addEntity(myBot)
                 .addEntity(myBot2)
-//                .addEntity(myBot3)
+                .addEntity(myBot3)
                 .start();
     }
 }
