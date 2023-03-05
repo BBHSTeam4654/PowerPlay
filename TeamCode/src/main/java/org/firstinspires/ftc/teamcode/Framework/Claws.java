@@ -12,7 +12,7 @@ public class Claws {
 
     public static void clawsOpen(){servo.setPosition(0.6);
     }
-    public static void clawsClose() {servo.setPosition(1);}
+    public static void clawsClose() {servo.setPosition(0.735);}
 
 
     public double getCurrentPosition() {
