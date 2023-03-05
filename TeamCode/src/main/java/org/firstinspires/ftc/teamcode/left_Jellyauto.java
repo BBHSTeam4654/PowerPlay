@@ -118,24 +118,45 @@ public class left_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                     Claws.clawsClose();
                 })
-                .waitSeconds(2)
-                .addTemporalMarker(2,() -> {
+                .waitSeconds(3)
+                .addTemporalMarker(3,() -> {
                     Slides.high();
                 })
-                .lineToConstantHeading(new Vector2d(-36, -18))
-                .splineToConstantHeading(new Vector2d(-23.75, -12), Math.toRadians(90))
+                .lineToConstantHeading(new Vector2d(-36, -12))
+                .lineToConstantHeading(new Vector2d(-25.5, -12))
                 .addTemporalMarker(() -> {
                     Arm.armNorm();
                 })
-                .waitSeconds(0.5)
+                .waitSeconds(0.25)
                 .addTemporalMarker(() -> {
                     Claws.clawsOpen();
                 })
-//                .waitSeconds(0.25)
-//                .addTemporalMarker(() -> {
-//                            Arm.armLeft();
-//                            Slides.fiveCups();
-//                })
+                .waitSeconds(0.75)
+                .addTemporalMarker(() -> {
+                    Arm.armLeft();
+                })
+                .back(1.5)
+                .addTemporalMarker(() -> {
+                    Slides.reset();
+                })
+                .lineToConstantHeading(new Vector2d(-62, -13.5))
+                .addTemporalMarker(() -> {
+                    Claws.clawsClose();
+                })
+                .waitSeconds(3)
+                .addTemporalMarker(() -> {
+                    Slides.high();
+                })
+                .waitSeconds(0.75)
+                .lineToConstantHeading(new Vector2d(-25.5, -13.5))
+                .forward(1.5)
+                .addTemporalMarker(() -> {
+                    Arm.armNorm();
+                })
+                .waitSeconds(0.25)
+                .addTemporalMarker(() -> {
+                    Claws.clawsOpen();
+                })
                 .build();
 
         TrajectorySequence LAuto = drive.trajectorySequenceBuilder(startPose)
