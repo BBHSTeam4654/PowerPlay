@@ -109,8 +109,15 @@ public class JellyTele extends BaseOpMode {
                 driveMode = DriveMode.FIELDCENTRIC;
                 gamepad1.rumbleBlips(4);
             }
+            double tMult = 1.0;
+            if(gamepad1.x && gamepad1.back){
+                tMult = 0.55;
+            }
+            if(gamepad1.b && gamepad1.back){
+                tMult = 1.0;
+            }
             // precision
-            double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : multPrecision ? 0.5 : 1.0;
+            double mult = gamepad1.left_bumper ? 0.35 : gamepad1.right_bumper ? 0.7 : multPrecision ? tMult : 1.0;
             if (gamepad1.left_bumper){
                 gamepad1.rumble( 1, 1, 10);
             }
@@ -118,7 +125,7 @@ public class JellyTele extends BaseOpMode {
                 gamepad1.rumble(2.7,2.7,10);
             }
             // Degree turns
-            if (gamepad1.x) {
+            if (gamepad1.x && !gamepad1.back) {
                 // Turns clockwise 90
                 drive.followTrajectorySequenceAsync(clockwise90);
             }
@@ -126,11 +133,11 @@ public class JellyTele extends BaseOpMode {
                 // Turns clockwise 180
                 drive.followTrajectorySequenceAsync(clockwise180);
             }
-            if (gamepad1.b) {
+            if (gamepad1.b && !gamepad1.back) {
                 // Turns counter clockwise 90
                 drive.followTrajectorySequenceAsync(counterClockwise90);
             }
-            if (gamepad1.a){
+            if (gamepad1.a && !gamepad1.back){
                 // Turns counter clockwise 180
                 drive.followTrajectorySequenceAsync(counterClockwise180);
             }

@@ -14,7 +14,7 @@ public class Claws {
     public static void clawsOpen(){
         servo.setPosition(0.765);
     }
-    public static void clawsClose() {servo.setPosition(0.935);}
+    public static void clawsClose() {servo.setPosition(1.0);}
 
 
     public double getCurrentPosition() {
