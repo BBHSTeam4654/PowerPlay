@@ -315,9 +315,9 @@ public class left_Jellyauto extends BaseOpMode {
         if (tagOfInterest == null || tagOfInterest.id == MIDDLE) {
             drive.followTrajectorySequenceAsync(MAuto);
         } else if (tagOfInterest.id == LEFT) {
-            drive.followTrajectorySequenceAsync(MAuto);
+            drive.followTrajectorySequenceAsync(LAuto);
         } else {
-            drive.followTrajectorySequenceAsync(MAuto);
+            drive.followTrajectorySequenceAsync(RAuto);
         }
 
         while (opModeIsActive() && !isStopRequested()) {
