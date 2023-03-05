@@ -119,7 +119,7 @@ public class left_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                     Claws.clawsClose();
                 })
-                .waitSeconds(1)
+                .waitSeconds(2)
                 .addTemporalMarker(() -> {
                     Slides.high();
                 })
@@ -127,8 +127,12 @@ public class left_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                     Arm.armNorm();
                 })
-                .lineToConstantHeading(new Vector2d(-25.5, -12))
-                .waitSeconds(0.1)
+                .lineToConstantHeading(new Vector2d(-23, -12))
+                .waitSeconds(0.5)
+                .addTemporalMarker(() -> {
+                    Slides.highDown();
+                })
+                .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     Claws.clawsOpen();
                 })
@@ -137,20 +141,24 @@ public class left_Jellyauto extends BaseOpMode {
                     Arm.armLeft();
                     Slides.fiveCups();
                 })
-                .lineToConstantHeading(new Vector2d(-62, -14))
+                .lineToConstantHeading(new Vector2d(-61.75, -14))
                 .addTemporalMarker(() -> {
                     Claws.clawsClose();
                 })
-                .waitSeconds(1.25)
+                .waitSeconds(2)
                 .addTemporalMarker(() -> {
                     Slides.high();
                 })
-                .lineToConstantHeading(new Vector2d(-25.5, -13.5))
+                .lineToConstantHeading(new Vector2d(-23, -13.5))
                 .addTemporalMarker(() -> {
                     Arm.armNorm();
                 })
                 .forward(1.5)
-                .waitSeconds(0.1)
+                .waitSeconds(0.5)
+                .addTemporalMarker(() -> {
+                    Slides.highDown();
+                })
+                .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     Claws.clawsOpen();
                 })
@@ -165,7 +173,7 @@ public class left_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                     Claws.clawsClose();
                 })
-                .waitSeconds(1)
+                .waitSeconds(2)
                 .addTemporalMarker(() -> {
                     Slides.high();
                 })
@@ -173,8 +181,12 @@ public class left_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                     Arm.armNorm();
                 })
-                .lineToConstantHeading(new Vector2d(-25.5, -12))
-                .waitSeconds(0.1)
+                .lineToConstantHeading(new Vector2d(-23, -12))
+                .waitSeconds(0.5)
+                .addTemporalMarker(() -> {
+                    Slides.highDown();
+                })
+                .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     Claws.clawsOpen();
                 })
@@ -183,20 +195,24 @@ public class left_Jellyauto extends BaseOpMode {
                     Arm.armLeft();
                     Slides.fiveCups();
                 })
-                .lineToConstantHeading(new Vector2d(-62, -14))
+                .lineToConstantHeading(new Vector2d(-61.75, -14))
                 .addTemporalMarker(() -> {
                     Claws.clawsClose();
                 })
-                .waitSeconds(1.25)
+                .waitSeconds(2)
                 .addTemporalMarker(() -> {
                     Slides.high();
                 })
-                .lineToConstantHeading(new Vector2d(-25.5, -13.5))
+                .lineToConstantHeading(new Vector2d(-23, -13.5))
                 .addTemporalMarker(() -> {
                     Arm.armNorm();
                 })
                 .forward(1.5)
-                .waitSeconds(0.1)
+                .waitSeconds(0.5)
+                .addTemporalMarker(() -> {
+                    Slides.highDown();
+                })
+                .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     Claws.clawsOpen();
                 })
@@ -211,7 +227,7 @@ public class left_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                     Claws.clawsClose();
                 })
-                .waitSeconds(1)
+                .waitSeconds(2)
                 .addTemporalMarker(() -> {
                     Slides.high();
                 })
@@ -219,8 +235,12 @@ public class left_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                     Arm.armNorm();
                 })
-                .lineToConstantHeading(new Vector2d(-25.5, -12))
-                .waitSeconds(0.1)
+                .lineToConstantHeading(new Vector2d(-23, -12))
+                .waitSeconds(0.5)
+                .addTemporalMarker(() -> {
+                    Slides.highDown();
+                })
+                .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     Claws.clawsOpen();
                 })
@@ -229,20 +249,24 @@ public class left_Jellyauto extends BaseOpMode {
                     Arm.armLeft();
                     Slides.fiveCups();
                 })
-                .lineToConstantHeading(new Vector2d(-62, -14))
+                .lineToConstantHeading(new Vector2d(-61.75, -14))
                 .addTemporalMarker(() -> {
                     Claws.clawsClose();
                 })
-                .waitSeconds(1.25)
+                .waitSeconds(2)
                 .addTemporalMarker(() -> {
                     Slides.high();
                 })
-                .lineToConstantHeading(new Vector2d(-25.5, -13.5))
+                .lineToConstantHeading(new Vector2d(-23, -13.5))
                 .addTemporalMarker(() -> {
                     Arm.armNorm();
                 })
                 .forward(1.5)
-                .waitSeconds(0.1)
+                .waitSeconds(0.5)
+                .addTemporalMarker(() -> {
+                    Slides.highDown();
+                })
+                .waitSeconds(0.5)
                 .addTemporalMarker(() -> {
                     Claws.clawsOpen();
                 })

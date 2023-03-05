@@ -129,7 +129,7 @@ public class JellyTele extends BaseOpMode {
                 // Turns clockwise 90
                 drive.followTrajectorySequenceAsync(clockwise90);
             }
-            if (gamepad1.y && !gamepad1.back){
+            if (gamepad1.y && !gamepad1.back && gamepad1.options){
                 // Turns clockwise 180
                 drive.followTrajectorySequenceAsync(clockwise180);
             }

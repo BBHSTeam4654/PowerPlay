@@ -10,9 +10,9 @@ public class Claws {
     public Claws(Servo servo){
         Claws.servo = servo;}
 
-    public static void clawsOpen(){servo.setPosition(0.6);
+    public static void clawsOpen(){servo.setPosition(0.44);
     }
-    public static void clawsClose() {servo.setPosition(0.735);}
+    public static void clawsClose() {servo.setPosition(0.2);}
 
 
     public double getCurrentPosition() {

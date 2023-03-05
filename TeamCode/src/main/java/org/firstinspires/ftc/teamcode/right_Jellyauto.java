@@ -75,7 +75,6 @@ public class right_Jellyauto extends BaseOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         initHardware();
-        Claws.clawsClose();
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id",
                 hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"),
@@ -128,7 +127,7 @@ public class right_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                             Arm.armNorm();
                 })
-                .lineToConstantHeading(new Vector2d(25.5, -12))
+                .lineToConstantHeading(new Vector2d(21.5, -12))
                 .waitSeconds(0.1)
                 .addTemporalMarker(() -> {
                             Claws.clawsOpen();
@@ -146,7 +145,7 @@ public class right_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                             Slides.high();
                 })
-                .lineToConstantHeading(new Vector2d(25.5, -13.5))
+                .lineToConstantHeading(new Vector2d(21.5, -13.5))
                 .addTemporalMarker(() -> {
                             Arm.armNorm();
                 })
@@ -155,7 +154,7 @@ public class right_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                             Claws.clawsOpen();
                 })
-                .lineToConstantHeading(new Vector2d(58, -14))
+                .lineToConstantHeading(new Vector2d(62, -14))
                 .addTemporalMarker(() -> {
                             Arm.armLeft();
                             Slides.reset();
@@ -166,7 +165,7 @@ public class right_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                     Claws.clawsClose();
                 })
-                .waitSeconds(1)
+                .waitSeconds(1.25)
                 .addTemporalMarker(() -> {
                     Slides.high();
                 })
@@ -174,7 +173,7 @@ public class right_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                     Arm.armNorm();
                 })
-                .lineToConstantHeading(new Vector2d(25.5, -12))
+                .lineToConstantHeading(new Vector2d(24.25, -11))
                 .waitSeconds(0.1)
                 .addTemporalMarker(() -> {
                     Claws.clawsOpen();
@@ -184,15 +183,15 @@ public class right_Jellyauto extends BaseOpMode {
                     Arm.armRight();
                     Slides.fiveCups();
                 })
-                .lineToConstantHeading(new Vector2d(62, -14))
+                .lineToConstantHeading(new Vector2d(61.75, -14))
                 .addTemporalMarker(() -> {
                     Claws.clawsClose();
                 })
-                .waitSeconds(1.25)
+                .waitSeconds(1.5)
                 .addTemporalMarker(() -> {
                     Slides.high();
                 })
-                .lineToConstantHeading(new Vector2d(25.5, -13.5))
+                .lineToConstantHeading(new Vector2d(24.25, -11))
                 .addTemporalMarker(() -> {
                     Arm.armNorm();
                 })
@@ -201,7 +200,7 @@ public class right_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                     Claws.clawsOpen();
                 })
-                .lineToConstantHeading(new Vector2d(34, -14))
+                .lineToConstantHeading(new Vector2d(38, -14))
                 .addTemporalMarker(() -> {
                     Arm.armLeft();
                     Slides.reset();
@@ -212,7 +211,7 @@ public class right_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                     Claws.clawsClose();
                 })
-                .waitSeconds(1)
+                .waitSeconds(1.25)
                 .addTemporalMarker(() -> {
                     Slides.high();
                 })
@@ -220,7 +219,7 @@ public class right_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                     Arm.armNorm();
                 })
-                .lineToConstantHeading(new Vector2d(25.5, -12))
+                .lineToConstantHeading(new Vector2d(24.25, -11))
                 .waitSeconds(0.1)
                 .addTemporalMarker(() -> {
                     Claws.clawsOpen();
@@ -230,15 +229,15 @@ public class right_Jellyauto extends BaseOpMode {
                     Arm.armRight();
                     Slides.fiveCups();
                 })
-                .lineToConstantHeading(new Vector2d(62, -14))
+                .lineToConstantHeading(new Vector2d(61.75, -14))
                 .addTemporalMarker(() -> {
                     Claws.clawsClose();
                 })
-                .waitSeconds(1.25)
+                .waitSeconds(1.5)
                 .addTemporalMarker(() -> {
                     Slides.high();
                 })
-                .lineToConstantHeading(new Vector2d(25.5, -13.5))
+                .lineToConstantHeading(new Vector2d(24.25, -11))
                 .addTemporalMarker(() -> {
                     Arm.armNorm();
                 })
@@ -247,7 +246,7 @@ public class right_Jellyauto extends BaseOpMode {
                 .addTemporalMarker(() -> {
                     Claws.clawsOpen();
                 })
-                .lineToConstantHeading(new Vector2d(10, -14))
+                .lineToConstantHeading(new Vector2d(14, -14))
                 .addTemporalMarker(() -> {
                     Arm.armLeft();
                     Slides.reset();

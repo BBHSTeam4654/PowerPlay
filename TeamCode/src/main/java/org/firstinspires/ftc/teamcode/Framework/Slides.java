@@ -12,8 +12,8 @@ public class Slides{
     static DcMotorEx rightSlide;
     static double leftTarget;
     static double rightTarget;
-    static double lkp = 0.01;
-    static double rkp = 0.01;
+    static double lkp = 0.005;
+    static double rkp = 0.005;
     static boolean limitoverride = false;
     public static boolean multPrecision = false;
     public static boolean slideExtracted = false;
@@ -48,6 +48,10 @@ public class Slides{
     public static void high(){
         leftTarget = -4053;
         rightTarget = 4053;
+    }
+    public static void highDown(){
+        leftTarget = -3950;
+        rightTarget = 3950;
     }
     public static void mid(){
         leftTarget = -2865;
