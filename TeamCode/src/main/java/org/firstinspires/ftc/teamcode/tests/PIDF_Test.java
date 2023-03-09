@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @Config
 @TeleOp(name = "PIDF Test")
@@ -15,7 +16,7 @@ public class PIDF_Test extends OpMode {
     public static double p=0, i=0, d=0;
     public static double f=0;
     public static int target=0;
-    private final double ticks_in_degree=537.7/180.0;
+    private final double ticks_in_degree=537.7/360.0;
     private DcMotorEx slideRight, slideLeft;
     @Override
     public void init(){
@@ -24,6 +25,7 @@ public class PIDF_Test extends OpMode {
 
         slideRight = hardwareMap.get(DcMotorEx.class, "rightSlide");
         slideLeft = hardwareMap.get(DcMotorEx.class, "leftSlide");
+        slideLeft.setDirection(DcMotorSimple.Direction.REVERSE);
     }
     @Override
     public void loop(){
@@ -40,7 +42,8 @@ public class PIDF_Test extends OpMode {
         slideRight.setPower(power_right);
         slideLeft.setPower(power_left);
 
-        telemetry.addData("right pos", slidePos_right);
+        telemetry.addData("right_pos", slidePos_right);
+        telemetry.addData("left_pos", slidePos_left);
         telemetry.addData("target", target);
         telemetry.update();
     }
